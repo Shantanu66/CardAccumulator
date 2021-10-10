@@ -1,4 +1,5 @@
 const graphql=require('graphql')
+//important to use {} as 
 const {GraphQLObjectType}=graphql()
 
 //create types
