@@ -3,7 +3,6 @@ const express=require('express')
 //object i can use to interact with nodejs,express,js,etc
 const { graphqlHTTP }=require('express-graphql')
 const schema=require('./schema/schema')
-const schema = require('./schema/schema')
 //instantiating the server using express
 const app=express()
 app.use('/graphQL',graphqlHTTP({
