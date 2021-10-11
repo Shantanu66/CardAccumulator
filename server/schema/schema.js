@@ -1,14 +1,19 @@
 const graphql=require('graphql')
-const {GraphQLObjectType}=graphql()
+const {
+    GraphQLObjectType,
+    GraphQLID,
+    GraphQLString,
+    GraphQLInt
+}=graphql()
 
 //create types
 const UserType=new GraphQLObjectType({
     name:'USER',
     description:'Documentation for user...',
     fields:()=>({
-        id:'1234',
-        name:'Shantanu',
-        age:20
+        id:{type:GraphQLID},
+        name:{type:GraphQLString},
+        age:{type:GraphQLInt}
     })
 })
 
