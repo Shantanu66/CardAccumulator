@@ -3,7 +3,8 @@ const {
     GraphQLObjectType,
     GraphQLID,
     GraphQLString,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLSchema
 }=graphql()
 
 //create types
@@ -34,4 +35,6 @@ const RootQuery=new GraphQLObjectType({
         }
     }
 })
-
+module.exports=new GraphQLSchema({
+    query:RootQuery
+})
