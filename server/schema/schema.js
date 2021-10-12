@@ -22,8 +22,12 @@ var IDCardData = [
     , cardnumber: "1000E100K" }
 ]
 var BankCardData = [
-    { id: '1',name:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" },
-    { id: '2',name:"SBI",validity:"03/29", number: "5678 1234 2300 9000" },
+    { id: '1',name:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" ,
+    userId:'11'},
+    { id: '2',name:"SBI",validity:"03/29", number: "5678 1234 2300 9000" ,
+    userId:'11'},
+    { id: '3',name:"HDFC",validity:"07/21", number: "8900 3456 2780 1000" ,
+    userId:'12'}
 ]
 
 const {
