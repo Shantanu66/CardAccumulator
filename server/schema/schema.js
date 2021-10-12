@@ -1,13 +1,13 @@
 const graphql = require('graphql')
-var lodash=require('lodash')
+var lodash = require('lodash')
 
 //dummy data
-var usersData=[
-    {id:'11',name:'Alex',age:32,profession:'Software Developer'},
-    {id:'12',name:'Bella',age:19,profession:'Stock trader'},
-    {id:'13',name:'Mona',age:20,profession:'Buisness Analyst'},
-    {id:'14',name:'Joan',age:39,profession:'Writer'},
-    {id:'15',name:'Triss',age:26,profession:'Model'}
+var usersData = [
+    { id: '11', name: 'Alex', age: 32, profession: 'Software Developer' },
+    { id: '12', name: 'Bella', age: 19, profession: 'Stock trader' },
+    { id: '13', name: 'Mona', age: 20, profession: 'Buisness Analyst' },
+    { id: '14', name: 'Joan', age: 39, profession: 'Writer' },
+    { id: '15', name: 'Triss', age: 26, profession: 'Model' }
 ]
 
 const {
@@ -26,16 +26,16 @@ const UserType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
-        profession:{type:GraphQLString}
+        profession: { type: GraphQLString }
     })
 })
-const CardType=new GraphQLObjectType({
-    name:'Card Name',
-    description:'Name of the Government Card',
-    fields:()=>({
-        id:{type:GraphQLID},
-        title:{type:GraphQLString},
-        description:{type:GraphQLString}
+const CardType = new GraphQLObjectType({
+    name: 'Card',
+    description: 'Name of the Government Card',
+    fields: () => ({
+        id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        description: { type: GraphQLString }
     })
 })
 
@@ -51,8 +51,16 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 //where we resolve with data
                 //get and return data from a datasource
-                return lodash.find(usersData,{id:args.id})
+                return lodash.find(usersData, { id: args.id })
             }
+        },
+        card: {
+            type: CardType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, args) {
+
+            }
+
         }
     }
 })
