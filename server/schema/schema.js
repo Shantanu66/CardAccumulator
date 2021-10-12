@@ -16,6 +16,13 @@ var CardData = [
     { id: '4', title: 'Voter ID', age: 39, description: 'ID for authorized voter' },
     { id: '5', title: 'Passport', age: 26, description: 'a formal document or certification issued by a national government identifying a traveler as a citizen or national with a right to protection while abroad and a right to return to the country of citizenship' }
 ]
+var CardNumber = [
+    { id: '1', number: "670090002000" },
+    { id: '2', number: "E101776362D1" },
+    { id: '3', number: "JH0123456789" },
+    { id: '4', number: "K06101" },
+    { id: '5', number: "1000E100K" }
+]
 
 const {
     GraphQLObjectType,
@@ -45,6 +52,14 @@ const CardType = new GraphQLObjectType({
         description: { type: GraphQLString }
     })
 })
+const CardNumberType = new GraphQLObjectType({
+    name: 'CardNumber',
+    description: 'Verification Number of the card',
+    fields: () => ({
+        id: { type: GraphQLID },
+        number: { type: GraphQLID }
+    })
+})
 
 //RootQuery creation
 const RootQuery = new GraphQLObjectType({
@@ -66,6 +81,13 @@ const RootQuery = new GraphQLObjectType({
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
                 return lodash.find(CardData, { id: args.id })
+            }
+        },
+        cardnumber: {
+            type: CardNumberType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, args) {
+                return lodash.find(CardNumber, { id: args.id })
             }
         }
     }
