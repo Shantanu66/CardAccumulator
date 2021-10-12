@@ -9,19 +9,21 @@ var usersData = [
     { id: '14', name: 'Joan', age: 39, profession: 'Writer' },
     { id: '15', name: 'Triss', age: 26, profession: 'Model' }
 ]
-var CardData = [
-    { id: '1', title: 'Aadhar Card', age: 32, description: 'Government issued ID for verifiaction' },
-    { id: '2', title: 'Pan Card', age: 19, description: 'ID for income Tax' },
-    { id: '3', title: 'Driving License', age: 20, description: 'License for driving vehicles' },
-    { id: '4', title: 'Voter ID', age: 39, description: 'ID for authorized voter' },
-    { id: '5', title: 'Passport', age: 26, description: 'a formal document or certification issued by a national government identifying a traveler as a citizen or national with a right to protection while abroad and a right to return to the country of citizenship' }
+var IDCardData = [
+    { id: '1', title: 'Aadhar Card', description: 'Government issued ID for verifiaction'
+    , cardnumber: "670090002000"},
+    { id: '2', title: 'Pan Card', description: 'ID for income Tax' 
+    , cardnumber: "E101776362D1"},
+    { id: '3', title: 'Driving License', description: 'License for driving vehicles'
+    , cardnumber: "JH0123456789" },
+    { id: '4', title: 'Voter ID', description: 'ID for authorized voter'
+    , cardnumber: "K06101" },
+    { id: '5', title: 'Passport', description: 'a formal document or certification issued by a national government identifying a traveler as a citizen or national with a right to protection while abroad and a right to return to the country of citizenship'
+    , cardnumber: "1000E100K" }
 ]
-var CardNumber = [
-    { id: '1', number: "670090002000" },
-    { id: '2', number: "E101776362D1" },
-    { id: '3', number: "JH0123456789" },
-    { id: '4', number: "K06101" },
-    { id: '5', number: "1000E100K" }
+var BankCardData = [
+    { id: '1',name:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" },
+    { id: '2',name:"SBI",validity:"03/29", number: "5678 1234 2300 9000" },
 ]
 
 const {
@@ -43,20 +45,23 @@ const UserType = new GraphQLObjectType({
         profession: { type: GraphQLString }
     })
 })
-const CardType = new GraphQLObjectType({
-    name: 'Card',
+const IDCardType = new GraphQLObjectType({
+    name: 'GovernmentCard',
     description: 'Name of the Government Card',
     fields: () => ({
         id: { type: GraphQLID },
         title: { type: GraphQLString },
-        description: { type: GraphQLString }
+        description: { type: GraphQLString },
+        cardnumber: { type: GraphQLID }
     })
 })
-const CardNumberType = new GraphQLObjectType({
-    name: 'CardNumber',
-    description: 'Verification Number of the card',
+const BankCardType = new GraphQLObjectType({
+    name: 'BankCards',
+    description: 'Credit/Debit Cards',
     fields: () => ({
         id: { type: GraphQLID },
+        name:{type:GraphQLString},
+        validity:{type:GraphQLID},
         number: { type: GraphQLID }
     })
 })
@@ -76,18 +81,18 @@ const RootQuery = new GraphQLObjectType({
                 return lodash.find(usersData, { id: args.id })
             }
         },
-        card: {
-            type: CardType,
+        idcard: {
+            type: IDCardType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                return lodash.find(CardData, { id: args.id })
+                return lodash.find(IDCardData, { id: args.id })
             }
         },
-        cardnumber: {
-            type: CardNumberType,
+        bankcard: {
+            type: BankCardType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                return lodash.find(CardNumber, { id: args.id })
+                return lodash.find(BankCardData, { id: args.id })
             }
         }
     }
