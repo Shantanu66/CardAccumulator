@@ -9,6 +9,13 @@ var usersData = [
     { id: '14', name: 'Joan', age: 39, profession: 'Writer' },
     { id: '15', name: 'Triss', age: 26, profession: 'Model' }
 ]
+var CardData = [
+    { id: '1', title: 'Aadhar Card', age: 32, description: 'Government issued ID for verifiaction' },
+    { id: '2', title: 'Pan Card', age: 19, description: 'ID for income Tax' },
+    { id: '3', title: 'Driving License', age: 20, description: 'License for driving vehicles' },
+    { id: '4', title: 'Voter ID', age: 39, description: 'ID for authorized voter' },
+    { id: '5', title: 'Passport', age: 26, description: 'a formal document or certification issued by a national government identifying a traveler as a citizen or national with a right to protection while abroad and a right to return to the country of citizenship' }
+]
 
 const {
     GraphQLObjectType,
@@ -58,9 +65,8 @@ const RootQuery = new GraphQLObjectType({
             type: CardType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-
+                return lodash.find(CardData, { id: args.id })
             }
-
         }
     }
 })
