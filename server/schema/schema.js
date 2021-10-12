@@ -1,4 +1,5 @@
 const graphql = require('graphql')
+var lodash=require('lodash')
 
 //dummy data
 var usersData=[
@@ -40,12 +41,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 //where we resolve with data
                 //get and return data from a datasource
-                let user = {
-                    id: 'ID66',
-                    name: 'Shantanu Roy',
-                    age: 20
-                }
-                return user
+                return lodash.find(usersData,{id:args.id})
             }
         }
     }
