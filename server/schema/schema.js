@@ -3,11 +3,11 @@ var lodash = require('lodash')
 
 //dummy data
 var holdersData = [
-    { id: '11', name: 'Alex', age: 32, profession: 'Software Developer' },
-    { id: '12', name: 'Bella', age: 19, profession: 'Stock trader' },
-    { id: '13', name: 'Mona', age: 20, profession: 'Buisness Analyst' },
-    { id: '14', name: 'Joan', age: 39, profession: 'Writer' },
-    { id: '15', name: 'Triss', age: 26, profession: 'Model' }
+    { id: '1', name: 'Alex', age: 32, profession: 'Software Developer' },
+    { id: '2', name: 'Bella', age: 19, profession: 'Stock trader' },
+    { id: '3', name: 'Mona', age: 20, profession: 'Buisness Analyst' },
+    { id: '4', name: 'Joan', age: 39, profession: 'Writer' },
+    { id: '5', name: 'Triss', age: 26, profession: 'Model' }
 ]
 var IDCardData = [
     { id: '1', title: 'Aadhar Card', description: 'Government issued ID for verifiaction'
@@ -23,11 +23,11 @@ var IDCardData = [
 ]
 var BankCardData = [
     { id: '1',bank:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" ,
-    holderId:'11'},
+    holderId:'1'},
     { id: '2',bank:"SBI",validity:"03/29", number: "5678 1234 2300 9000" ,
-    holderId:'11'},
+    holderId:'1'},
     { id: '3',bank:"HDFC",validity:"07/21", number: "8900 3456 2780 1000" ,
-    holderId:'12'}
+    holderId:'2'}
 ]
 
 const {
