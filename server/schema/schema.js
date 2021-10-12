@@ -2,7 +2,7 @@ const graphql = require('graphql')
 var lodash = require('lodash')
 
 //dummy data
-var usersData = [
+var holdersData = [
     { id: '11', name: 'Alex', age: 32, profession: 'Software Developer' },
     { id: '12', name: 'Bella', age: 19, profession: 'Stock trader' },
     { id: '13', name: 'Mona', age: 20, profession: 'Buisness Analyst' },
@@ -22,12 +22,12 @@ var IDCardData = [
     , cardnumber: "1000E100K" }
 ]
 var BankCardData = [
-    { id: '1',name:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" ,
-    userId:'11'},
-    { id: '2',name:"SBI",validity:"03/29", number: "5678 1234 2300 9000" ,
-    userId:'11'},
-    { id: '3',name:"HDFC",validity:"07/21", number: "8900 3456 2780 1000" ,
-    userId:'12'}
+    { id: '1',bank:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" ,
+    holderId:'11'},
+    { id: '2',bank:"SBI",validity:"03/29", number: "5678 1234 2300 9000" ,
+    holderId:'11'},
+    { id: '3',bank:"HDFC",validity:"07/21", number: "8900 3456 2780 1000" ,
+    holderId:'12'}
 ]
 
 const {
@@ -39,9 +39,9 @@ const {
 } = graphql
 
 //create types
-const UserType = new GraphQLObjectType({
-    name: 'User',
-    description: 'Documentation for user...',
+const holderType = new GraphQLObjectType({
+    name: 'Holder',
+    description: 'Documentation for Holder...',
     fields: () => ({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
@@ -64,9 +64,15 @@ const BankCardType = new GraphQLObjectType({
     description: 'Credit/Debit Cards',
     fields: () => ({
         id: { type: GraphQLID },
-        name:{type:GraphQLString},
+        bank:{type:GraphQLString},
         validity:{type:GraphQLID},
-        number: { type: GraphQLID }
+        number: { type: GraphQLID },
+        holder:{
+            type:holderType,
+            resolve(parent,args){
+                return lodash.find(holdersData,{id:parent.holderId})
+            }
+        }
     })
 })
 
@@ -75,14 +81,14 @@ const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     description: 'Root Query desc',
     fields: {
-        user: {
-            type: UserType,
+        holder: {
+            type: holderType,
             //what argument we need to pass with the main query
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
                 //where we resolve with data
                 //get and return data from a datasource
-                return lodash.find(usersData, { id: args.id })
+                return lodash.find(holdersData, { id: args.id })
             }
         },
         idcard: {
