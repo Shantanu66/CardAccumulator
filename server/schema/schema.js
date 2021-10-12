@@ -3,11 +3,11 @@ var lodash=require('lodash')
 
 //dummy data
 var usersData=[
-    {id:'11',name:'Alex',age:32},
-    {id:'12',name:'Bella',age:19},
-    {id:'13',name:'Mona',age:20},
-    {id:'14',name:'Joan',age:39},
-    {id:'15',name:'Triss',age:26}
+    {id:'11',name:'Alex',age:32,profession:'Software Developer'},
+    {id:'12',name:'Bella',age:19,profession:'Stock trader'},
+    {id:'13',name:'Mona',age:20,profession:'Buisness Analyst'},
+    {id:'14',name:'Joan',age:39,profession:'Writer'},
+    {id:'15',name:'Triss',age:26,profession:'Model'}
 ]
 
 const {
@@ -20,12 +20,22 @@ const {
 
 //create types
 const UserType = new GraphQLObjectType({
-    name: 'USER',
+    name: 'User',
     description: 'Documentation for user...',
     fields: () => ({
-        id: { type: GraphQLString },
+        id: { type: GraphQLID },
         name: { type: GraphQLString },
-        age: { type: GraphQLInt }
+        age: { type: GraphQLInt },
+        profession:{type:GraphQLString}
+    })
+})
+const CardType=new GraphQLObjectType({
+    name:'Card Name',
+    description:'Name of the Government Card',
+    fields:()=>({
+        id:{type:GraphQLID},
+        title:{type:GraphQLString},
+        description:{type:GraphQLString}
     })
 })
 
