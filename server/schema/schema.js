@@ -54,7 +54,7 @@ const RootQuery = new GraphQLObjectType({
         user: {
             type: UserType,
             //what argument we need to pass with the main query
-            args: { id: { type: GraphQLString } },
+            args: { id: { type: GraphQLID } },
             resolve(parent, args) {
                 //where we resolve with data
                 //get and return data from a datasource
