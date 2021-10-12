@@ -1,4 +1,14 @@
 const graphql = require('graphql')
+
+//dummy data
+var usersData=[
+    {id:'1',name:'Alex',age:32},
+    {id:'1',name:'Bella',age:19},
+    {id:'1',name:'Mona',age:20},
+    {id:'1',name:'Joan',age:39},
+    {id:'1',name:'Triss',age:26}
+]
+
 const {
     GraphQLObjectType,
     GraphQLID,
