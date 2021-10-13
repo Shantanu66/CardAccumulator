@@ -138,10 +138,19 @@ const Mutation=new GraphQLObjectType({
                name:{type:GraphQLString},
                age: { type: GraphQLInt },
                profession: { type: GraphQLString },
+           },
+           resolve(parent,args){
+               let holder={
+                   name:args.name,
+                   age:args.age,
+                   profession:args.profession
+               }
+               return holder
            }
     }
    }
 })
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation:Mutation
 })
