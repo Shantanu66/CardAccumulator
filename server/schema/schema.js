@@ -151,10 +151,20 @@ const Mutation=new GraphQLObjectType({
     createIDcard:{
         type:IDCardType,
         args:{
-            id: { type: GraphQLID },
+            //id: { type: GraphQLID },
             title: { type: GraphQLString },
             description: { type: GraphQLString },
             cardnumber: { type: GraphQLID },
+            holderId:{type:GraphQLString}
+        },
+        resolve(parent,args){
+            let IDcard={
+                title:args.title,
+                description:args.description,
+                cardnumber:args.cardnumber,
+                holderId:args.holderId
+            }
+            return IDcard
         }
     }
    }
