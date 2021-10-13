@@ -166,6 +166,25 @@ const Mutation=new GraphQLObjectType({
             }
             return IDcard
         }
+    },
+    createBankcard:{
+        type:BankCardType,
+        args:{
+            //id: { type: GraphQLID },
+            bank:{type:GraphQLString},
+            validity:{type:GraphQLID},
+            number: { type: GraphQLID },
+            holderId:{type:GraphQLString}
+        },
+        resolve(parent,args){
+            let BankCard={
+                bank:args.bank,
+                validity:args.validity,
+                number:args.number,
+                holderId:args.holderId
+            }
+            return BankCard
+        }
     }
    }
 })
