@@ -4,7 +4,7 @@ var lodash = require('lodash')
 //dummy data
 var holdersData = [
     { id: '1', name: 'Alex', age: 32, profession: 'Software Developer' },
-    { id: '2', name: 'Bella', age: 19, profession: 'Stock trader' },
+    { id: '2', name: 'Bella', age: 29, profession: 'Stock trader' },
     { id: '3', name: 'Mona', age: 20, profession: 'Buisness Analyst' },
     { id: '4', name: 'Joan', age: 39, profession: 'Writer' },
     { id: '5', name: 'Triss', age: 26, profession: 'Model' }
