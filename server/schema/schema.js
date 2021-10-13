@@ -111,11 +111,23 @@ const RootQuery = new GraphQLObjectType({
                 return lodash.find(holdersData, { id: args.id })
             }
         },
+        holders:{
+            type:new GraphQLList(holderType),
+            resolve(parent,args){
+                return holdersData
+            }
+        },
         idcard: {
             type: IDCardType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
                 return lodash.find(IDCardData, { id: args.id })
+            }
+        },
+        idcards:{
+            type:new GraphQLList(IDCardType),
+            resolve(parent,args){
+                return IDCardData
             }
         },
         bankcard: {
@@ -124,7 +136,13 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 return lodash.find(BankCardData, { id: args.id })
             }
-        }
+        },
+        bankcards:{
+            type:new GraphQLList(BankCardType),
+            resolve(parent,args){
+                return BankCardData
+            }
+        },
     }
 })
 //Mutations
