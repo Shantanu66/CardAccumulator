@@ -11,15 +11,15 @@ var holdersData = [
 ]
 var IDCardData = [
     { id: '1', title: 'Aadhar Card', description: 'Government issued ID for verifiaction'
-    , cardnumber: "670090002000"},
+    , cardnumber: "670090002000",holderId:'1'},
     { id: '2', title: 'Pan Card', description: 'ID for income Tax' 
-    , cardnumber: "E101776362D1"},
+    , cardnumber: "E101776362D1",holderId:'2'},
     { id: '3', title: 'Driving License', description: 'License for driving vehicles'
-    , cardnumber: "JH0123456789" },
+    , cardnumber: "JH0123456789" ,holderId:'1'},
     { id: '4', title: 'Voter ID', description: 'ID for authorized voter'
-    , cardnumber: "K06101" },
+    , cardnumber: "K06101",holderId:'4' },
     { id: '5', title: 'Passport', description: 'a formal document or certification issued by a national government identifying a traveler as a citizen or national with a right to protection while abroad and a right to return to the country of citizenship'
-    , cardnumber: "1000E100K" }
+    , cardnumber: "1000E100K",holderId:'5' }
 ]
 var BankCardData = [
     { id: '1',bank:"ICICI",validity:"06/27", number: "4045 2078 5000 2345" ,
@@ -56,7 +56,13 @@ const IDCardType = new GraphQLObjectType({
         id: { type: GraphQLID },
         title: { type: GraphQLString },
         description: { type: GraphQLString },
-        cardnumber: { type: GraphQLID }
+        cardnumber: { type: GraphQLID },
+        holder:{
+            type:holderType,
+            resolve(parent,args){
+                return lodash.find(holdersData,{id:parent.holderId})
+            }
+        }
     })
 })
 const BankCardType = new GraphQLObjectType({
