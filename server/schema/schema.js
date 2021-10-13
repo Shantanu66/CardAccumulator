@@ -35,7 +35,8 @@ const {
     GraphQLID,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLList
 } = graphql
 
 //create types
@@ -46,7 +47,20 @@ const holderType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
-        profession: { type: GraphQLString }
+        profession: { type: GraphQLString },
+        idcards:{
+            type:new GraphQLList(IDCardType),
+            resolve(parent,args){
+                return lodash.filter(IDCardData,{holderId:parent.id})
+            }
+        },
+        bandcards:{
+            type:new GraphQLList(BankCardType),
+            resolve(parent,args){
+                return lodash.filter(BankCardData,{holderId:parent.id})
+            }
+
+        }
     })
 })
 const IDCardType = new GraphQLObjectType({
