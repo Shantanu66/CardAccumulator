@@ -147,6 +147,15 @@ const Mutation=new GraphQLObjectType({
                }
                return holder
            }
+    },
+    createIDcard:{
+        type:IDCardType,
+        args:{
+            id: { type: GraphQLID },
+            title: { type: GraphQLString },
+            description: { type: GraphQLString },
+            cardnumber: { type: GraphQLID },
+        }
     }
    }
 })
