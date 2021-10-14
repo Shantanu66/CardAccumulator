@@ -152,13 +152,14 @@ const Mutation=new GraphQLObjectType({
        createHolder:{
            type:holderType,
            args:{
-               //id:{type:GraphQLID}
+               id:{type:GraphQLID},
                name:{type:GraphQLString},
                age: { type: GraphQLInt },
                profession: { type: GraphQLString },
            },
            resolve(parent,args){
                let holder={
+                   id:args.id,
                    name:args.name,
                    age:args.age,
                    profession:args.profession
