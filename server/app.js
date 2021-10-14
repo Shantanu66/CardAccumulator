@@ -3,11 +3,12 @@ const express=require('express')
 //object i can use to interact with nodejs,express,js,etc
 const { graphqlHTTP }=require('express-graphql')
 const schema=require('./schema/schema')
+const testSchema=require('./schema/GraphQL_types')
 //instantiating the server using express
 const app=express()
 app.use('/graphQL',graphqlHTTP({
     graphiql:true,
-    schema:schema
+    schema:testSchema
 }))
 //creating a port for the server to serve at
 //and listen to it
