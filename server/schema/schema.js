@@ -45,6 +45,7 @@ const holderType = new GraphQLObjectType({
     description: 'Documentation for Holder...',
     fields: () => ({
         id: { type: GraphQLID },
+        //name:{type:new GraphQLNonNull(GraphQLString)},(for it to be non null)
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
         profession: { type: GraphQLString },
