@@ -7,7 +7,8 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLBoolean,
-    GraphQLFloat
+    GraphQLFloat,
+    GraphQLNonNull
 }=graphql
 
 //Scalar type(not an object predefined DT/primitve DT)
@@ -16,7 +17,7 @@ const person=new GraphQLObjectType({
     description:'Created a Person type using the graphqlobject type',
     fields:()=>({
         id:{type:GraphQLID},
-        name:{type:GraphQLString},
+        name:{type:new GraphQLNonNull(GraphQLString)},
         age:{type:GraphQLInt},
         isMarried:{type:GraphQLBoolean},
         gpa:{type:GraphQLFloat}
@@ -27,7 +28,12 @@ const RootQuery=new GraphQLObjectType({
     name:'RootQueryType',
     description:'Description',
     fields:{
+        person:{
+            type:person,
+            description:'Non Nullable',
 
+
+        }
     }
 })
 
