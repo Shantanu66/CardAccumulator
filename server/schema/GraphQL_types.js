@@ -3,7 +3,11 @@ const graphql=require('graphql')
 const {
     GraphQLObjectType,
     GraphQLSchema,
-    GraphQLID
+    GraphQLID,
+    GraphQLString,
+    GraphQLInt,
+    GraphQLBoolean,
+    GraphQLFloat
 }=graphql
 
 //Scalar type(not an object predefined DT/primitve DT)
@@ -11,7 +15,11 @@ const person=new GraphQLObjectType({
     name:"Person",
     description:'Created a Person type using the graphqlobject type',
     fields:()=>({
-        id:{type:GraphQLID}
+        id:{type:GraphQLID},
+        name:{type:GraphQLString},
+        age:{type:GraphQLInt},
+        isMarried:{type:GraphQLBoolean},
+        gpa:{type:GraphQLFloat}
     })
 })
 
