@@ -5,6 +5,7 @@ const { graphqlHTTP }=require('express-graphql')
 const schema=require('./schema/schema')
 //instantiating the server using express
 const app=express()
+//app.use/the server will use the graph API to communicate
 app.use('/graphQL',graphqlHTTP({
     graphiql:true,
     schema:schema
