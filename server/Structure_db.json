@@ -1,0 +1,7 @@
+{
+    "env":{
+        "mongoDB":"CardAccumulator",
+        "mongoUserName":"Shantanu",
+        "mongoUserPassword":"S3YTEczNg7uwUjc9"
+    }
+}
