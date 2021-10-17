@@ -9,4 +9,4 @@ const idcardSchema=new mongoose_schema({
     mail:String,
     profession:String
 })
-module.exports=mongoose.model("Holder",holderSchema)
+module.exports=mongoose.model("Idcard",idcardSchema)
