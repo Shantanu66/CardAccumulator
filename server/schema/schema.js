@@ -3,11 +3,11 @@ var lodash = require('lodash')
 
 //dummy data
 var holdersData = [
-    { id: '1', name: 'Alex', age: 32, profession: 'Software Developer' },
-    { id: '2', name: 'Bella', age: 29, profession: 'Stock trader' },
-    { id: '3', name: 'Mona', age: 20, profession: 'Buisness Analyst' },
-    { id: '4', name: 'Joan', age: 39, profession: 'Writer' },
-    { id: '5', name: 'Triss', age: 26, profession: 'Model' }
+    { id: '1', name: 'Alex',mail:'Alex@mail.com' ,age: 32, profession: 'Software Developer' },
+    { id: '2', name: 'Bella',mail:'Bella@mail.com' , age: 29, profession: 'Stock trader' },
+    { id: '3', name: 'Mona',mail:'Mona@mail.com' , age: 20, profession: 'Buisness Analyst' },
+    { id: '4', name: 'Joan',mail:'Joan@mail.com' , age: 39, profession: 'Writer' },
+    { id: '5', name: 'Triss',mail:'Triss@mail.com' , age: 26, profession: 'Model' }
 ]
 var IDCardData = [
     { id: '1', title: 'Aadhar Card', description: 'Government issued ID for verifiaction'
@@ -48,6 +48,7 @@ const holderType = new GraphQLObjectType({
         //name:{type:new GraphQLNonNull(GraphQLString)},(for it to be non null)
         name: { type: GraphQLString },
         age: { type: GraphQLInt },
+        mail:{type:GraphQLString},
         profession: { type: GraphQLString },
         idcards:{
             type:new GraphQLList(IDCardType),
@@ -157,6 +158,7 @@ const Mutation=new GraphQLObjectType({
                id:{type:GraphQLID},
                name:{type:GraphQLString},
                age: { type: GraphQLInt },
+               mail:{type:GraphQLString},
                profession: { type: GraphQLString },
            },
            resolve(parent,args){
@@ -164,6 +166,7 @@ const Mutation=new GraphQLObjectType({
                    id:args.id,
                    name:args.name,
                    age:args.age,
+                   mail:args.mail,
                    profession:args.profession
                }
                return holder
