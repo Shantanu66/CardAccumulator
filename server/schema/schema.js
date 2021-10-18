@@ -167,12 +167,12 @@ const Mutation=new GraphQLObjectType({
                profession: { type: GraphQLString },
            },
            resolve(parent,args){
-               let holder={
+               let holder=Holder({
                    name:args.name,
                    age:args.age,
                    mail:args.mail,
                    profession:args.profession
-               }
+               })
                return holder
            }
     },
