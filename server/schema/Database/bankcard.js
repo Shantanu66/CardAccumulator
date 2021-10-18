@@ -6,7 +6,6 @@ const bankcardSchema=new mongoose_schema({
     bank:String,
     validity:ObjectID,
     number:ObjectID,
-    cvv:Number
 })
 
 module.exports=mongoose.model("Bankcard",bankcardSchema)
