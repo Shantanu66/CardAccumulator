@@ -1,7 +1,12 @@
 const graphql = require('graphql')
 var lodash = require('lodash')
 
-//dummy data
+//reference the db models
+const Holder=require("./Database/holder")
+const idcard=require("./Database/idcard")
+const bankcard=require("./Database/bankcard")
+
+/*dummy data
 var holdersData = [
     { id: '1', name: 'Alex',mail:'Alex@mail.com' ,age: 32, profession: 'Software Developer' },
     { id: '2', name: 'Bella',mail:'Bella@mail.com' , age: 29, profession: 'Stock trader' },
@@ -28,7 +33,7 @@ var BankCardData = [
     holderId:'1'},
     { id: '3',bank:"HDFC",validity:"07/21", number: "8900 3456 2780 1000" ,
     holderId:'2'}
-]
+]*/
 
 const {
     GraphQLObjectType,
