@@ -3,7 +3,7 @@ const mongoose_schema=mongoose.Schema
 
 mongoose.set("useFindAndModify",false)
 
-const holderSchema=new mongoose_schema({
+const holderSchema= mongoose_schema({
     name:String,
     age:Number,
     mail:String,

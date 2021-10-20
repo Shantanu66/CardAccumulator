@@ -173,7 +173,7 @@ const Mutation=new GraphQLObjectType({
                    mail:args.mail,
                    profession:args.profession
                })
-               return holder
+               return holder.save()
            }
     },
     createIDcard:{

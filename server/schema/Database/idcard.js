@@ -4,7 +4,7 @@ const ObjectID=mongoose_schema.ObjectID
 
 mongoose.set("useFindAndModify",false)
 
-const idcardSchema=new mongoose_schema({
+const idcardSchema= mongoose_schema({
     title:String,
     description:String,
     cardnumber:ObjectID,
