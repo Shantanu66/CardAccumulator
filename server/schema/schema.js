@@ -86,7 +86,8 @@ const IDCardType = new GraphQLObjectType({
         holder:{
             type:holderType,
             resolve(parent,args){
-                return lodash.find(holdersData,{id:parent.holderId})
+                return holder.findById(parent.holderId)
+                //return lodash.find(holdersData,{id:parent.holderId})
             }
         }
     })
@@ -103,7 +104,7 @@ const BankCardType = new GraphQLObjectType({
         holder:{
             type:holderType,
             resolve(parent,args){
-                return lodash.find(holdersData,{id:parent.holderId})
+                return holder.findById(parent.holderId)
             }
         }
     })
@@ -235,7 +236,6 @@ const Mutation=new GraphQLObjectType({
             description: { type: new GraphQLNonNull(GraphQLString) },
             cardnumber: { type: new GraphQLNonNull(GraphQLID) },
             DOB:{type:new GraphQLNonNull(GraphQLID)},
-            holderId:{type:new GraphQLNonNull(GraphQLID)},
         },
         resolve(parent,args){
             return UpdateIdcard=idcard.findByIdAndUpdate(
@@ -246,7 +246,6 @@ const Mutation=new GraphQLObjectType({
                         description:args.description,
                         cardnumber:args.cardnumber,
                         DOB:args.DOB,
-                        holderId:args.holderId
                     }
                 },
                 {new:true}//send back the updated holder type
@@ -270,7 +269,29 @@ const Mutation=new GraphQLObjectType({
             })
             return BankCard.save()
         }
-    }
+    },
+    UpdateBankcard:{
+        type:BankCardType,
+        args:{
+            id:{type:new GraphQLNonNull(GraphQLString)},
+            bank:{type:new GraphQLNonNull(GraphQLString)},
+            validity:{type:new GraphQLNonNull(GraphQLID)},
+            number: { type:new GraphQLNonNull( GraphQLID) },
+        },
+        resolve(parent,args){
+            return UpdateBankcard=bankcard.findByIdAndUpdate(
+                args.id,
+                {
+                    $set:{
+                        bank:args.bank,
+                        validity:args.validity,
+                        number:args.number,
+                    }
+                },
+                {new:true}//send back the updated holder type
+            )
+        }
+    },
    }
 })
 module.exports = new GraphQLSchema({
