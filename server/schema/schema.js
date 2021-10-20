@@ -230,6 +230,7 @@ const Mutation=new GraphQLObjectType({
     UpdateIdcard:{
         type:IDCardType,
         args:{
+            id:{type:new GraphQLNonNull(GraphQLString)},
             title: { type: new GraphQLNonNull(GraphQLString )},
             description: { type: new GraphQLNonNull(GraphQLString) },
             cardnumber: { type: new GraphQLNonNull(GraphQLID) },
