@@ -165,8 +165,8 @@ const Mutation=new GraphQLObjectType({
        createHolder:{
            type:holderType,
            args:{
-               name:{type:GraphQLString},
-               age: { type: GraphQLInt },
+               name:{type:new GraphQLNonNull(GraphQLString)},
+               age: { type: new GraphQLNonNull(GraphQLInt) },
                mail:{type:GraphQLString},
                profession: { type: GraphQLString },
            },
