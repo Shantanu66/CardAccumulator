@@ -2,7 +2,7 @@ const graphql = require('graphql')
 var lodash = require('lodash')
 
 //reference the db models
-const Holder=require("./Database/holder")
+const holder=require("./Database/holder")
 const idcard=require("./Database/idcard")
 const bankcard=require("./Database/bankcard")
 
@@ -59,13 +59,15 @@ const holderType = new GraphQLObjectType({
         idcards:{
             type:new GraphQLList(IDCardType),
             resolve(parent,args){
-                return lodash.filter(IDCardData,{holderId:parent.id})
+                  return idcard.find({holderId:parent.id})
+                //return lodash.filter(IDCardData,{holderId:parent.id})
             }
         },
         bandcards:{
             type:new GraphQLList(BankCardType),
             resolve(parent,args){
-                return lodash.filter(BankCardData,{holderId:parent.id})
+                  return bankcard.find({holderId:parent.id})
+                //return lodash.filter(BankCardData,{holderId:parent.id})
             }
 
         }
@@ -118,13 +120,14 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 //where we resolve with data
                 //get and return data from a datasource
-                return lodash.find(holdersData, { id: args.id })
+                return holder.findById(args.id)
+                //return lodash.find(holdersData, { id: args.id })
             }
         },
         holders:{
             type:new GraphQLList(holderType),
             resolve(parent,args){
-                return holdersData
+                return holder
             }
         },
         idcard: {
