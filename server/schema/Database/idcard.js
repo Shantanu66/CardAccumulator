@@ -6,6 +6,7 @@ const idcardSchema= mongoose_schema({
     title:String,
     description:String,
     cardnumber:Number,
-    DOB:Number
+    DOB:String,
+    holderId:String
 })
 module.exports=mongoose.model("Idcard",idcardSchema)
