@@ -167,17 +167,17 @@ const Mutation=new GraphQLObjectType({
            args:{
                name:{type:new GraphQLNonNull(GraphQLString)},
                age: { type: new GraphQLNonNull(GraphQLInt) },
-               mail:{type:GraphQLString},
-               profession: { type: GraphQLString },
+               mail:{type:new GraphQLNonNull(GraphQLString)},
+               profession: { type:new GraphQLNonNull(GraphQLString) },
            },
            resolve(parent,args){
-               let holder=Holder({
+               let Holder=holder({
                    name:args.name,
                    age:args.age,
                    mail:args.mail,
                    profession:args.profession
                })
-               return holder.save()
+               return Holder.save()
            }
     },
     createIDcard:{
@@ -203,10 +203,10 @@ const Mutation=new GraphQLObjectType({
     createBankcard:{
         type:BankCardType,
         args:{
-            bank:{type:GraphQLString},
-            validity:{type:GraphQLID},
-            number: { type: GraphQLID },
-            holderId:{type:GraphQLString}
+            bank:{type:new GraphQLNonNull(GraphQLString)},
+            validity:{type:new GraphQLNonNull(GraphQLID)},
+            number: { type:new GraphQLNonNull( GraphQLID) },
+            holderId:{type:new GraphQLNonNull(GraphQLString)}
         },
         resolve(parent,args){
             let BankCard=bankcard({

@@ -4,6 +4,7 @@ const express=require('express')
 const { graphqlHTTP }=require('express-graphql')
 const schema=require('./server/schema/schema')
 const mongoose=require('mongoose')
+const cors=require('cors')
 const port=process.env.PORT || 5000
 //instantiating the server using express
 const app=express()
