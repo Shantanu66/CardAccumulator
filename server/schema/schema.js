@@ -5,6 +5,7 @@ var lodash = require('lodash')
 const holder=require("./Database/holder")
 const idcard=require("./Database/idcard")
 const bankcard=require("./Database/bankcard")
+const { assign } = require('lodash')
 
 /*dummy data
 var holdersData = [
@@ -179,6 +180,31 @@ const Mutation=new GraphQLObjectType({
                })
                return Holder.save()
            }
+    },
+    //Update Holder
+    UpdateHolder:{
+        type:holderType,
+        args:{
+               id:{type:new GraphQLNonNull(GraphQLString)},           
+               name:{type:new GraphQLNonNull(GraphQLString)},
+               age: { type: new GraphQLNonNull(GraphQLInt) },
+               mail:{type:new GraphQLNonNull(GraphQLString)},
+               profession: { type:new GraphQLNonNull(GraphQLString) },
+        },
+        resolve(parent,args){
+            return UpdateHolder=holder.findByIdAndUpdate(
+                args.id,
+                {
+                    $set:{
+                        name:args.name,
+                        age:args.age,
+                        mail:args.mail,
+                        profession:args.profession
+                    }
+                },
+                {new:true}//send back the updated holder type
+            )
+        }
     },
     createIDcard:{
         type:IDCardType,
