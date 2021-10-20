@@ -41,7 +41,8 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLSchema,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull
 } = graphql
 
 //create types
@@ -179,21 +180,21 @@ const Mutation=new GraphQLObjectType({
     createIDcard:{
         type:IDCardType,
         args:{
-            title: { type: GraphQLString },
-            description: { type: GraphQLString },
-            cardnumber: { type: GraphQLID },
-            DOB:{type:GraphQLID},
-            holderId:{type:GraphQLString},
+            title: { type: new GraphQLNonNull(GraphQLString )},
+            description: { type: new GraphQLNonNull(GraphQLString) },
+            cardnumber: { type: new GraphQLNonNull(GraphQLID) },
+            DOB:{type:new GraphQLNonNull(GraphQLID)},
+            holderId:{type:new GraphQLNonNull(GraphQLID)},
         },
         resolve(parent,args){
-            let IDcard={
+            let IDcard=idcard({
                 title:args.title,
                 description:args.description,
                 cardnumber:args.cardnumber,
                 DOB:args.DOB,
                 holderId:args.holderId
-            }
-            return IDcard
+            })
+            return IDcard.save()
         }
     },
     createBankcard:{
@@ -205,13 +206,13 @@ const Mutation=new GraphQLObjectType({
             holderId:{type:GraphQLString}
         },
         resolve(parent,args){
-            let BankCard={
+            let BankCard=bankcard({
                 bank:args.bank,
                 validity:args.validity,
                 number:args.number,
                 holderId:args.holderId
-            }
-            return BankCard
+            })
+            return BankCard.save()
         }
     }
    }
