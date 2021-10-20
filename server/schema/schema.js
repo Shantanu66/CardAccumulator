@@ -208,6 +208,19 @@ const Mutation=new GraphQLObjectType({
             )
         }
     },
+    RemoveHolder:{
+        type:holderType,
+        args:{
+            id:{type:new GraphQLNonNull(GraphQLString)},
+        },
+        resolve(parent,args){
+            let removeHolder=holder.findByIdAndRemove(args.id).exec()
+            if(!removeHolder){
+                throw new "Not Removed"()
+            }
+            return removeHolder
+        },
+    },
     createIDcard:{
         type:IDCardType,
         args:{
@@ -252,6 +265,19 @@ const Mutation=new GraphQLObjectType({
             )
         }
     },
+    removeIdcard:{
+        type:IDCardType,
+        args:{
+            id:{type:new GraphQLNonNull(GraphQLString)},
+        },
+        resolve(parent,args){
+            let removeIdcard=idcard.findByIdAndRemove(args.id).exec()
+            if(!removeIdcard){
+                throw new "Not Removed"()
+            }
+            return removeIdcard
+        },
+    },
     createBankcard:{
         type:BankCardType,
         args:{
@@ -291,6 +317,19 @@ const Mutation=new GraphQLObjectType({
                 {new:true}//send back the updated holder type
             )
         }
+    },
+    removeBankcard:{
+        type:BankCardType,
+        args:{
+            id:{type:new GraphQLNonNull(GraphQLString)},
+        },
+        resolve(parent,args){
+            let removeBankcard=bankcard.findByIdAndRemove(args.id).exec()
+            if(!removeBankcard){
+                throw new "Not Removed"()
+            }
+            return removeBankcard
+        },
     },
    }
 })
