@@ -227,6 +227,31 @@ const Mutation=new GraphQLObjectType({
             return IDcard.save()
         }
     },
+    UpdateIdcard:{
+        type:IDCardType,
+        args:{
+            title: { type: new GraphQLNonNull(GraphQLString )},
+            description: { type: new GraphQLNonNull(GraphQLString) },
+            cardnumber: { type: new GraphQLNonNull(GraphQLID) },
+            DOB:{type:new GraphQLNonNull(GraphQLID)},
+            holderId:{type:new GraphQLNonNull(GraphQLID)},
+        },
+        resolve(parent,args){
+            return UpdateIdcard=idcard.findByIdAndUpdate(
+                args.id,
+                {
+                    $set:{
+                        title:args.title,
+                        description:args.description,
+                        cardnumber:args.cardnumber,
+                        DOB:args.DOB,
+                        holderId:args.holderId
+                    }
+                },
+                {new:true}//send back the updated holder type
+            )
+        }
+    },
     createBankcard:{
         type:BankCardType,
         args:{
