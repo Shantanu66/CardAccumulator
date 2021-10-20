@@ -1,8 +1,6 @@
 const mongoose=require('mongoose')
 const mongoose_schema=mongoose.Schema
 
-mongoose.set("useFindAndModify",false)
-
 const holderSchema= mongoose_schema({
     name:String,
     age:Number,
