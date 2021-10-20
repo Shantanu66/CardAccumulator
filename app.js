@@ -9,6 +9,8 @@ const port=process.env.PORT || 5000
 const app=express()
 //mongodb+srv://Shantanu:<password>@cardaccumulator.ctoe1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 //app.use/the server will use the graph API to communicate
+//using cors(cross origin resource origin)
+app.use(cors())
 app.use('/graphQL',graphqlHTTP({
     graphiql:true,
     schema:schema
