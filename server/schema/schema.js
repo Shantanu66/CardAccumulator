@@ -137,26 +137,26 @@ const RootQuery = new GraphQLObjectType({
             type: IDCardType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                return lodash.find(IDCardData, { id: args.id })
+                return idcard.findById(args.id)
             }
         },
         idcards:{
             type:new GraphQLList(IDCardType),
             resolve(parent,args){
-                return IDCardData
+                return idcard.find({})
             }
         },
         bankcard: {
             type: BankCardType,
             args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                return lodash.find(BankCardData, { id: args.id })
+                return bankcard.findById(args.id)
             }
         },
         bankcards:{
             type:new GraphQLList(BankCardType),
             resolve(parent,args){
-                return BankCardData
+                return bankcard.find({})
             }
         },
     }
