@@ -5,7 +5,8 @@ var lodash = require('lodash')
 const holder=require("./Database/holder")
 const idcard=require("./Database/idcard")
 const bankcard=require("./Database/bankcard")
-const { assign } = require('lodash')
+const { assign, matchesProperty } = require('lodash')
+const { model } = require('mongoose')
 
 /*dummy data
 var holdersData = [
