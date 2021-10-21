@@ -130,7 +130,7 @@ const RootQuery = new GraphQLObjectType({
         holders:{
             type:new GraphQLList(holderType),
             resolve(parent,args){
-                return holder
+                return holder.find({})
             }
         },
         idcard: {
