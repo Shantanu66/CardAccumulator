@@ -5,27 +5,24 @@ import 'package:card_accumulator/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 final Shader linearGradient = LinearGradient(
-	colors: const <Color>[Colors.pink, Colors.green],
+  colors: const <Color>[Colors.pink, Colors.green],
 ).createShader(
-	Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+  Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
 );
-
 
 class MySplash extends StatefulWidget {
   const MySplash({Key? key}) : super(key: key);
 
-  
   @override
   _MySplashState createState() => _MySplashState();
 }
-
 
 class _MySplashState extends State<MySplash> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      //navigateAfterSeconds: Home(),
+      navigateAfterSeconds: HomeScreenState(),
       title: Text(
         'CARD ACCUMULATOR',
         style: TextStyle(
@@ -42,7 +39,6 @@ class _MySplashState extends State<MySplash> {
           fontSize: 24,
           color: Colors.white,
         ),
-        
       ),
       gradientBackground: LinearGradient(
         begin: Alignment.topCenter,
