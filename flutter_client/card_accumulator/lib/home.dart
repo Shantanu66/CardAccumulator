@@ -17,7 +17,9 @@ class _HomeScreenStateState extends State<HomeScreenState> {
       appBar: AppBar(
         title: Text(
           "Holders",
-          style: GoogleFonts.,
+          style: GoogleFonts.damion(fontSize: 38,
+                fontWeight: FontWeight.w900,
+                color: Colors.white),
         ),
       ),
       body: Center(
