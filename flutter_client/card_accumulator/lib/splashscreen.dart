@@ -33,6 +33,7 @@ class _MySplashState extends State<MySplash> {
               style: GoogleFonts.sora(
                 fontSize: 23,
                 fontWeight: FontWeight.w900,
+                
                 letterSpacing: 1.6,
                 color: Colors.white
               )
