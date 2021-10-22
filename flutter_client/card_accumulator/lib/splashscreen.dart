@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:card_accumulator/home.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.pink, Colors.green],
+  colors: const <Color>[Colors.white ,Colors.white,Colors.white],
 ).createShader(
   Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
 );
@@ -28,14 +30,12 @@ class _MySplashState extends State<MySplash> {
             seconds: 3,
             //navigateAfterSeconds: HomeScreenState(),
             title: Text(
-              'CARD',
-              style: TextStyle(
-                // ignore: prefer_const_literals_to_create_immutables
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.7,
-                fontSize: 75,
-                color: Colors.white,
-              ),
+              'CARDKEEP',
+              style: GoogleFonts.sora(
+                fontSize: 38,
+                fontWeight: FontWeight.w900,
+                color: Colors.white
+              )
             ),
             gradientBackground: LinearGradient(
               begin: Alignment.topCenter,
@@ -51,8 +51,8 @@ class _MySplashState extends State<MySplash> {
             useLoader: false,
           ),
           Center(
-            child: SpinKitCubeGrid(color: Colors.white,
-            size: 32.0,
+            child: SpinKitCubeGrid(color: Colors.white54,
+            size: 31.0,
             duration: const Duration(milliseconds: 700),
             ),
           )
