@@ -26,7 +26,7 @@ class _MySplashState extends State<MySplash> {
     return Stack(
         children: [
           SplashScreen(
-            seconds: 4,
+            seconds: 3,
             navigateAfterSeconds: HomeScreenState(),
             title: Text(
               'CARDKEEP',
