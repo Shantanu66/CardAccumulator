@@ -15,11 +15,15 @@ class _HomeScreenStateState extends State<HomeScreenState> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Holders",
-          style: GoogleFonts.damion(fontSize: 38,
-                fontWeight: FontWeight.w900,
-                color: Colors.white),
+          style: GoogleFonts.workSans(
+            fontSize: 21,
+            fontWeight: FontWeight.w700,
+            color: Colors.white,
+            letterSpacing: 1.5
+          ),
         ),
       ),
       body: Center(

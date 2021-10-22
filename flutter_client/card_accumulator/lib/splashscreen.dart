@@ -29,10 +29,11 @@ class _MySplashState extends State<MySplash> {
             seconds: 3,
             navigateAfterSeconds: HomeScreenState(),
             title: Text(
-              'CARDKEEP',
+              '\t\t\t\t\t\t\tCARD\nACCUMULATOR',
               style: GoogleFonts.sora(
-                fontSize: 38,
+                fontSize: 23,
                 fontWeight: FontWeight.w900,
+                letterSpacing: 1.6,
                 color: Colors.white
               )
             ),
