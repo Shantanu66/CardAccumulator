@@ -23,12 +23,11 @@ class MySplash extends StatefulWidget {
 class _MySplashState extends State<MySplash> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Stack(
         children: [
           SplashScreen(
-            seconds: 3,
-            //navigateAfterSeconds: HomeScreenState(),
+            seconds: 4,
+            navigateAfterSeconds: HomeScreenState(),
             title: Text(
               'CARDKEEP',
               style: GoogleFonts.sora(
@@ -57,8 +56,6 @@ class _MySplashState extends State<MySplash> {
             ),
           )
         ],
-      ),
-      
-    );
+      );
   }
 }
