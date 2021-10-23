@@ -25,6 +25,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
     });
   }
 
+  List HolderData = [];
   String QUERY = """
       query{
           holders{
@@ -41,14 +42,16 @@ class _HoldersScreenState extends State<HoldersScreen> {
     return Query(
       options: QueryOptions(document: gql(QUERY)),
       builder: (result, {fetchMore, refetch}) {
-        if(result.isLoading){
+        if (result.isLoading) {
           return const CircularProgressIndicator();
         }
+        HolderData = result.data!["holders"];
         return ListView.builder(
           controller: _controller,
           physics: _physics,
-          itemCount: 10,
+          itemCount: HolderData.length,
           itemBuilder: (context, index) {
+            final holder = HolderData[index];
             return Stack(
               children: [
                 Container(
@@ -76,7 +79,11 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [Text("Holder")],
+                            children: [
+                              Text(
+                                "${holder["name"]}",
+                              ),
+                            ],
                           )
                         ],
                       ),
