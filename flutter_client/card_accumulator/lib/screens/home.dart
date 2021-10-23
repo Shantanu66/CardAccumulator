@@ -1,3 +1,5 @@
+import 'package:card_accumulator/screens/add_user_page.dart';
+import 'package:card_accumulator/screens/holder_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
@@ -11,8 +13,7 @@ class HomeScreenState extends StatefulWidget {
 }
 
 final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.white, 
-   Colors.deepPurpleAccent],
+  colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
 ).createShader(
   Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
@@ -20,6 +21,7 @@ final Shader linearGradient = LinearGradient(
 class _HomeScreenStateState extends State<HomeScreenState> {
   @override
   Widget build(BuildContext context) {
+    Widget content = HoldersScreen();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -27,18 +29,24 @@ class _HomeScreenStateState extends State<HomeScreenState> {
           "\nHolders",
           style: GoogleFonts.openSans(
               fontSize: 23,
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.w700,
               foreground: Paint()..shader = linearGradient,
               letterSpacing: 0.0),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+      body: Center(child: content),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async{
+          final route=MaterialPageRoute(builder: 
+          (context)=>AddHolderScreen());
+          await Navigator.push(context, route);
+        },
+        child: Icon(
+          Icons.group_add,
         ),
+        backgroundColor: Colors.deepPurpleAccent,
       ),
       backgroundColor: Colors.grey[900],
     );
