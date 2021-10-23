@@ -108,13 +108,14 @@ class _HoldersScreenState extends State<HoldersScreen> {
                       ),
                       Positioned(
                         bottom: 4.0,
+                        left: 130.0,
                         child: RawMaterialButton(
-                          padding: EdgeInsets.all(5.0),
+                          padding: EdgeInsets.all(11.0),
                           shape: CircleBorder(),
-                          elevation: 4.0,
+                          elevation: 14.0,
                           fillColor: Colors.white,
                           child: Icon(
-                            Icons.add_shopping_cart,
+                            Icons.edit,
                             color: Colors.black,
                             size: 30.0,
                           ),
