@@ -39,14 +39,15 @@ class _MySplashState extends State<MySplash> {
               )
             ),
             gradientBackground: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
               // ignore: prefer_const_literals_to_create_immutables
               colors: [
                 Color(0xFF4A148C),
                 Color(0xFF6A1B9A),
                 Color(0xFF7B1FA2),
                 Color(0xFF8E24AA),
+                Color(0xFF9C27B0),
               ],
             ),
             useLoader: false,
