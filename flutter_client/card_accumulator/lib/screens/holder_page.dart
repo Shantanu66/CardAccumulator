@@ -90,16 +90,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 8.0),
+                                  padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                    "Profession:${holder[
-                                      "profession"] ?? 'N/A'}",
+                                    "Profession:${holder["profession"] ?? 'N/A'}",
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 8.0),
+                                  padding: const EdgeInsets.only(left: 8.0),
                                   child: Text(
                                     "Age:${holder["age"] ?? 'N/A'}",
                                   ),
@@ -108,7 +105,22 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      Positioned(
+                        bottom: 4.0,
+                        child: RawMaterialButton(
+                          padding: EdgeInsets.all(5.0),
+                          shape: CircleBorder(),
+                          elevation: 4.0,
+                          fillColor: Colors.white,
+                          child: Icon(
+                            Icons.add_shopping_cart,
+                            color: Colors.black,
+                            size: 30.0,
+                          ),
+                          onPressed: () => print('Add to cart'),
+                        ),
+                      ),
                     ],
                   );
                 },
