@@ -108,16 +108,32 @@ class _HoldersScreenState extends State<HoldersScreen> {
                       ),
                       Positioned(
                         bottom: 4.0,
-                        left: 130.0,
+                        left: 120.0,
                         child: RawMaterialButton(
-                          padding: EdgeInsets.all(11.0),
+                          padding: EdgeInsets.all(9.0),
                           shape: CircleBorder(),
                           elevation: 14.0,
                           fillColor: Colors.white,
                           child: Icon(
                             Icons.edit,
-                            color: Colors.black,
-                            size: 30.0,
+                            color: Colors.green,
+                            size: 27.0,
+                          ),
+                          onPressed: () => print('Add to cart'),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 4.0,
+                        left: 190.0,
+                        child: RawMaterialButton(
+                          padding: EdgeInsets.all(9.0),
+                          shape: CircleBorder(),
+                          elevation: 14.0,
+                          fillColor: Colors.white,
+                          child: Icon(
+                            Icons.delete_forever,
+                            color: Colors.red,
+                            size: 27.0,
                           ),
                           onPressed: () => print('Add to cart'),
                         ),
