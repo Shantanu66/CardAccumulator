@@ -48,7 +48,7 @@ class _HomeScreenStateState extends State<HomeScreenState> {
         ),
         backgroundColor: Colors.deepPurpleAccent,
       ),
-      backgroundColor: Colors.grey[900],
+       backgroundColor: Color(0xFF1c1527),
     );
   }
 }
