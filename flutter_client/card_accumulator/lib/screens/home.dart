@@ -1,4 +1,4 @@
-import 'package:card_accumulator/screens/add_user_page.dart';
+import 'package:card_accumulator/screens/add_holder_page.dart';
 import 'package:card_accumulator/screens/holder_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
