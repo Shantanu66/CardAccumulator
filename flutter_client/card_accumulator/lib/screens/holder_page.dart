@@ -103,7 +103,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                       child: Text(
                                         "Age:${holder["age"] ?? 'N/A'}",
                                         style: GoogleFonts.raleway(
-                                        fontSize: 13.0,
+                                        fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white
                                       ),
@@ -118,7 +118,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                     "Profession:${
                                       holder["profession"] ?? 'N/A'}",
                                       style: GoogleFonts.raleway(
-                                        fontSize: 13.0,
+                                        fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white
                                       ),

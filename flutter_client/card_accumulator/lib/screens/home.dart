@@ -28,7 +28,7 @@ class _HomeScreenStateState extends State<HomeScreenState> {
         title: Text(
           "\nHolders",
           style: GoogleFonts.openSans(
-              fontSize: 22,
+              fontSize: 19,
               fontWeight: FontWeight.w400,
               foreground: Paint()..shader = linearGradient,
               letterSpacing: 0.0),
