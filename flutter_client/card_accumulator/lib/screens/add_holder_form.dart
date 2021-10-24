@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class AddHolderScreen extends StatefulWidget {
   const AddHolderScreen({Key? key}) : super(key: key);
@@ -18,9 +21,13 @@ final Shader linearGradient = LinearGradient(
 class _AddHolderScreenState extends State<AddHolderScreen> {
   final _formkey = GlobalKey<FormState>();
 
-  final _nameController=TextEditingController();
-  final _ageController=TextEditingController();
-  final _professionController=TextEditingController();
+  final _nameController = TextEditingController();
+  final _ageController = TextEditingController();
+  final _professionController = TextEditingController();
+  final _mailController=TextEditingController();
+  final RoundedLoadingButtonController _btnController =
+      new RoundedLoadingButtonController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +79,29 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {}),
                 builder: (runMutation, result) {
+                  void _doSomething() async {
+                    Timer(Duration(milliseconds: 100), () {
+                      // ignore: unnecessary_this
+                      this.setState(() {
+                        if (_formkey.currentState!.validate()) {
+                          runMutation({
+                            "name": _nameController.text.trim(),
+                            "age":int.parse(_ageController.text.trim()),
+                            "profession":_professionController.text.
+                            trim(),
+                            "mail":_mailController.text.trim(),
+                            
+                          });
+                          _btnController.success();
+                          _btnController.reset();
+                        }
+                        // 
+                        //_btnController.reset();
+                        //_btnController.error();
+                      });
+                    });
+                  }
+
                   return Form(
                     key: _formkey,
                     child: Column(
@@ -91,14 +121,12 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
-                              // ignore: prefer_const_constructors
-                              borderSide: BorderSide(),
-                              borderRadius:BorderRadius.circular(20)
-                            ),
-                            
+                                // ignore: prefer_const_constructors
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
-                          validator: (value){
-                            if(value!.length==0){
+                          validator: (value) {
+                            if (value!.length == 0) {
                               return "Name can't be empty";
                             }
                             return null;
@@ -119,14 +147,12 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
-                              // ignore: prefer_const_constructors
-                              borderSide: BorderSide(),
-                              borderRadius:BorderRadius.circular(20)
-                            ),
-                            
+                                // ignore: prefer_const_constructors
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
-                          validator: (value){
-                            if(value!.length==0){
+                          validator: (value) {
+                            if (value!.length == 0) {
                               return "Age can't be empty";
                             }
                             return null;
@@ -147,14 +173,12 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
-                              // ignore: prefer_const_constructors
-                              borderSide: BorderSide(),
-                              borderRadius:BorderRadius.circular(20)
-                            ),
-                            
+                                // ignore: prefer_const_constructors
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
-                          validator: (value){
-                            if(value!.length==0){
+                          validator: (value) {
+                            if (value!.length == 0) {
                               return "Profession can't be empty";
                             }
                             return null;
@@ -163,8 +187,53 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                         ),
                         SizedBox(
                           height: 12,
-                        )
-                        
+                        ),
+                        TextFormField(
+                          controller: _nameController,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: "Email",
+                            fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter your email",
+                            focusColor: Colors.purpleAccent,
+                            // ignore: prefer_const_constructors
+                            border: OutlineInputBorder(
+                                // ignore: prefer_const_constructors
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Email can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        RoundedLoadingButton(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 36, vertical: 12),
+                            child: Text('Add User',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    letterSpacing: 2.0)),
+                          ),
+                          elevation: 15.0,
+                          controller: _btnController,
+                          color: Colors.deepPurpleAccent,
+                          onPressed: _doSomething,
+                          width: 120,
+                          height: 43,
+                          borderRadius: 50,
+                          errorColor: Colors.red,
+                        ),
                       ],
                     ),
                   );
@@ -178,6 +247,8 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   }
 
   String addholder() {
-    return "";
+    return """
+
+    """;
   }
 }

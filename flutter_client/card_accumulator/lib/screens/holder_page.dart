@@ -28,6 +28,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
               id
               profession
               age
+              mail
               }
           }
   """;
