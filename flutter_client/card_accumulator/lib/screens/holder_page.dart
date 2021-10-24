@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, duplicate_ignore, prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,15 +62,18 @@ class _HoldersScreenState extends State<HoldersScreen> {
                       Container(
                         margin: const EdgeInsets.only(
                             bottom: 23, left: 19, right: 19, top: 20),
+                        // ignore: duplicate_ignore
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
+                          // ignore: prefer_const_constructors
                           gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                             colors: [
+                              //Colors.purple.shade300,
                               Colors.purple,
                               Colors.deepPurple,
-                              Colors.deepPurple.shade700
+                              //Colors.deepPurple.shade700
                             ],
                           ),
                           // ignore: prefer_const_literals_to_create_immutables
@@ -116,14 +121,18 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                 ),
                               ],
                             ),
+                            // ignore: prefer_const_constructors
                             decoration: BoxDecoration(
+                              // ignore: prefer_const_constructors
                               gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                // ignore: prefer_const_literals_to_create_immutables
                                 colors: [
+                                  //Colors.purple.shade300,
                                   Colors.purple,
                                   Colors.deepPurple,
-                                  Colors.deepPurple.shade700
+                                  //Colors.deepPurple.shade700
                                 ],
                               ),
                             ),
@@ -143,6 +152,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             color: Colors.green,
                             size: 27.0,
                           ),
+                          // ignore: avoid_print
                           onPressed: () => print('Add to cart'),
                         ),
                       ),
@@ -159,6 +169,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             color: Colors.red,
                             size: 27.0,
                           ),
+                          // ignore: avoid_print
                           onPressed: () => print('Add to cart'),
                         ),
                       ),
