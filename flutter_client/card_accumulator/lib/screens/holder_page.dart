@@ -71,8 +71,9 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             end: Alignment.bottomCenter,
                             colors: [
                               //Colors.purple.shade300,
-                              Colors.purple,
                               Colors.deepPurple,
+                              Colors.purple,
+                              
                               //Colors.deepPurple.shade700
                             ],
                           ),
@@ -80,9 +81,10 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           boxShadow: [
                             // ignore: prefer_const_constructors
                             BoxShadow(
-                              offset: const Offset(2, 8),
-                              color: Colors.black,
-                              blurRadius: 12,
+                              offset: const Offset(2, 6),
+                              color: Colors.purple,
+                              blurRadius: 19,
+                              spreadRadius: -2.5,
                             )
                           ],
                         ),
@@ -130,8 +132,9 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                 // ignore: prefer_const_literals_to_create_immutables
                                 colors: [
                                   //Colors.purple.shade300,
-                                  Colors.purple,
+                                  
                                   Colors.deepPurple,
+                                  Colors.purple,
                                   //Colors.deepPurple.shade700
                                 ],
                               ),
