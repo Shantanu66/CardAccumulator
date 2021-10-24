@@ -99,8 +99,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                         }
                         else{
                           _btnController.error();
-                          _btnController.reset();
+                          //_btnController.reset();
                         }
+                        
                       });
                     });
                   }
