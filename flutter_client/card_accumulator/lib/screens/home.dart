@@ -52,7 +52,7 @@ class _HomeScreenStateState extends State<HomeScreenState> {
         tooltip: "Add a Holder to the holders page",
         focusColor: Colors.deepPurple.shade200,
         hoverColor: Colors.deepPurple.shade200,
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.deepPurpleAccent.shade700,
         elevation: 12,
         label: Text("Add Holder"),
       ),
