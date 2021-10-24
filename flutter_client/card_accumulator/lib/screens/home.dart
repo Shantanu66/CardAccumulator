@@ -1,4 +1,4 @@
-import 'package:card_accumulator/screens/add_holder_page.dart';
+import 'package:card_accumulator/screens/add_holder_form.dart';
 import 'package:card_accumulator/screens/holder_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
@@ -37,16 +37,24 @@ class _HomeScreenStateState extends State<HomeScreenState> {
         elevation: 0,
       ),
       body: Center(child: content),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () async{
           final route=MaterialPageRoute(builder: 
           (context)=>AddHolderScreen());
           await Navigator.push(context, route);
         },
-        child: Icon(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(21)
+        ),
+        icon: Icon(
           Icons.group_add,
         ),
+        tooltip: "Add a Holder to the holders page",
+        focusColor: Colors.deepPurple.shade200,
+        hoverColor: Colors.deepPurple.shade200,
         backgroundColor: Colors.deepPurpleAccent,
+        elevation: 12,
+        label: Text("Add Holder"),
       ),
        backgroundColor: Color(0xFF1c1527),
     );

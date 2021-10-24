@@ -10,8 +10,11 @@ class AddHolderScreen extends StatefulWidget {
 class _AddHolderScreenState extends State<AddHolderScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Add a Holder"),
+        
+      ),
     );
   }
 }
