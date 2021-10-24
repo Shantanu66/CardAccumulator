@@ -61,22 +61,23 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         margin: const EdgeInsets.only(
                             bottom: 23, left: 19, right: 19, top: 20),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(30),
                           gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                             colors: [
-                              Colors.blue,
                               Colors.purple,
+                              Colors.deepPurple,
+                              Colors.deepPurple.shade700
                             ],
                           ),
                           // ignore: prefer_const_literals_to_create_immutables
                           boxShadow: [
                             // ignore: prefer_const_constructors
                             BoxShadow(
-                              offset: const Offset(0, 8),
+                              offset: const Offset(2, 8),
                               color: Colors.black,
-                              blurRadius: 10,
+                              blurRadius: 12,
                             )
                           ],
                         ),
@@ -117,11 +118,12 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             ),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
                                 colors: [
-                                  Colors.blue,
                                   Colors.purple,
+                                  Colors.deepPurple,
+                                  Colors.deepPurple.shade700
                                 ],
                               ),
                             ),
@@ -129,13 +131,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         ),
                       ),
                       Positioned(
-                        bottom: 4.0,
+                        bottom: 2.0,
                         left: 120.0,
                         child: RawMaterialButton(
                           padding: EdgeInsets.all(9.0),
                           shape: CircleBorder(),
                           elevation: 14.0,
-                          fillColor: Colors.white,
+                          fillColor: Colors.grey.shade900,
                           child: Icon(
                             Icons.edit,
                             color: Colors.green,
@@ -145,13 +147,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         ),
                       ),
                       Positioned(
-                        bottom: 4.0,
+                        bottom: 2.0,
                         left: 190.0,
                         child: RawMaterialButton(
                           padding: EdgeInsets.all(9.0),
                           shape: CircleBorder(),
                           elevation: 14.0,
-                          fillColor: Colors.white,
+                          fillColor: Colors.grey.shade900,
                           child: Icon(
                             Icons.delete_forever,
                             color: Colors.red,
