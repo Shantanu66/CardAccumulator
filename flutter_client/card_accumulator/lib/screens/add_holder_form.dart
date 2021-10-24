@@ -77,7 +77,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                 options: MutationOptions(
                     document: gql(addholder()),
                     fetchPolicy: FetchPolicy.noCache,
-                    onCompleted: (data) {}),
+                    onCompleted: (data) {
+                      print(data.toString());
+                    }),
                 builder: (runMutation, result) {
                   void _doSomething() async {
                     Timer(Duration(milliseconds: 100), () {
@@ -95,9 +97,10 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                           _btnController.success();
                           _btnController.reset();
                         }
-                        // 
-                        //_btnController.reset();
-                        //_btnController.error();
+                        else{
+                          _btnController.error();
+                          _btnController.reset();
+                        }
                       });
                     });
                   }
@@ -189,7 +192,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                           height: 12,
                         ),
                         TextFormField(
-                          controller: _nameController,
+                          controller: _mailController,
                           // ignore: prefer_const_constructors
                           decoration: InputDecoration(
                             labelText: "Email",
@@ -248,7 +251,17 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
 
   String addholder() {
     return """
-
+      mutation createHolder(\$name:String!,\$age:Int!,\$profession:String!,\$mail:String!
+  ){
+    createHolder(name:\$name,
+    profession:\$profession,
+    age:\$age,
+    mail:\$mail
+    ){
+      id
+      name
+    }
+  }
     """;
   }
 }
