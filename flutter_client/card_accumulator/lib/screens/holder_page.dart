@@ -61,8 +61,15 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         margin: const EdgeInsets.only(
                             bottom: 23, left: 19, right: 19, top: 20),
                         decoration: BoxDecoration(
-                          color: Colors.white,
                           borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.blue,
+                              Colors.purple,
+                            ],
+                          ),
                           // ignore: prefer_const_literals_to_create_immutables
                           boxShadow: [
                             // ignore: prefer_const_constructors
@@ -86,22 +93,37 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   children: [
                                     Text(
                                       "${holder["name"]}",
+                                      style: GoogleFonts.playfairDisplay(
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w900),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, top: 36.0),
+                                      child: Text(
+                                        "Age:${holder["age"] ?? 'N/A'}",
+                                      ),
+                                    )
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, top: 1.0, bottom: 12.0),
                                   child: Text(
                                     "Profession:${holder["profession"] ?? 'N/A'}",
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text(
-                                    "Age:${holder["age"] ?? 'N/A'}",
-                                  ),
-                                )
                               ],
+                            ),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.blue,
+                                  Colors.purple,
+                                ],
+                              ),
                             ),
                           ),
                         ),
