@@ -16,6 +16,11 @@ final Shader linearGradient = LinearGradient(
 );
 
 class _AddHolderScreenState extends State<AddHolderScreen> {
+  final _formkey = GlobalKey<FormState>();
+
+  final _nameController=TextEditingController();
+  final _ageController=TextEditingController();
+  final _professionController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,20 +57,55 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(15),
+            // ignore: prefer_const_literals_to_create_immutables
             boxShadow: [
+              // ignore: prefer_const_constructors
               BoxShadow(
-                  offset: Offset(0, 10),
-                  color: Colors.grey.shade300,
-                  blurRadius: 30),
+                  offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
             ],
           ),
-          child:Column(
+          child: Column(
             children: [
-              Mutation(options: options, builder: builder)
+              Mutation(
+                options: MutationOptions(
+                    document: gql(addholder()),
+                    fetchPolicy: FetchPolicy.noCache,
+                    onCompleted: (data) {}),
+                builder: (runMutation, result) {
+                  return Form(
+                    key: _formkey,
+                    child: Column(
+                      children: [
+                        // ignore: prefer_const_constructors
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: _nameController,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: "Name",
+                            fillColor: Colors.white,
+                            // ignore: prefer_const_constructors
+                            border: OutlineInputBorder(
+                              // ignore: prefer_const_constructors
+                              borderSide: BorderSide()
+                            )
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  String addholder() {
+    return "";
   }
 }
