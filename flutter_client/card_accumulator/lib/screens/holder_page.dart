@@ -100,9 +100,9 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 8.0, top: 36.0),
+                                          left: 8.0, top: 15.0),
                                       child: Text(
-                                        "Age:${holder["age"] ?? 'N/A'}",
+                                        "Age : ${holder["age"] ?? 'N/A'}",
                                         style: GoogleFonts.raleway(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
@@ -114,10 +114,23 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      left: 8.0, top: 1.0, bottom: 12.0),
+                                      left: 8.0, top: 1.0, bottom: 1.0),
                                   child: Text(
-                                    "Profession:${
+                                    "Profession : ${
                                       holder["profession"] ?? 'N/A'}",
+                                      style: GoogleFonts.raleway(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white
+                                      ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, top: 0.2, bottom: 12.0),
+                                  child: Text(
+                                    "Email : ${
+                                      holder["mail"] ?? 'N/A'}",
                                       style: GoogleFonts.raleway(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
