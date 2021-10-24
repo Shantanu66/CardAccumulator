@@ -28,6 +28,8 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
 
+  bool transfer=false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +81,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
                       print(data.toString());
+                      setState(() {
+                        transfer=false;
+                      });
                     }),
                 builder: (runMutation, result) {
                   void _doSomething() async {
@@ -86,6 +91,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                       // ignore: unnecessary_this
                       this.setState(() {
                         if (_formkey.currentState!.validate()) {
+                          setState(() {
+                            transfer=true;
+                          });
                           runMutation({
                             "name": _nameController.text.trim(),
                             "age":int.parse(_ageController.text.trim()),
@@ -94,8 +102,10 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             "mail":_mailController.text.trim(),
                             
                           });
-                          _btnController.success();
-                          _btnController.reset();
+                          if(transfer==false){
+                            _btnController.success();
+                            _btnController.reset(); 
+                          }
                         }
                         else{
                           _btnController.error();
