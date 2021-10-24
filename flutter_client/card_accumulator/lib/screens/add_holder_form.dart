@@ -56,7 +56,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(35),
             // ignore: prefer_const_literals_to_create_immutables
             boxShadow: [
               // ignore: prefer_const_constructors
@@ -86,13 +86,85 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                           decoration: InputDecoration(
                             labelText: "Name",
                             fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter holder name",
+                            focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
                               // ignore: prefer_const_constructors
-                              borderSide: BorderSide()
-                            )
+                              borderSide: BorderSide(),
+                              borderRadius:BorderRadius.circular(20)
+                            ),
+                            
                           ),
+                          validator: (value){
+                            if(value!.length==0){
+                              return "Name can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.text,
                         ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        TextFormField(
+                          controller: _ageController,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: "Age",
+                            fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter your age",
+                            focusColor: Colors.purpleAccent,
+                            // ignore: prefer_const_constructors
+                            border: OutlineInputBorder(
+                              // ignore: prefer_const_constructors
+                              borderSide: BorderSide(),
+                              borderRadius:BorderRadius.circular(20)
+                            ),
+                            
+                          ),
+                          validator: (value){
+                            if(value!.length==0){
+                              return "Age can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.number,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        TextFormField(
+                          controller: _professionController,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: "Profession",
+                            fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter your profession",
+                            focusColor: Colors.purpleAccent,
+                            // ignore: prefer_const_constructors
+                            border: OutlineInputBorder(
+                              // ignore: prefer_const_constructors
+                              borderSide: BorderSide(),
+                              borderRadius:BorderRadius.circular(20)
+                            ),
+                            
+                          ),
+                          validator: (value){
+                            if(value!.length==0){
+                              return "Profession can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        )
+                        
                       ],
                     ),
                   );
