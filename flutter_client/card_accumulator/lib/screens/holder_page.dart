@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -101,15 +102,21 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   children: [
                                     Text(
                                       "${holder["name"]}",
-                                      style: GoogleFonts.playfairDisplay(
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w900),
+                                      style: GoogleFonts.raleway(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.white),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 8.0, top: 36.0),
                                       child: Text(
                                         "Age:${holder["age"] ?? 'N/A'}",
+                                        style: GoogleFonts.raleway(
+                                        fontSize: 13.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white
+                                      ),
                                       ),
                                     )
                                   ],
@@ -118,7 +125,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 8.0, top: 1.0, bottom: 12.0),
                                   child: Text(
-                                    "Profession:${holder["profession"] ?? 'N/A'}",
+                                    "Profession:${
+                                      holder["profession"] ?? 'N/A'}",
+                                      style: GoogleFonts.raleway(
+                                        fontSize: 13.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white
+                                      ),
                                   ),
                                 ),
                               ],
