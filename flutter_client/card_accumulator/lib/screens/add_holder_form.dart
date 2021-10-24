@@ -24,7 +24,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   final _nameController = TextEditingController();
   final _ageController = TextEditingController();
   final _professionController = TextEditingController();
-  final _mailController=TextEditingController();
+  final _mailController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
 
@@ -62,7 +62,19 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
           padding: const EdgeInsets.all(24),
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
           decoration: BoxDecoration(
-            color: Colors.white,
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              //Colors.purple.shade300,
+                              Colors.yellow,
+                              
+                              Colors.purple.shade600,
+                              
+                              
+                              //Colors.deepPurple.shade700
+                            ],
+            ),
             borderRadius: BorderRadius.circular(35),
             // ignore: prefer_const_literals_to_create_immutables
             boxShadow: [
@@ -88,25 +100,20 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                         if (_formkey.currentState!.validate()) {
                           runMutation({
                             "name": _nameController.text.trim(),
-                            "age":int.parse(_ageController.text.trim()),
-                            "profession":_professionController.text.
-                            trim(),
-                            "mail":_mailController.text.trim(),
-                            
+                            "age": int.parse(_ageController.text.trim()),
+                            "profession": _professionController.text.trim(),
+                            "mail": _mailController.text.trim(),
                           });
                           _btnController.success();
                           _btnController.reset();
-                        }
-                        else{
+                        } else {
                           _btnController.error();
                           //_btnController.reset();
                         }
-                        
                       });
                     });
                   }
-
-                  return Form(
+                    return Form(
                     key: _formkey,
                     child: Column(
                       children: [
