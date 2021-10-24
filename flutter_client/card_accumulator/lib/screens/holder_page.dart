@@ -16,19 +16,9 @@ class HoldersScreen extends StatefulWidget {
 class _HoldersScreenState extends State<HoldersScreen> {
   final _controller = ScrollController();
   ScrollPhysics _physics =
-      const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+       BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 
-  @override
-  void initState() {
-    super.initState();
-    _controller.addListener(() {
-      if (_controller.position.pixels <= 56) {
-        setState(() => _physics = const BouncingScrollPhysics());
-      } else {
-        setState(() => _physics = const BouncingScrollPhysics());
-      }
-    });
-  }
+  
 
   List HolderData = [];
   String QUERY = """
