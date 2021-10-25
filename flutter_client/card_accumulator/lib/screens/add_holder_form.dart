@@ -73,7 +73,6 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                 colors: [
                   //Colors.purple.shade300,
                   Colors.yellow,
-
                   Colors.purple.shade600,
 
                   //Colors.deepPurple.shade700
