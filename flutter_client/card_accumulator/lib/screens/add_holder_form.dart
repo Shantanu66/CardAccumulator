@@ -30,7 +30,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
 
-  var currentHolderId="";
+  var currentHolderId;
 
   @override
   Widget build(BuildContext context) {

@@ -72,10 +72,9 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
               end: Alignment.centerRight,
               colors: [
                 //Colors.purple.shade300,
-                Colors.greenAccent,
+                Colors.blueAccent.shade100,
 
                 Colors.purple.shade600,
-
                 //Colors.deepPurple.shade700
               ],
             ),
@@ -108,7 +107,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             "description": _DescController.text,
                             "cardnumber": _CardNumberController.text,
                             "DOB": _DOBController.text,
-                            "holderId": widget.$cid
+                            "holderId": widget.cid
                           });
                           _titleController.clear();
                           _DescController.clear();
@@ -250,7 +249,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                           ),
                           elevation: 15.0,
                           controller: _btnController,
-                          color: Colors.deepPurpleAccent,
+                          color: Colors.deepPurpleAccent.shade400,
                           onPressed: _doSomething,
                           width: 100,
                           height: 43,
