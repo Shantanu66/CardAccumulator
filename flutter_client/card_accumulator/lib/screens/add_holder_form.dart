@@ -55,7 +55,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(Icons.close_sharp),
-            color: Colors.white,
+            color: Colors.greenAccent,
           )
         ],
         elevation: 0,
@@ -122,6 +122,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                                   cid: currentHolderId,
                                 ));
                             Navigator.push(context, route);
+                          
 
                             _btnController.success();
                             _btnController.reset();

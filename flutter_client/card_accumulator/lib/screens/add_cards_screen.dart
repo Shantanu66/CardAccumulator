@@ -56,7 +56,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(Icons.arrow_back_rounded),
-            color: Colors.white,
+            color: Colors.greenAccent,
           )
         ],
         elevation: 0,
@@ -140,7 +140,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             labelText: "ID type name",
                             fillColor: Colors.white,
                             hoverColor: Colors.purple,
-                            hintText: "Enter the name of your id type",
+                            hintText: "Name of your Government id type",
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
