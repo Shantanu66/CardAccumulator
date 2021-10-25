@@ -7,10 +7,12 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class AddCardsScreen extends StatefulWidget {
    var cid;
+
    AddCardsScreen({
     Key? key,
-    @required this.cid,
+    required this.cid,
   }) :super(key: key);
+  
   @override
   _AddCardsScreenState createState() => _AddCardsScreenState();
 }
