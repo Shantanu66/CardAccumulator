@@ -229,7 +229,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 36, vertical: 12),
-                            child: Text('Add User',
+                            child: Text('Add Holder',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
@@ -240,7 +240,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                           controller: _btnController,
                           color: Colors.deepPurpleAccent,
                           onPressed: _doSomething,
-                          width: 120,
+                          width: 100,
                           height: 43,
                           borderRadius: 50,
                           errorColor: Colors.red,
