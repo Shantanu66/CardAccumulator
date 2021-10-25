@@ -6,26 +6,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-class AddHolderScreen extends StatefulWidget {
-  const AddHolderScreen({Key? key}) : super(key: key);
+class AddCardsScreen extends StatefulWidget {
+  const AddCardsScreen({Key? key}) : super(key: key);
 
   @override
-  _AddHolderScreenState createState() => _AddHolderScreenState();
+  _AddCardsScreenState createState() => _AddCardsScreenState();
 }
 
-final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
-).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
-);
+class _AddCardsScreenState extends State<AddCardsScreen> {
+  final Shader linearGradient = LinearGradient(
+    colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
+  ).createShader(
+    Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  );
 
-class _AddHolderScreenState extends State<AddHolderScreen> {
-  final _formkey = GlobalKey<FormState>();
+  final _idCardkey = GlobalKey<FormState>();
 
-  final _nameController = TextEditingController();
-  final _ageController = TextEditingController();
-  final _professionController = TextEditingController();
-  final _mailController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _DescController = TextEditingController();
+  final _CardNumberController = TextEditingController();
+  final _DOBController = TextEditingController();
+
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
 
@@ -35,9 +36,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Add a Holder",
+          "Add your ID and Bank card",
           style: GoogleFonts.openSans(
-              fontSize: 19,
+              fontSize: 17,
               fontWeight: FontWeight.w500,
               //color: Colors.white,
               letterSpacing: 1.0,
@@ -51,7 +52,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(Icons.close_sharp),
+            icon: Icon(Icons.arrow_back_rounded),
             color: Colors.white,
           )
         ],
@@ -88,31 +89,26 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
               children: [
                 Mutation(
                   options: MutationOptions(
-                      document: gql(addholder()),
+                      document: gql(insertId()),
                       fetchPolicy: FetchPolicy.noCache,
-                      onCompleted: (data) {
-                        print(data.toString());
-                      }),
+                      onCompleted: (data) {}),
                   builder: (runMutation, result) {
                     void _doSomething() async {
                       Timer(Duration(milliseconds: 100), () {
                         // ignore: unnecessary_this
                         this.setState(() {
-                          if (_formkey.currentState!.validate()) {
+                          if (_idCardkey.currentState!.validate()) {
                             runMutation({
-                              "name": _nameController.text.trim(),
-                              "age": int.parse(_ageController.text.trim()),
-                              "profession": _professionController.text.trim(),
-                              "mail": _mailController.text.trim(),
+                              "title": _titleController.text.trim(),
+                              "description": _DescController.text.trim(),
+                              "cardnumber":
+                                  int.parse(_CardNumberController.text.trim()),
+                              "DOB": _DOBController.text.trim(),
+                              "holderId":currentHolderId
                             });
-                            
-                              final route = MaterialPageRoute(
-                                  builder: (context) => AddCardsScreen());
-                              Navigator.push(context, route);
-                            
+
                             _btnController.success();
                             _btnController.reset();
-                            
                           } else {
                             _btnController.error();
                             //_btnController.reset();
@@ -122,7 +118,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                     }
 
                     return Form(
-                      key: _formkey,
+                      key: _idCardkey,
                       child: Column(
                         children: [
                           // ignore: prefer_const_constructors
@@ -130,13 +126,13 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             height: 10,
                           ),
                           TextFormField(
-                            controller: _nameController,
+                            controller: _titleController,
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
-                              labelText: "Name",
+                              labelText: "ID type name",
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Enter holder name",
+                              hintText: "Enter the name of your id type",
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -146,7 +142,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             ),
                             validator: (value) {
                               if (value!.length == 0) {
-                                return "Name can't be empty";
+                                return "Can't be empty";
                               }
                               return null;
                             },
@@ -156,13 +152,13 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             height: 12,
                           ),
                           TextFormField(
-                            controller: _ageController,
+                            controller: _DescController,
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
-                              labelText: "Age",
+                              labelText: "Description",
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Enter your age",
+                              hintText: "Enter what the id is used for",
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -172,7 +168,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             ),
                             validator: (value) {
                               if (value!.length == 0) {
-                                return "Age can't be empty";
+                                return "Description can't be empty";
                               }
                               return null;
                             },
@@ -182,13 +178,13 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             height: 12,
                           ),
                           TextFormField(
-                            controller: _professionController,
+                            controller: _CardNumberController,
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
-                              labelText: "Profession",
+                              labelText: "Card Number",
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Enter your profession",
+                              hintText: "Enter your Card Number",
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -198,38 +194,37 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             ),
                             validator: (value) {
                               if (value!.length == 0) {
-                                return "Profession can't be empty";
+                                return "Card Number can't be empty";
                               }
                               return null;
                             },
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.number,
                           ),
                           SizedBox(
                             height: 12,
                           ),
                           TextFormField(
-                            controller: _mailController,
-                            // ignore: prefer_const_constructors
-                            decoration: InputDecoration(
-                              labelText: "Email",
-                              fillColor: Colors.white,
-                              hoverColor: Colors.purple,
-                              hintText: "Enter your email",
-                              focusColor: Colors.purpleAccent,
+                              controller: _DOBController,
                               // ignore: prefer_const_constructors
-                              border: OutlineInputBorder(
-                                  // ignore: prefer_const_constructors
-                                  borderSide: BorderSide(),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            validator: (value) {
-                              if (value!.length == 0) {
-                                return "Email can't be empty";
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.text,
-                          ),
+                              decoration: InputDecoration(
+                                labelText: "Date of birth",
+                                fillColor: Colors.white,
+                                hoverColor: Colors.purple,
+                                hintText: "Enter your Date of Birth",
+                                focusColor: Colors.purpleAccent,
+                                // ignore: prefer_const_constructors
+                                border: OutlineInputBorder(
+                                    // ignore: prefer_const_constructors
+                                    borderSide: BorderSide(),
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              validator: (value) {
+                                if (value!.length == 0) {
+                                  return "DOB can't be empty";
+                                }
+                                return null;
+                              },
+                              keyboardType: TextInputType.text),
                           SizedBox(
                             height: 12,
                           ),
@@ -237,7 +232,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 36, vertical: 12),
-                              child: Text('Add Holder',
+                              child: Text('Add ID card',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
@@ -257,28 +252,12 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                       ),
                     );
                   },
-                )
+                ),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  String addholder() {
-    return """
-      mutation createHolder(\$name:String!,\$age:Int!,\$profession:String!,\$mail:String!
-  ){
-    createHolder(name:\$name,
-    profession:\$profession,
-    age:\$age,
-    mail:\$mail
-    ){
-      id
-      name
-    }
-  }
-    """;
   }
 }
