@@ -55,7 +55,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
             icon: Icon(Icons.close_sharp),
-            color: Colors.greenAccent,
+            color: Colors.yellowAccent,
           )
         ],
         elevation: 0,
@@ -147,9 +147,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Name",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter holder name",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -173,9 +178,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Age",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter your age",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -199,9 +209,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Profession",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter your profession",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -225,9 +240,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Email",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter your email",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(

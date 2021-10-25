@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,10 @@ class AddCardsScreen extends StatefulWidget {
 }
 
 class _AddCardsScreenState extends State<AddCardsScreen> {
+  final _controller = ScrollController();
+  ScrollPhysics _physics =
+      BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+
   final Shader linearGradient = LinearGradient(
     colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
   ).createShader(
@@ -44,9 +49,17 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
 
   bool _visible = false;
 
+  var _visible2 = false;
+
   void _toggle() {
     setState(() {
       _visible = !_visible;
+    });
+  }
+
+  void _toggle2() {
+    setState(() {
+      _visible2 = !_visible2;
     });
   }
 
@@ -323,6 +336,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               "number": _NumberController.text,
                               "holderId": widget.cid
                             });
+                            _toggle2();
                             _BankController.clear();
                             _ValidityController.clear();
                             _NumberController.clear();
@@ -444,14 +458,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                   horizontal: 36, vertical: 12),
                               child: Text('Add card',
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
                                       letterSpacing: 2.0)),
                             ),
                             elevation: 15.0,
                             controller: _btnController,
-                            color: Colors.greenAccent,
+                            color: Colors.deepPurpleAccent.shade400,
                             onPressed: _doSomething,
                             width: 100,
                             height: 43,
@@ -463,7 +477,38 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                     );
                   },
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Visibility(
+                visible: _visible2,
+                child: RoundedLoadingButton(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 36, vertical: 12),
+                    child: Text('Done',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            letterSpacing: 2.0)),
+                  ),
+                  elevation: 15.0,
+                  controller: _btnController,
+                  color: Colors.greenAccent,
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(context,
+                        MaterialPageRoute(builder: (context) {
+                      return HomeScreenState();
+                    }), (route) => false);
+                  },
+                  width: 100,
+                  height: 43,
+                  borderRadius: 50,
+                  errorColor: Colors.red,
+                ),
+              ),
             ],
           ),
         ),
