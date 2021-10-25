@@ -16,9 +16,7 @@ class HoldersScreen extends StatefulWidget {
 class _HoldersScreenState extends State<HoldersScreen> {
   final _controller = ScrollController();
   ScrollPhysics _physics =
-       BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
-
-  
+      BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 
   List HolderData = [];
   String QUERY = """
@@ -65,7 +63,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                               //Colors.purple.shade300,
                               Colors.deepPurple,
                               Colors.purple,
-                              
+
                               //Colors.deepPurple.shade700
                             ],
                           ),
@@ -104,10 +102,9 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                       child: Text(
                                         "Age : ${holder["age"] ?? 'N/A'}",
                                         style: GoogleFonts.raleway(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white
-                                      ),
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
                                       ),
                                     )
                                   ],
@@ -116,26 +113,22 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   padding: const EdgeInsets.only(
                                       left: 8.0, top: 1.0, bottom: 1.0),
                                   child: Text(
-                                    "Profession : ${
-                                      holder["profession"] ?? 'N/A'}",
-                                      style: GoogleFonts.raleway(
+                                    "Profession : ${holder["profession"] ?? 'N/A'}",
+                                    style: GoogleFonts.raleway(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white
-                                      ),
+                                        color: Colors.white),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 8.0, top: 0.2, bottom: 12.0),
                                   child: Text(
-                                    "Email : ${
-                                      holder["mail"] ?? 'N/A'}",
-                                      style: GoogleFonts.raleway(
+                                    "Email : ${holder["mail"] ?? 'N/A'}",
+                                    style: GoogleFonts.raleway(
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white
-                                      ),
+                                        color: Colors.white),
                                   ),
                                 ),
                               ],
@@ -149,7 +142,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                 // ignore: prefer_const_literals_to_create_immutables
                                 colors: [
                                   //Colors.purple.shade300,
-                                  
+
                                   Colors.deepPurple,
                                   Colors.purple,
                                   //Colors.deepPurple.shade700
