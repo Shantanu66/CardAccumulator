@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -99,7 +100,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
             boxShadow: [
               // ignore: prefer_const_constructors
               BoxShadow(
-                  offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
+                  offset: Offset(0, 5), color: Colors.black, blurRadius: 12),
             ],
           ),
           child: Column(
@@ -154,9 +155,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                           // ignore: prefer_const_constructors
                           decoration: InputDecoration(
                             labelText: "ID type name",
+                            labelStyle: GoogleFonts.sora(
+                                fontSize: 14.0, fontWeight: FontWeight.bold),
                             fillColor: Colors.white,
                             hoverColor: Colors.purple,
                             hintText: "Name of your Government id type",
+                            hintStyle: GoogleFonts.sora(
+                              fontSize: 14.0,
+                            ),
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
@@ -180,9 +186,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                           // ignore: prefer_const_constructors
                           decoration: InputDecoration(
                             labelText: "Description",
+                            labelStyle: GoogleFonts.sora(
+                                fontSize: 14.0, fontWeight: FontWeight.bold),
                             fillColor: Colors.white,
                             hoverColor: Colors.purple,
                             hintText: "Enter what the id is used for",
+                            hintStyle: GoogleFonts.sora(
+                              fontSize: 14.0,
+                            ),
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
@@ -206,9 +217,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                           // ignore: prefer_const_constructors
                           decoration: InputDecoration(
                             labelText: "Card Number",
+                            labelStyle: GoogleFonts.sora(
+                                fontSize: 14.0, fontWeight: FontWeight.bold),
                             fillColor: Colors.white,
                             hoverColor: Colors.purple,
                             hintText: "Enter your Card Number",
+                            hintStyle: GoogleFonts.sora(
+                              fontSize: 14.0,
+                            ),
                             focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
                             border: OutlineInputBorder(
@@ -232,9 +248,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Date of birth",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter your Date of Birth",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -329,9 +350,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Bank name",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Name of the Bank",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -355,9 +381,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Validity",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter the validity of the card",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
@@ -381,9 +412,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
                               labelText: "Card Number",
+                              labelStyle: GoogleFonts.sora(
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Enter your Card Number",
+                              hintStyle: GoogleFonts.sora(
+                                fontSize: 14.0,
+                              ),
                               focusColor: Colors.purpleAccent,
                               // ignore: prefer_const_constructors
                               border: OutlineInputBorder(
