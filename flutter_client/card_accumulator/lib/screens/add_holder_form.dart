@@ -114,6 +114,10 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                               "profession": _professionController.text.trim(),
                               "mail": _mailController.text.trim(),
                             });
+                            _nameController.clear();
+                            _ageController.clear();
+                            _professionController.clear();
+                            _mailController.clear();
 
                             final route = MaterialPageRoute(
                                 builder: (context) => AddCardsScreen());

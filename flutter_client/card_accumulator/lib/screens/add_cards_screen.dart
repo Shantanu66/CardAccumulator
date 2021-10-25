@@ -111,6 +111,10 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               "DOB": _DOBController.text,
                               "holderId": "6176a0ac8b5daddb17b891d0"
                             });
+                            _titleController.clear();
+                            _DescController.clear();
+                            _CardNumberController.clear();
+                            _DOBController.clear();
                               print(widget.cid);
                             _btnController.success();
                             _btnController.reset();
@@ -271,13 +275,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
     return """
     mutation createIDcard(
       \$title:String!,
-    \$description:String!,\$cardnumber:ID!,\$DOB:ID!,\$holderId:ID!
+    \$description:String!,\$cardnumber:String!,\$DOB:String!,
+    \$holderId:String!
     ){
     createIDcard(title:\$title,
     description:\$description,
     cardnumber:\$cardnumber,
     DOB:\$DOB,
-    holderID:\$holderID
+    holderId:\$holderId
     ){
       id
       title
