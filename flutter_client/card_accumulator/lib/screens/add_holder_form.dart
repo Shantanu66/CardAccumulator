@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:card_accumulator/screens/add_cards_screen.dart' as cs;
+import 'package:card_accumulator/screens/add_cards_screen.dart';
 
 class AddHolderScreen extends StatefulWidget {
   const AddHolderScreen({Key? key}) : super(key: key);
@@ -91,13 +91,17 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
               children: [
                 Mutation(
                   options: MutationOptions(
-                      document: gql(addholder()),
-                      fetchPolicy: FetchPolicy.noCache,
-                      onCompleted: (data) {
-                        print(data.toString());
+                    document: gql(addholder()),
+                    fetchPolicy: FetchPolicy.noCache,
+                    onCompleted: (data) {
+                      print(data.toString());
+                      setState(() {
                         currentHolderId=data["createHolder"]["id"];
-                        cs.AddCardsScreen(currentHolderId: currentHolderId,);
-                      }),
+                        
+                      });
+                      AddCardsScreen(cid:currentHolderId );
+                    },
+                  ),
                   builder: (runMutation, result) {
                     void _doSomething() async {
                       Timer(Duration(milliseconds: 100), () {
@@ -110,14 +114,13 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                               "profession": _professionController.text.trim(),
                               "mail": _mailController.text.trim(),
                             });
-                            
-                              final route = MaterialPageRoute(
-                                  builder: (context) => AddCardsScreen());
-                              Navigator.push(context, route);
-                            
+
+                            final route = MaterialPageRoute(
+                                builder: (context) => AddCardsScreen());
+                            Navigator.push(context, route);
+
                             _btnController.success();
                             _btnController.reset();
-                            
                           } else {
                             _btnController.error();
                             //_btnController.reset();
@@ -273,7 +276,8 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
 
   String addholder() {
     return """
-      mutation createHolder(\$name:String!,\$age:Int!,\$profession:String!,\$mail:String!
+      mutation createHolder(
+        \$name:String!,\$age:Int!,\$profession:String!,\$mail:String!
   ){
     createHolder(name:\$name,
     profession:\$profession,

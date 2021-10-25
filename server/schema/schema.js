@@ -82,8 +82,8 @@ const IDCardType = new GraphQLObjectType({
         id: { type: GraphQLID },
         title: { type: GraphQLString },
         description: { type: GraphQLString },
-        cardnumber: { type: GraphQLID },
-        DOB:{type:GraphQLID},
+        cardnumber: { type: GraphQLString },
+        DOB:{type:GraphQLString},
         holder:{
             type:holderType,
             resolve(parent,args){
@@ -99,9 +99,9 @@ const BankCardType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLID },
         bank:{type:GraphQLString},
-        validity:{type:GraphQLID},
-        number: { type: GraphQLID },
-        //holderId:{type:GraphQLID},
+        validity:{type:GraphQLString},
+        number: { type: GraphQLString },
+        //holderId:{type:GraphQLString},
         holder:{
             type:holderType,
             resolve(parent,args){
@@ -227,9 +227,9 @@ const Mutation=new GraphQLObjectType({
         args:{
             title: { type: new GraphQLNonNull(GraphQLString )},
             description: { type: new GraphQLNonNull(GraphQLString) },
-            cardnumber: { type: new GraphQLNonNull(GraphQLID) },
-            DOB:{type:new GraphQLNonNull(GraphQLID)},
-            holderId:{type:new GraphQLNonNull(GraphQLID)},
+            cardnumber: { type: new GraphQLNonNull(GraphQLString) },
+            DOB:{type:new GraphQLNonNull(GraphQLString)},
+            holderId:{type:new GraphQLNonNull(GraphQLString)},
         },
         resolve(parent,args){
             let IDcard=idcard({
@@ -248,8 +248,8 @@ const Mutation=new GraphQLObjectType({
             id:{type:new GraphQLNonNull(GraphQLString)},
             title: { type: new GraphQLNonNull(GraphQLString )},
             description: { type: new GraphQLNonNull(GraphQLString) },
-            cardnumber: { type: new GraphQLNonNull(GraphQLID) },
-            DOB:{type:new GraphQLNonNull(GraphQLID)},
+            cardnumber: { type: new GraphQLNonNull(GraphQLString) },
+            DOB:{type:new GraphQLNonNull(GraphQLString)},
         },
         resolve(parent,args){
             return UpdateIdcard=idcard.findByIdAndUpdate(
@@ -283,8 +283,8 @@ const Mutation=new GraphQLObjectType({
         type:BankCardType,
         args:{
             bank:{type:new GraphQLNonNull(GraphQLString)},
-            validity:{type:new GraphQLNonNull(GraphQLID)},
-            number: { type:new GraphQLNonNull( GraphQLID) },
+            validity:{type:new GraphQLNonNull(GraphQLString)},
+            number: { type:new GraphQLNonNull( GraphQLString) },
             holderId:{type:new GraphQLNonNull(GraphQLString)}
         },
         resolve(parent,args){
@@ -302,8 +302,8 @@ const Mutation=new GraphQLObjectType({
         args:{
             id:{type:new GraphQLNonNull(GraphQLString)},
             bank:{type:new GraphQLNonNull(GraphQLString)},
-            validity:{type:new GraphQLNonNull(GraphQLID)},
-            number: { type:new GraphQLNonNull( GraphQLID) },
+            validity:{type:new GraphQLNonNull(GraphQLString)},
+            number: { type:new GraphQLNonNull( GraphQLString) },
         },
         resolve(parent,args){
             return UpdateBankcard=bankcard.findByIdAndUpdate(
