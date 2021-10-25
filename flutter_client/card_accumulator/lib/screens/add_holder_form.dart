@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:card_accumulator/screens/add_cards_screen.dart' as cs;
 
 class AddHolderScreen extends StatefulWidget {
   const AddHolderScreen({Key? key}) : super(key: key);
@@ -28,6 +29,8 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   final _mailController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
+
+  var currentHolderId;
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +95,8 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                       fetchPolicy: FetchPolicy.noCache,
                       onCompleted: (data) {
                         print(data.toString());
+                        currentHolderId=data["createHolder"]["id"];
+                        cs.AddCardsScreen(currentHolderId: currentHolderId,);
                       }),
                   builder: (runMutation, result) {
                     void _doSomething() async {

@@ -1,13 +1,20 @@
 import 'dart:async';
 
 import 'package:card_accumulator/screens/add_cards_screen.dart';
+import 'package:card_accumulator/screens/add_holder_form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class AddCardsScreen extends StatefulWidget {
-  const AddCardsScreen({Key? key}) : super(key: key);
+  final currentHolderId;
+
+  const AddCardsScreen({Key? key,
+    this.currentHolderId,
+  }) : assert(currentHolderId != null),
+  super(key: key);
 
   @override
   _AddCardsScreenState createState() => _AddCardsScreenState();
@@ -30,6 +37,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
 
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
