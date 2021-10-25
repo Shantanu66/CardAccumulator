@@ -30,7 +30,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
 
-  var currentHolderId;
+  var currentHolderId="";
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,6 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                         currentHolderId=data["createHolder"]["id"];
                         
                       });
-                      AddCardsScreen(cid:currentHolderId );
                     },
                   ),
                   builder: (runMutation, result) {
@@ -120,7 +119,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             _mailController.clear();
 
                             final route = MaterialPageRoute(
-                                builder: (context) => AddCardsScreen());
+                                builder: (context) => AddCardsScreen(
+                                  cid: currentHolderId,
+                                ));
                             Navigator.push(context, route);
 
                             _btnController.success();

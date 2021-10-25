@@ -9,9 +9,8 @@ class AddCardsScreen extends StatefulWidget {
    var cid;
    AddCardsScreen({
     Key? key,
-    this.cid,
+    @required this.cid,
   }) :super(key: key);
-
   @override
   _AddCardsScreenState createState() => _AddCardsScreenState();
 }
@@ -24,6 +23,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   );
 
   final _idCardkey = GlobalKey<FormState>();
+  
 
   final _titleController = TextEditingController();
   final _DescController = TextEditingController();
@@ -62,209 +62,207 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
         elevation: 0,
       ),
       backgroundColor: Color(0xFF1c1527),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(24),
-            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  //Colors.purple.shade300,
-                  Colors.yellow,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                //Colors.purple.shade300,
+                Colors.yellow,
 
-                  Colors.purple.shade600,
+                Colors.purple.shade600,
 
-                  //Colors.deepPurple.shade700
-                ],
-              ),
-              borderRadius: BorderRadius.circular(35),
-              // ignore: prefer_const_literals_to_create_immutables
-              boxShadow: [
-                // ignore: prefer_const_constructors
-                BoxShadow(
-                    offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
+                //Colors.deepPurple.shade700
               ],
             ),
-            child: Column(
-              children: [
-                Mutation(
-                  options: MutationOptions(
-                      document: gql(insertId()),
-                      fetchPolicy: FetchPolicy.noCache,
-                      onCompleted: (data) {
-                        print(data.toString());
-                        print(data["id"]);
-                      }),
-                  builder: (runMutation, result) {
-                    void _doSomething() async {
-                      Timer(Duration(milliseconds: 100), () {
-                        // ignore: unnecessary_this
-                        this.setState(() {
-                          if (_idCardkey.currentState!.validate()) {
-                            runMutation({
-                              "title": _titleController.text,
-                              "description": _DescController.text,
-                              "cardnumber": _CardNumberController.text,
-                              "DOB": _DOBController.text,
-                              "holderId": "6176a0ac8b5daddb17b891d0"
-                            });
-                            _titleController.clear();
-                            _DescController.clear();
-                            _CardNumberController.clear();
-                            _DOBController.clear();
-                              print(widget.cid);
-                            _btnController.success();
-                            _btnController.reset();
-                            
-                          } else {
-                            _btnController.error();
-                            //_btnController.reset();
-                          }
-                        });
+            borderRadius: BorderRadius.circular(35),
+            // ignore: prefer_const_literals_to_create_immutables
+            boxShadow: [
+              // ignore: prefer_const_constructors
+              BoxShadow(
+                  offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
+            ],
+          ),
+          child: Column(
+            children: [
+              Mutation(
+                options: MutationOptions(
+                    document: gql(insertId()),
+                    fetchPolicy: FetchPolicy.noCache,
+                    onCompleted: (data) {
+                      print(data.toString());
+                      print(data["id"]);
+                    }),
+                builder: (runMutation, result) {
+                  void _doSomething() async {
+                    Timer(Duration(milliseconds: 100), () {
+                      // ignore: unnecessary_this
+                      this.setState(() {
+                        if (_idCardkey.currentState!.validate()) {
+                          runMutation({
+                            "title": _titleController.text,
+                            "description": _DescController.text,
+                            "cardnumber": _CardNumberController.text,
+                            "DOB": _DOBController.text,
+                            "holderId": widget.cid
+                          });
+                          _titleController.clear();
+                          _DescController.clear();
+                          _CardNumberController.clear();
+                          _DOBController.clear();
+                            print(widget.cid);
+                          _btnController.success();
+                          _btnController.reset();
+                          
+                        } else {
+                          _btnController.error();
+                          //_btnController.reset();
+                        }
                       });
-                    }
+                    });
+                  }
 
-                    return Form(
-                      key: _idCardkey,
-                      child: Column(
-                        children: [
+                  return Form(
+                    key: _idCardkey,
+                    child: Column(
+                      children: [
+                        // ignore: prefer_const_constructors
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: _titleController,
                           // ignore: prefer_const_constructors
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            controller: _titleController,
+                          decoration: InputDecoration(
+                            labelText: "ID type name",
+                            fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter the name of your id type",
+                            focusColor: Colors.purpleAccent,
                             // ignore: prefer_const_constructors
-                            decoration: InputDecoration(
-                              labelText: "ID type name",
-                              fillColor: Colors.white,
-                              hoverColor: Colors.purple,
-                              hintText: "Enter the name of your id type",
-                              focusColor: Colors.purpleAccent,
-                              // ignore: prefer_const_constructors
-                              border: OutlineInputBorder(
-                                  // ignore: prefer_const_constructors
-                                  borderSide: BorderSide(),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            validator: (value) {
-                              if (value!.length == 0) {
-                                return "Can't be empty";
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          TextFormField(
-                            controller: _DescController,
-                            // ignore: prefer_const_constructors
-                            decoration: InputDecoration(
-                              labelText: "Description",
-                              fillColor: Colors.white,
-                              hoverColor: Colors.purple,
-                              hintText: "Enter what the id is used for",
-                              focusColor: Colors.purpleAccent,
-                              // ignore: prefer_const_constructors
-                              border: OutlineInputBorder(
-                                  // ignore: prefer_const_constructors
-                                  borderSide: BorderSide(),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            validator: (value) {
-                              if (value!.length == 0) {
-                                return "Description can't be empty";
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          TextFormField(
-                            controller: _CardNumberController,
-                            // ignore: prefer_const_constructors
-                            decoration: InputDecoration(
-                              labelText: "Card Number",
-                              fillColor: Colors.white,
-                              hoverColor: Colors.purple,
-                              hintText: "Enter your Card Number",
-                              focusColor: Colors.purpleAccent,
-                              // ignore: prefer_const_constructors
-                              border: OutlineInputBorder(
-                                  // ignore: prefer_const_constructors
-                                  borderSide: BorderSide(),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            validator: (value) {
-                              if (value!.length == 0) {
-                                return "Card Number can't be empty";
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
-                          TextFormField(
-                              controller: _DOBController,
-                              // ignore: prefer_const_constructors
-                              decoration: InputDecoration(
-                                labelText: "Date of birth",
-                                fillColor: Colors.white,
-                                hoverColor: Colors.purple,
-                                hintText: "Enter your Date of Birth",
-                                focusColor: Colors.purpleAccent,
+                            border: OutlineInputBorder(
                                 // ignore: prefer_const_constructors
-                                border: OutlineInputBorder(
-                                    // ignore: prefer_const_constructors
-                                    borderSide: BorderSide(),
-                                    borderRadius: BorderRadius.circular(20)),
-                              ),
-                              validator: (value) {
-                                if (value!.length == 0) {
-                                  return "DOB can't be empty";
-                                }
-                                return null;
-                              },
-                              keyboardType: TextInputType.text),
-                          SizedBox(
-                            height: 12,
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
-                          RoundedLoadingButton(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 36, vertical: 12),
-                              child: Text('Add ID card',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      letterSpacing: 2.0)),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        TextFormField(
+                          controller: _DescController,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: "Description",
+                            fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter what the id is used for",
+                            focusColor: Colors.purpleAccent,
+                            // ignore: prefer_const_constructors
+                            border: OutlineInputBorder(
+                                // ignore: prefer_const_constructors
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Description can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        TextFormField(
+                          controller: _CardNumberController,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: "Card Number",
+                            fillColor: Colors.white,
+                            hoverColor: Colors.purple,
+                            hintText: "Enter your Card Number",
+                            focusColor: Colors.purpleAccent,
+                            // ignore: prefer_const_constructors
+                            border: OutlineInputBorder(
+                                // ignore: prefer_const_constructors
+                                borderSide: BorderSide(),
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Card Number can't be empty";
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.text,
+                        ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        TextFormField(
+                            controller: _DOBController,
+                            // ignore: prefer_const_constructors
+                            decoration: InputDecoration(
+                              labelText: "Date of birth",
+                              fillColor: Colors.white,
+                              hoverColor: Colors.purple,
+                              hintText: "Enter your Date of Birth",
+                              focusColor: Colors.purpleAccent,
+                              // ignore: prefer_const_constructors
+                              border: OutlineInputBorder(
+                                  // ignore: prefer_const_constructors
+                                  borderSide: BorderSide(),
+                                  borderRadius: BorderRadius.circular(20)),
                             ),
-                            elevation: 15.0,
-                            controller: _btnController,
-                            color: Colors.deepPurpleAccent,
-                            onPressed: _doSomething,
-                            width: 100,
-                            height: 43,
-                            borderRadius: 50,
-                            errorColor: Colors.red,
+                            validator: (value) {
+                              if (value!.length == 0) {
+                                return "DOB can't be empty";
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.text),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        RoundedLoadingButton(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 36, vertical: 12),
+                            child: Text('Add ID card',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14,
+                                    letterSpacing: 2.0)),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
+                          elevation: 15.0,
+                          controller: _btnController,
+                          color: Colors.deepPurpleAccent,
+                          onPressed: _doSomething,
+                          width: 100,
+                          height: 43,
+                          borderRadius: 50,
+                          errorColor: Colors.red,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
