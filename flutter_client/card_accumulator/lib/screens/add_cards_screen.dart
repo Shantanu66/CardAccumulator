@@ -6,13 +6,13 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class AddCardsScreen extends StatefulWidget {
-   var cid;
+  var cid;
 
-   AddCardsScreen({
+  AddCardsScreen({
     Key? key,
     required this.cid,
-  }) :super(key: key);
-  
+  }) : super(key: key);
+
   @override
   _AddCardsScreenState createState() => _AddCardsScreenState();
 }
@@ -25,15 +25,29 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   );
 
   final _idCardkey = GlobalKey<FormState>();
-  
 
+  //idcards
   final _titleController = TextEditingController();
   final _DescController = TextEditingController();
   final _CardNumberController = TextEditingController();
   final _DOBController = TextEditingController();
+  //bankcards
+  final _BankController = TextEditingController();
+  final _ValidityController = TextEditingController();
+  final _NumberController = TextEditingController();
 
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
+
+  var _bankCardkey = GlobalKey<FormState>();
+
+  bool _visible = false;
+
+  void _toggle() {
+    setState(() {
+      _visible = !_visible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,14 +125,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             "DOB": _DOBController.text,
                             "holderId": widget.cid
                           });
+                          _toggle();
                           _titleController.clear();
                           _DescController.clear();
                           _CardNumberController.clear();
                           _DOBController.clear();
-                            print(widget.cid);
+                          print(widget.cid);
                           _btnController.success();
                           _btnController.reset();
-                          
                         } else {
                           _btnController.error();
                           //_btnController.reset();
@@ -208,7 +222,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             }
                             return null;
                           },
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.number,
                         ),
                         SizedBox(
                           height: 12,
@@ -242,7 +256,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 36, vertical: 12),
-                            child: Text('Add ID card',
+                            child: Text('Add card',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
@@ -263,6 +277,157 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                   );
                 },
               ),
+              SizedBox(
+                height: 30,
+              ),
+              //BANK SECTION
+              Visibility(
+                visible: _visible,
+                child: Mutation(
+                  options: MutationOptions(
+                      document: gql(insertBank()),
+                      fetchPolicy: FetchPolicy.noCache,
+                      onCompleted: (data) {
+                        print(data.toString());
+                      }),
+                  builder: (runMutation, result) {
+                    void _doSomething() async {
+                      Timer(Duration(milliseconds: 100), () {
+                        // ignore: unnecessary_this
+                        this.setState(() {
+                          if (_bankCardkey.currentState!.validate()) {
+                            runMutation({
+                              "bank": _BankController.text,
+                              "validity": _ValidityController.text,
+                              "number": _NumberController.text,
+                              "holderId": widget.cid
+                            });
+                            _BankController.clear();
+                            _ValidityController.clear();
+                            _NumberController.clear();
+                            print(widget.cid);
+                            _btnController.success();
+                            _btnController.reset();
+                          } else {
+                            _btnController.error();
+                            //_btnController.reset();
+                          }
+                        });
+                      });
+                    }
+
+                    return Form(
+                      key: _bankCardkey,
+                      child: Column(
+                        children: [
+                          // ignore: prefer_const_constructors
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _BankController,
+                            // ignore: prefer_const_constructors
+                            decoration: InputDecoration(
+                              labelText: "Bank name",
+                              fillColor: Colors.white,
+                              hoverColor: Colors.purple,
+                              hintText: "Name of the Bank",
+                              focusColor: Colors.purpleAccent,
+                              // ignore: prefer_const_constructors
+                              border: OutlineInputBorder(
+                                  // ignore: prefer_const_constructors
+                                  borderSide: BorderSide(),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            validator: (value) {
+                              if (value!.length == 0) {
+                                return "Bank Name can't be empty";
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.text,
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          TextFormField(
+                            controller: _ValidityController,
+                            // ignore: prefer_const_constructors
+                            decoration: InputDecoration(
+                              labelText: "Validity",
+                              fillColor: Colors.white,
+                              hoverColor: Colors.purple,
+                              hintText: "Enter the validity of the card",
+                              focusColor: Colors.purpleAccent,
+                              // ignore: prefer_const_constructors
+                              border: OutlineInputBorder(
+                                  // ignore: prefer_const_constructors
+                                  borderSide: BorderSide(),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            validator: (value) {
+                              if (value!.length == 0) {
+                                return "Validity can't be empty";
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.text,
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          TextFormField(
+                            controller: _NumberController,
+                            // ignore: prefer_const_constructors
+                            decoration: InputDecoration(
+                              labelText: "Card Number",
+                              fillColor: Colors.white,
+                              hoverColor: Colors.purple,
+                              hintText: "Enter your Card Number",
+                              focusColor: Colors.purpleAccent,
+                              // ignore: prefer_const_constructors
+                              border: OutlineInputBorder(
+                                  // ignore: prefer_const_constructors
+                                  borderSide: BorderSide(),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            validator: (value) {
+                              if (value!.length == 0) {
+                                return "Card Number can't be empty";
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.number,
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          RoundedLoadingButton(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 36, vertical: 12),
+                              child: Text('Add card',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      letterSpacing: 2.0)),
+                            ),
+                            elevation: 15.0,
+                            controller: _btnController,
+                            color: Colors.greenAccent,
+                            onPressed: _doSomething,
+                            width: 100,
+                            height: 43,
+                            borderRadius: 50,
+                            errorColor: Colors.red,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),
@@ -289,4 +454,23 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   }
   """;
   }
+}
+
+String insertBank() {
+  return """
+    mutation createBankcard(
+      \$bank:String!,
+    \$validity:String!,\$number:String!,
+    \$holderId:String!
+    ){
+    createBankcard(bank:\$bank,
+    validity:\$validity,
+    number:\$number,
+    holderId:\$holderId
+    ){
+      id
+      bank
+    }
+  }
+  """;
 }
