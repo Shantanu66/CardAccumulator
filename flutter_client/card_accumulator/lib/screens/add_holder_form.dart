@@ -61,7 +61,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
         elevation: 0,
       ),
       backgroundColor: Color(0xFF1c1527),
-      body: Center(
+      body: Padding(
+        
+        padding: const EdgeInsets.only(top: 100.0),
         child: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(24),
