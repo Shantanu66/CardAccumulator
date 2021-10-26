@@ -5,6 +5,7 @@ import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -14,6 +15,11 @@ class HoldersScreen extends StatefulWidget {
   @override
   _HoldersScreenState createState() => _HoldersScreenState();
 }
+final Shader linearGradient = LinearGradient(
+  colors: const <Color>[Colors.purple, Colors.deepPurpleAccent],
+).createShader(
+  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+);
 
 class _HoldersScreenState extends State<HoldersScreen> {
   final _controller = ScrollController();
@@ -54,8 +60,6 @@ class _HoldersScreenState extends State<HoldersScreen> {
   bool _removeidcard = false;
 
   bool _removebankcard = false;
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -248,13 +252,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   _removebankcard = true;
                                 });
                                 runMutation({"id": holder["id"]});
-                                _timer = new Timer(const Duration(seconds: 1), (){
+                                _timer =
+                                    new Timer(const Duration(seconds: 1), () {
                                   Navigator.pushAndRemoveUntil(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return HomeScreenState();
-                                }), (route) => false);
+                                      MaterialPageRoute(builder: (context) {
+                                    return HomeScreenState();
+                                  }), (route) => false);
                                 });
-                                
                               },
                             ),
                           );
@@ -291,20 +295,51 @@ class _HoldersScreenState extends State<HoldersScreen> {
                 },
               )
             // ignore: avoid_unnecessary_containers
-            : Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(top:1.0),
-                  child: Text(
-                    "Oops!No holders found\n\t\t\t\t\t\t\t\t\tAdd a holder!",
-                    style: GoogleFonts.epilogue(
-                        color: Colors.white,
-                        fontSize: 13,
-                        letterSpacing: 2.0,
-                        fontWeight: FontWeight.w500),
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 50),
+                child: Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 150),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF1c1527),
+                    borderRadius: BorderRadius.circular(23),
+
+                    // ignore: prefer_const_literals_to_create_immutables
+                    boxShadow: [
+                      // ignore: prefer_const_constructors
+                      BoxShadow(
+                          offset: Offset(0, 2),
+                          color: Colors.black,
+                          blurRadius: 4),
+                    ],
+                  ),
+                  child: InkWell(
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Welcome to Card Accumulator\n app!\nIn This app you can hold\n your various\nGovernment ID's and Bank \nCards in a common \nplace for ease.\nYour card number will\n be will be well encrypted.\nFeel free to use the various\n features it offers\n at your ease\n\n\t\t\t\t\t\t\t\t\t\t\t\t Oops!No Holders found.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAdd Holder",
+                                  style: GoogleFonts.openSans(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 0.0,
+                                    foreground: Paint()..shader = linearGradient, ),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                color: Colors.redAccent,
-              
               );
       },
     );
