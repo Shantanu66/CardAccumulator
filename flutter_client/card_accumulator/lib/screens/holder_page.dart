@@ -163,7 +163,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           elevation: 15.0,
                           fillColor: Colors.grey.shade900,
                           child: Icon(
-                            Icons.edit,
+                            Icons.edit_rounded,
                             color: Colors.green,
                             size: 27.0,
                           ),
@@ -192,7 +192,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           elevation: 14.0,
                           fillColor: Colors.grey.shade900,
                           child: Icon(
-                            Icons.delete_forever,
+                            Icons.delete_sweep_rounded,
                             color: Colors.red,
                             size: 27.0,
                           ),
