@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, duplicate_ignore, prefer_const_constructors
 
+
+import 'package:card_accumulator/screens/update_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -158,7 +160,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         child: RawMaterialButton(
                           padding: EdgeInsets.all(9.0),
                           shape: CircleBorder(),
-                          elevation: 14.0,
+                          elevation: 15.0,
                           fillColor: Colors.grey.shade900,
                           child: Icon(
                             Icons.edit,
@@ -166,7 +168,18 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             size: 27.0,
                           ),
                           // ignore: avoid_print
-                          onPressed: () => print('Add to cart'),
+                          onPressed: ()async{
+                            final route=MaterialPageRoute(
+                             builder: (context){
+                               return UpdateScreen(
+                                id:holder['id'],
+                                name:holder['name'],
+                                age:holder['age'],
+                                profession:holder['profession']);
+                             },
+                             );
+                              await Navigator.push(context,route);
+                          },
                         ),
                       ),
                       Positioned(
