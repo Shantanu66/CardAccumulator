@@ -87,7 +87,7 @@ class _EditScreenState extends State<EditScreen> {
             padding: const EdgeInsets.all(24),
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [
