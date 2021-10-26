@@ -65,7 +65,7 @@ const holderType = new GraphQLObjectType({
                 //return lodash.filter(IDCardData,{holderId:parent.id})
             }
         },
-        bandcards:{
+        bankcards:{
             type:new GraphQLList(BankCardType),
             resolve(parent,args){
                   return bankcard.find({holderId:parent.id})

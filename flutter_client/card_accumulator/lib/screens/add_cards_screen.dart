@@ -8,11 +8,11 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class AddCardsScreen extends StatefulWidget {
-  var cid;
+  final String cid;
 
   AddCardsScreen({
-    Key? key,
     required this.cid,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -113,10 +113,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                   options: MutationOptions(
                       document: gql(insertId()),
                       fetchPolicy: FetchPolicy.noCache,
-                      onCompleted: (data) {
-                        print(data.toString());
-                        //print("hello+${widget.cid}");
-                      }),
+                      onCompleted: (data) {}),
                   builder: (runMutation, result) {
                     void _doSomething() async {
                       Timer(Duration(milliseconds: 100), () {
@@ -530,9 +527,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   }
   """;
   }
-
   String insertBank() {
-    return """
+  return """
     mutation createBankcard(
       \$bank:String!,
     \$validity:String!,\$number:String!,
@@ -548,5 +544,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
     }
   }
   """;
-  }
 }
+}
+
+
