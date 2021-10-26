@@ -84,6 +84,7 @@ const IDCardType = new GraphQLObjectType({
         description: { type: GraphQLString },
         cardnumber: { type: GraphQLString },
         DOB:{type:GraphQLString},
+        holderId:{type:GraphQLNonNull(GraphQLString)},
         holder:{
             type:holderType,
             resolve(parent,args){
@@ -101,7 +102,7 @@ const BankCardType = new GraphQLObjectType({
         bank:{type:GraphQLString},
         validity:{type:GraphQLString},
         number: { type: GraphQLString },
-        //holderId:{type:GraphQLString},
+        holderId:{type:GraphQLString},
         holder:{
             type:holderType,
             resolve(parent,args){

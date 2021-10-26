@@ -29,6 +29,21 @@ class _HoldersScreenState extends State<HoldersScreen> {
               profession
               age
               mail
+              idcards{
+                id
+                title
+                description
+                cardnumber 
+                DOB
+                holderId
+              }
+              bankcards{
+                id 
+                bank
+                validity
+                number
+                holderId
+              }
               }
           }
   """;
