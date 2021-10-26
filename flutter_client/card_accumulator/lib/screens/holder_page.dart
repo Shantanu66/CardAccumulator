@@ -48,6 +48,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
           }
   """;
 
+  List idcardsdeletelist = [];
+  List bankcardsdeletelist = [];
+
+  bool _removeidcard = false;
+
+  bool _removebankcard = false;
+
   @override
   Widget build(BuildContext context) {
     return Query(
@@ -198,16 +205,16 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           },
                         ),
                       ),
-                      Positioned(
-                        bottom: 2.0,
-                        left: 190.0,
-                        child: Mutation(
-                          options: MutationOptions(
-                            document: gql(removeholder()),
-                            onCompleted: (data) {},
-                          ),
-                          builder: (runMutation, result) {
-                            return RawMaterialButton(
+                      Mutation(
+                        options: MutationOptions(
+                          document: gql(removeholder()),
+                          onCompleted: (data) {},
+                        ),
+                        builder: (runMutation, result) {
+                          return Positioned(
+                            bottom: 2.0,
+                            left: 190.0,
+                            child: RawMaterialButton(
                               padding: EdgeInsets.all(9.0),
                               shape: CircleBorder(),
                               elevation: 14.0,
@@ -219,18 +226,47 @@ class _HoldersScreenState extends State<HoldersScreen> {
                               ),
                               // ignore: avoid_print
                               onPressed: () async {
+                                idcardsdeletelist.clear();
+                                bankcardsdeletelist.clear();
+                                for (var i = 0;
+                                    i < holder["idcards"].length;
+                                    i++) {
+                                  idcardsdeletelist
+                                      .add(holder["idcards"][i]["id"]);
+                                }
+                                for (var i = 0;
+                                    i < holder["bankcards"].length;
+                                    i++) {
+                                  bankcardsdeletelist
+                                      .add(holder["bankcards"][i]["id"]);
+                                }
+                                setState(() {
+                                  _removeidcard = true;
+                                  _removebankcard = true;
+                                });
                                 runMutation({"id": holder["id"]});
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
+                                Navigator.pushAndRemoveUntil(context,
+                                    MaterialPageRoute(builder: (context) {
                                   return HomeScreenState();
                                 }), (route) => false);
                               },
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
+                      _removeidcard
+                          ? Mutation(
+                              options: MutationOptions(
+                                  document: gql(removeIdcard()),
+                                  onCompleted: (data) {}),
+                              builder: (runMuation, result) {
+                                if (idcardsdeletelist.isNotEmpty) {
+                                  runMuation({'ids': idcardsdeletelist});
+                                }
+                                return Container();
+                              },
+                            )
+                          : Container()
                     ],
                   );
                 },
@@ -260,4 +296,11 @@ class _HoldersScreenState extends State<HoldersScreen> {
       }
     """;
   }
+}
+
+String removeIdcard() {
+  return """
+    
+  """;
+
 }

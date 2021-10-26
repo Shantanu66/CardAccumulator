@@ -280,6 +280,23 @@ const Mutation=new GraphQLObjectType({
             return removeIdcard
         },
     },
+    removeoIdcards:{
+        type:IDCardType,
+        args:{
+            ids:{type:new GraphQLNonNull(GraphQLList(GraphQLString))},
+
+        },
+        resolve(parent,args){
+            let  removeoIdcards= idcard.deleteMany({
+                _id:args.ids
+            }).exec()
+            if(!removeoIdcards){
+                throw new "Not Removed"()
+            }
+            return removeoIdcards
+        }
+        
+    },
     createBankcard:{
         type:BankCardType,
         args:{
@@ -332,6 +349,23 @@ const Mutation=new GraphQLObjectType({
             }
             return removeBankcard
         },
+    },
+    removeBankcards:{
+        type:BankCardType,
+        args:{
+            ids:{type:new GraphQLNonNull(GraphQLList(GraphQLString))},
+
+        },
+        resolve(parent,args){
+            let  removeBankcards= bankcard.deleteMany({
+                _id:args.ids
+            }).exec()
+            if(!removeBankcards){
+                throw new "Not Removed"()
+            }
+            return removeBankcards
+        }
+        
     },
    }
 })
