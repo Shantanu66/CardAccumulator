@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, duplicate_ignore, prefer_const_constructors
 
-
 import 'package:card_accumulator/screens/edit_holder_screen.dart';
+import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -168,36 +168,52 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             size: 27.0,
                           ),
                           // ignore: avoid_print
-                          onPressed: ()async{
-                            final route=MaterialPageRoute(
-                             builder: (context){
-                               return EditScreen(
-                                id:holder['id'],
-                                name:holder['name'],
-                                age:holder['age'],
-                                profession:holder['profession'],
-                                mail:holder["mail"]);
-                             },
-                             );
-                              await Navigator.push(context,route);
+                          onPressed: () async {
+                            final route = MaterialPageRoute(
+                              builder: (context) {
+                                return EditScreen(
+                                    id: holder['id'],
+                                    name: holder['name'],
+                                    age: holder['age'],
+                                    profession: holder['profession'],
+                                    mail: holder["mail"]);
+                              },
+                            );
+                            await Navigator.push(context, route);
                           },
                         ),
                       ),
                       Positioned(
                         bottom: 2.0,
                         left: 190.0,
-                        child: RawMaterialButton(
-                          padding: EdgeInsets.all(9.0),
-                          shape: CircleBorder(),
-                          elevation: 14.0,
-                          fillColor: Colors.grey.shade900,
-                          child: Icon(
-                            Icons.delete_sweep_rounded,
-                            color: Colors.red,
-                            size: 27.0,
+                        child: Mutation(
+                          options: MutationOptions(
+                            document: gql(removeholder()),
+                            onCompleted: (data) {},
                           ),
-                          // ignore: avoid_print
-                          onPressed: () => print('Add to cart'),
+                          builder: (runMutation, result) {
+                            return RawMaterialButton(
+                              padding: EdgeInsets.all(9.0),
+                              shape: CircleBorder(),
+                              elevation: 14.0,
+                              fillColor: Colors.grey.shade900,
+                              child: Icon(
+                                Icons.delete_sweep_rounded,
+                                color: Colors.red,
+                                size: 27.0,
+                              ),
+                              // ignore: avoid_print
+                              onPressed: () async {
+                                runMutation({"id": holder["id"]});
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                  return HomeScreenState();
+                                }), (route) => false);
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -218,5 +234,15 @@ class _HoldersScreenState extends State<HoldersScreen> {
               );
       },
     );
+  }
+
+  String removeholder() {
+    return """
+      mutation RemoveHolder(\$id:String!){
+        RemoveHolder(id:\$id){
+          name
+        }
+      }
+    """;
   }
 }

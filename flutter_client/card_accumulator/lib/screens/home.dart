@@ -22,6 +22,7 @@ class _HomeScreenStateState extends State<HomeScreenState> {
   @override
   Widget build(BuildContext context) {
     Widget content = HoldersScreen();
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

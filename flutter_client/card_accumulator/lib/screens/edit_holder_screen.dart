@@ -92,8 +92,8 @@ class _EditScreenState extends State<EditScreen> {
                 end: Alignment.centerRight,
                 colors: [
                   //Colors.purple.shade300,
+                  Colors.tealAccent,
                   Colors.teal,
-                  Colors.purple.shade600,
 
                   //Colors.deepPurple.shade700
                 ],
