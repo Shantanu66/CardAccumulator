@@ -280,20 +280,20 @@ const Mutation=new GraphQLObjectType({
             return removeIdcard
         },
     },
-    removeoIdcards:{
+    removeIdcards:{
         type:IDCardType,
         args:{
             ids:{type:new GraphQLNonNull(GraphQLList(GraphQLString))},
 
         },
         resolve(parent,args){
-            let  removeoIdcards= idcard.deleteMany({
+            let  removeIdcards= idcard.deleteMany({
                 _id:args.ids
             }).exec()
-            if(!removeoIdcards){
+            if(!removeIdcards){
                 throw new "Not Removed"()
             }
-            return removeoIdcards
+            return removeIdcards
         }
         
     },
