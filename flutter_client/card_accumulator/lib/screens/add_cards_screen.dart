@@ -66,7 +66,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async=>false,
+      onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -94,7 +94,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                 colors: [
                   //Colors.purple.shade300,
                   Colors.blueAccent.shade100,
-    
+
                   Colors.purple.shade600,
                   //Colors.deepPurple.shade700
                 ],
@@ -115,7 +115,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                       fetchPolicy: FetchPolicy.noCache,
                       onCompleted: (data) {
                         print(data.toString());
-                        print(data["id"]);
+                        //print("hello+${widget.cid}");
                       }),
                   builder: (runMutation, result) {
                     void _doSomething() async {
@@ -135,7 +135,6 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             _DescController.clear();
                             _CardNumberController.clear();
                             _DOBController.clear();
-                            print(widget.cid);
                             _btnController.success();
                             _btnController.reset();
                           } else {
@@ -145,7 +144,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                         });
                       });
                     }
-    
+
                     return Form(
                       key: _idCardkey,
                       child: Column(
@@ -253,7 +252,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               decoration: InputDecoration(
                                 labelText: "Date of birth",
                                 labelStyle: GoogleFonts.sora(
-                                    fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
                                 hintText: "Enter your Date of Birth",
@@ -341,7 +341,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                           });
                         });
                       }
-    
+
                       return Form(
                         key: _bankCardkey,
                         child: Column(
@@ -356,7 +356,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               decoration: InputDecoration(
                                 labelText: "Bank name",
                                 labelStyle: GoogleFonts.sora(
-                                    fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
                                 hintText: "Name of the Bank",
@@ -387,7 +388,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               decoration: InputDecoration(
                                 labelText: "Validity",
                                 labelStyle: GoogleFonts.sora(
-                                    fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
                                 hintText: "Enter the validity of the card",
@@ -418,7 +420,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               decoration: InputDecoration(
                                 labelText: "Card Number",
                                 labelStyle: GoogleFonts.sora(
-                                    fontSize: 14.0, fontWeight: FontWeight.bold),
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
                                 hintText: "Enter your Card Number",
@@ -527,10 +530,9 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   }
   """;
   }
-}
 
-String insertBank() {
-  return """
+  String insertBank() {
+    return """
     mutation createBankcard(
       \$bank:String!,
     \$validity:String!,\$number:String!,
@@ -546,4 +548,5 @@ String insertBank() {
     }
   }
   """;
+  }
 }

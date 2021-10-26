@@ -96,10 +96,12 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
                       print(data.toString());
+                      print("Holderid:${currentHolderId}");
                       setState(() {
-                        currentHolderId=data["createHolder"]["id"];
+                        currentHolderId=data['createHolder']["id"];
                         
                       });
+                      
                     },
                   ),
                   builder: (runMutation, result) {
@@ -114,6 +116,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                               "profession": _professionController.text.trim(),
                               "mail": _mailController.text.trim(),
                             });
+                            
                             _nameController.clear();
                             _ageController.clear();
                             _professionController.clear();
@@ -123,6 +126,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                                 builder: (context) => AddCardsScreen(
                                   cid: currentHolderId,
                                 ));
+                            
                             Navigator.push(context, route);
                           
 
