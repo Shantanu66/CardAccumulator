@@ -52,7 +52,6 @@ class _HoldersScreenState extends State<HoldersScreen> {
   List bankcardsdeletelist = [];
 
   bool _removeidcard = false;
-
   bool _removebankcard = false;
 
   @override
@@ -254,8 +253,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           );
                         },
                       ),
-                      _removeidcard
-                          ? Mutation(
+                      _removeidcard? Mutation(
                               options: MutationOptions(
                                   document: gql(removeIdcard()),
                                   onCompleted: (data) {}),
@@ -266,7 +264,20 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                 return Container();
                               },
                             )
+                          : Container(),
+                      _removebankcard? Mutation(
+                              options: MutationOptions(
+                                  document: gql(removeBankcard()),
+                                  onCompleted: (data) {}),
+                              builder: (runMuation, result) {
+                                if (bankcardsdeletelist.isNotEmpty) {
+                                  runMuation({'ids': bankcardsdeletelist});
+                                }
+                                return Container();
+                              },
+                            )
                           : Container()
+                          
                     ],
                   );
                 },
@@ -298,11 +309,21 @@ class _HoldersScreenState extends State<HoldersScreen> {
   }
 }
 
+String removeBankcard() {
+  return """
+    mutation removeBankcards(\$ids:[String]){
+      removeBankcards(ids:\$ids){
+
+      }
+    }
+  """;
+}
+
 String removeIdcard() {
   return """
     mutation removeIdcards(\$ids:[String]){
       removeIdcards(ids:\$ids){
-        
+
       }
     }
   """;
