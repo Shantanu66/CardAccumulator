@@ -283,7 +283,7 @@ const Mutation=new GraphQLObjectType({
     removeIdcards:{
         type:IDCardType,
         args:{
-            ids:{type:new GraphQLNonNull(GraphQLList(GraphQLString))},
+            ids:{type:GraphQLList(GraphQLString)},
 
         },
         resolve(parent,args){
@@ -353,7 +353,7 @@ const Mutation=new GraphQLObjectType({
     removeBankcards:{
         type:BankCardType,
         args:{
-            ids:{type:new GraphQLNonNull(GraphQLList(GraphQLString))},
+            ids:{type:GraphQLList(GraphQLString)},
 
         },
         resolve(parent,args){

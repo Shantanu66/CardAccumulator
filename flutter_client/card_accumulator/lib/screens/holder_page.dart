@@ -300,7 +300,11 @@ class _HoldersScreenState extends State<HoldersScreen> {
 
 String removeIdcard() {
   return """
-    
+    mutation removeIdcards(\$ids:[String]){
+      removeIdcards(ids:\$ids){
+        
+      }
+    }
   """;
 
 }
