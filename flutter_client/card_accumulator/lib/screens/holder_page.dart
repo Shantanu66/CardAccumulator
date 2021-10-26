@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, duplicate_ignore, prefer_const_constructors
 
 
-import 'package:card_accumulator/screens/update_screen.dart';
+import 'package:card_accumulator/screens/edit_holder_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -171,11 +171,12 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           onPressed: ()async{
                             final route=MaterialPageRoute(
                              builder: (context){
-                               return UpdateScreen(
+                               return EditScreen(
                                 id:holder['id'],
                                 name:holder['name'],
                                 age:holder['age'],
-                                profession:holder['profession']);
+                                profession:holder['profession'],
+                                mail:holder["mail"]);
                              },
                              );
                               await Navigator.push(context,route);
