@@ -113,7 +113,6 @@ class _EditScreenState extends State<EditScreen> {
                     document: gql(editholder()),
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
-                      print(data.toString());
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                         builder: (context) {
                           return HomeScreenState();

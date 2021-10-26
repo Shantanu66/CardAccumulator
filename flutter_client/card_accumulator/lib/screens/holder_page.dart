@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card_accumulator/screens/edit_holder_screen.dart';
 import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,7 +37,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                 DOB
                 holderId
               }
-              bandcards{
+              bankcards{
                 id 
                 bank
                 validity
@@ -53,8 +55,11 @@ class _HoldersScreenState extends State<HoldersScreen> {
 
   bool _removebankcard = false;
 
+  
+
   @override
   Widget build(BuildContext context) {
+    Timer _timer;
     return Query(
       options: QueryOptions(document: gql(QUERY)),
       builder: (result, {fetchMore, refetch}) {
@@ -243,10 +248,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   _removebankcard = true;
                                 });
                                 runMutation({"id": holder["id"]});
-                                Navigator.pushAndRemoveUntil(context,
+                                _timer = new Timer(const Duration(seconds: 1), (){
+                                  Navigator.pushAndRemoveUntil(context,
                                     MaterialPageRoute(builder: (context) {
                                   return HomeScreenState();
                                 }), (route) => false);
+                                });
+                                
                               },
                             ),
                           );
@@ -264,22 +272,39 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                 return Container();
                               },
                             )
-                          : Container()
+                          : Container(),
+                      _removebankcard
+                          ? Mutation(
+                              options: MutationOptions(
+                                  document: gql(removeBankcards()),
+                                  onCompleted: (data) {}),
+                              builder: (runMuation, result) {
+                                if (bankcardsdeletelist.isNotEmpty) {
+                                  runMuation({'ids': bankcardsdeletelist});
+                                }
+                                return Container();
+                              },
+                            )
+                          : Container(),
                     ],
                   );
                 },
               )
             // ignore: avoid_unnecessary_containers
             : Container(
-                child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top:1.0),
                   child: Text(
-                    "No holders found",
-                    style: GoogleFonts.openSans(
-                        color: Colors.grey.shade200,
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal),
+                    "Oops!No holders found\n\t\t\t\t\t\t\t\t\tAdd a holder!",
+                    style: GoogleFonts.epilogue(
+                        color: Colors.white,
+                        fontSize: 13,
+                        letterSpacing: 2.0,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
+                color: Colors.redAccent,
+              
               );
       },
     );
@@ -294,11 +319,24 @@ class _HoldersScreenState extends State<HoldersScreen> {
       }
     """;
   }
+
   String removeIdcard() {
-  return """
-    
+    return """
+      mutation removeIdcards(\$ids:[String]){
+        removeIdcards(ids:\$ids){
+
+        }
+      }
   """;
+  }
 
+  String removeBankcards() {
+    return """
+      mutation removeBankcards(\$ids:[String]){
+        removeBankcards(ids:\$ids){
+          
+        }
+      }
+  """;
+  }
 }
-}
-

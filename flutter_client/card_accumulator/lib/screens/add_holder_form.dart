@@ -94,8 +94,6 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                     document: gql(addholder()),
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
-                      print(data.toString());
-
                       setState(() {
                         currentHolderId = data['createHolder']["id"];
                       });

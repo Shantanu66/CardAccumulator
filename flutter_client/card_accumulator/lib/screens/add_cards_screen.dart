@@ -309,9 +309,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                     options: MutationOptions(
                         document: gql(insertBank()),
                         fetchPolicy: FetchPolicy.noCache,
-                        onCompleted: (data) {
-                          print(data.toString());
-                        }),
+                        onCompleted: (data) {}),
                     builder: (runMutation, result) {
                       void _doSomething() async {
                         Timer(Duration(milliseconds: 100), () {
@@ -527,8 +525,9 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
   }
   """;
   }
+
   String insertBank() {
-  return """
+    return """
     mutation createBankcard(
       \$bank:String!,
     \$validity:String!,\$number:String!,
@@ -544,7 +543,5 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
     }
   }
   """;
+  }
 }
-}
-
-
