@@ -18,13 +18,15 @@ final Shader linearGradient = LinearGradient(
   Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
-class _DetailsPageState extends State<DetailsPage>
-    with SingleTickerProviderStateMixin {
+class _DetailsPageState extends State<DetailsPage> {
   final _controller = ScrollController();
   ScrollPhysics _physics =
       BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 
   bool pressAttention = false;
+
+  List _idcards = [];
+  List _bankcards = [];
 
   @override
   Widget build(BuildContext context) {
@@ -163,13 +165,18 @@ class _DetailsPageState extends State<DetailsPage>
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: const EdgeInsets.only(right:30.0),
+                padding: const EdgeInsets.only(right: 30.0),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      _idcards=widget.holder["idcards"];
+                    });
+                  },
                   child: Text(
                     "My ID cards",
                     style: GoogleFonts.roboto(
-                        fontSize: 15.0, fontWeight: FontWeight.w500,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w500,
                         letterSpacing: 1.5,
                         color: Colors.white),
                   ),
@@ -179,13 +186,14 @@ class _DetailsPageState extends State<DetailsPage>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left:20.0),
+                padding: const EdgeInsets.only(left: 20.0),
                 child: TextButton(
                   onPressed: () {},
                   child: Text(
-                    "My ID cards",
+                    "My Bank cards",
                     style: GoogleFonts.roboto(
-                        fontSize: 15.0, fontWeight: FontWeight.w500,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w500,
                         letterSpacing: 1.5,
                         color: Colors.white),
                   ),
@@ -195,7 +203,70 @@ class _DetailsPageState extends State<DetailsPage>
                 ),
               ),
             ],
-          )
+          ),
+          Visibility(
+            visible: true,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.45,
+              child: ListView.builder(
+                controller: _controller,
+                physics: _physics,
+                itemCount: _idcards.length,
+                itemBuilder: (context, index) {
+                  var data = _idcards[index];
+                  return Stack(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                            bottom: 23, left: 19, right: 19, top: 20),
+                        // ignore: duplicate_ignore
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          // ignore: prefer_const_constructors
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              //Colors.purple.shade300,
+                              Colors.deepPurple,
+                              Colors.purple,
+
+                              //Colors.deepPurple.shade700
+                            ],
+                          ),
+                          // ignore: prefer_const_literals_to_create_immutables
+                          boxShadow: [
+                            // ignore: prefer_const_constructors
+                            BoxShadow(
+                              offset: const Offset(2, 6),
+                              color: Colors.purple,
+                              blurRadius: 19,
+                              spreadRadius: -2.5,
+                            )
+                          ],
+                        ),
+                        padding: const EdgeInsets.all(20),
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("${data["title"]}"),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
