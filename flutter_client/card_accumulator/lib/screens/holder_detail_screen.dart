@@ -386,6 +386,40 @@ class _DetailsPageState extends State<DetailsPage> {
                           },
                         ),
                       ),
+                      Mutation(
+                          options: MutationOptions(
+                            document: gql(removeidcard()),
+                            onCompleted: (data) {
+
+                            },
+                          ),
+                          builder: (runMutation, result) {
+                            return Positioned(
+                                bottom: 2.0,
+                                left: 190.0,
+                                child: RawMaterialButton(
+                                  padding: EdgeInsets.all(9.0),
+                                  shape: CircleBorder(),
+                                  elevation: 14.0,
+                                  fillColor: Colors.grey.shade900,
+                                  onPressed: ()async {
+                                    runMutation({
+                                      "id": data["id"]
+                                      });
+                                _timer =new Timer(const Duration(seconds: 1), () {
+                                  Navigator.pushAndRemoveUntil(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return HomeScreenState();
+                                  }), (route) => false);
+                                });
+                                  },
+                                  child: Icon(
+                                    Icons.delete_outlined,
+                                    color: Colors.red,
+                                    size: 27.0,
+                                  ),
+                                ));
+                          }),
                     ],
                   );
                 },
@@ -564,8 +598,8 @@ class _DetailsPageState extends State<DetailsPage> {
   }
   String removeidcard() {
     return """
-      mutation removeBankcard(\$id:String!){
-        removeBankcard(id:\$id){
+      mutation removeIdcard(\$id:String!){
+        removeIdcard(id:\$id){
           
         }
       }
