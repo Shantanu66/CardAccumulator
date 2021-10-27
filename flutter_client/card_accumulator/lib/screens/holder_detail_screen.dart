@@ -1,5 +1,6 @@
 import 'package:card_accumulator/screens/add_cards_new.dart';
 import 'package:card_accumulator/screens/add_cards_screen.dart';
+import 'package:card_accumulator/screens/edit_id_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -289,6 +290,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             )
                           ],
                         ),
+                        
                         padding: const EdgeInsets.all(20),
                         child: Container(
                           child: Column(
@@ -321,7 +323,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 8.0, top: 15.0),
+                                    const EdgeInsets.only(left: 8.0, top: 6.0),
                                 child: Text(
                                   "Card Number : ${data["cardnumber"]}",
                                   style: GoogleFonts.raleway(
@@ -332,7 +334,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 8.0, top: 15.0),
+                                    const EdgeInsets.only(left: 8.0, top: 6.0,bottom: 6.0),
                                 child: Text(
                                   "DOB : ${data["DOB"]}",
                                   style: GoogleFonts.raleway(
@@ -343,6 +345,36 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 2.0,
+                        left: 120.0,
+                        child: RawMaterialButton(
+                          padding: EdgeInsets.all(9.0),
+                          shape: CircleBorder(),
+                          elevation: 15.0,
+                          fillColor: Colors.grey.shade900,
+                          child: Icon(
+                            Icons.edit_rounded,
+                            color: Colors.green,
+                            size: 27.0,
+                          ),
+                          // ignore: avoid_print
+                          onPressed: () async {
+                            final route = MaterialPageRoute(
+                              builder: (context) {
+                                return EditIdcardScreen(
+                                    id: widget.holder['id'],
+                                    title: widget.holder['title'],
+                                    description: widget.holder['description'],
+                                    cardnumber: widget.holder['cardnumber'],
+                                    DOB: widget.holder["DOB"]);
+                              },
+                            );
+                            await Navigator.push(context, route);
+                            
+                          },
                         ),
                       ),
                     ],
