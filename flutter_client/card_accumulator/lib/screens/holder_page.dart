@@ -9,7 +9,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 class HoldersScreen extends StatefulWidget {
   const HoldersScreen({Key? key}) : super(key: key);
 
@@ -70,7 +70,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
       options: QueryOptions(document: gql(QUERY)),
       builder: (result, {fetchMore, refetch}) {
         if (result.isLoading) {
-          return const CircularProgressIndicator();
+          return  SpinKitRipple();
         }
         HolderData = result.data!["holders"];
         return (HolderData.isNotEmpty)
