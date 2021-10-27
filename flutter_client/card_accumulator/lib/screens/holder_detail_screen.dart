@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:card_accumulator/screens/add_cards_new.dart';
 import 'package:card_accumulator/screens/add_cards_screen.dart';
 import 'package:card_accumulator/screens/edit_bank_card.dart';
 import 'package:card_accumulator/screens/edit_id_card.dart';
+import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,6 +38,8 @@ class _DetailsPageState extends State<DetailsPage> {
   bool _isidcardvisible = false;
   bool _isbankcardvisible = false;
 
+  
+
   void _visibleidcard() {
     setState(() {
       _isidcardvisible = true;
@@ -51,6 +56,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    Timer _timer;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -505,7 +511,9 @@ class _DetailsPageState extends State<DetailsPage> {
                       Mutation(
                           options: MutationOptions(
                             document: gql(removebankcard()),
-                            onCompleted: (data) {},
+                            onCompleted: (data) {
+
+                            },
                           ),
                           builder: (runMutation, result) {
                             return Positioned(
@@ -516,7 +524,17 @@ class _DetailsPageState extends State<DetailsPage> {
                                   shape: CircleBorder(),
                                   elevation: 14.0,
                                   fillColor: Colors.grey.shade900,
-                                  onPressed: () {},
+                                  onPressed: ()async {
+                                    runMutation({
+                                      "id": data2["id"]
+                                      });
+                                _timer =new Timer(const Duration(seconds: 1), () {
+                                  Navigator.pushAndRemoveUntil(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return HomeScreenState();
+                                  }), (route) => false);
+                                });
+                                  },
                                   child: Icon(
                                     Icons.delete_outlined,
                                     color: Colors.red,
@@ -537,7 +555,20 @@ class _DetailsPageState extends State<DetailsPage> {
 
   String removebankcard() {
     return """
-      mutation 
+      mutation removeBankcard(\$id:String!){
+        removeBankcard(id:\$id){
+          
+        }
+      }
+    """;
+  }
+  String removeidcard() {
+    return """
+      mutation removeBankcard(\$id:String!){
+        removeBankcard(id:\$id){
+          
+        }
+      }
     """;
   }
 }
