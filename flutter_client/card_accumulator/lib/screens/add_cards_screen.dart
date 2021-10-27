@@ -82,6 +82,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
         ),
+        
         backgroundColor: Color(0xFF1c1527),
         body: SingleChildScrollView(
           child: Container(
@@ -104,7 +105,9 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
               boxShadow: [
                 // ignore: prefer_const_constructors
                 BoxShadow(
-                    offset: Offset(0, 5), color: Colors.black, blurRadius: 12),
+                    offset: Offset(0, 5), 
+                    color: Colors.black, 
+                    blurRadius: 12),
               ],
             ),
             child: Column(

@@ -1,3 +1,5 @@
+import 'package:card_accumulator/screens/add_cards_new.dart';
+import 'package:card_accumulator/screens/add_cards_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,7 +116,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
                         Text(
                           "${widget.holder["name"]}",
                           style: GoogleFonts.raleway(
@@ -123,9 +124,8 @@ class _DetailsPageState extends State<DetailsPage> {
                               color: Colors.white),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0,
-                          bottom: 2.0
-                           ),
+                          padding:
+                              const EdgeInsets.only(left: 8.0, bottom: 2.0),
                           child: Text(
                             "Age : ${widget.holder["age"] ?? 'N/A'}",
                             style: GoogleFonts.raleway(
@@ -133,11 +133,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white),
                           ),
-                          
                         )
                       ],
                     ),
-                    
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 8.0, top: 2.0, bottom: 1.0),
@@ -150,8 +148,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8.0, top: 1.0),
+                      padding: const EdgeInsets.only(left: 8.0, top: 1.0),
                       child: Text(
                         "Email : ${widget.holder["mail"] ?? 'N/A'}",
                         style: GoogleFonts.raleway(
@@ -164,21 +161,24 @@ class _DetailsPageState extends State<DetailsPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 280.0,
-                          top:0.0),
+                          padding: const EdgeInsets.only(left: 280.0, top: 0.0),
                           child: InkWell(
-                            child: Icon(Icons.add_box
-                            ),
-                            onTap: (){},
+                            child: Icon(Icons.add_box,
+                            color: Colors.greenAccent.shade400,),
+                            onTap: () async {
+                              final route = MaterialPageRoute(
+                                  builder: (context) => AddCardsScreenNew(
+                                        cid: widget.holder["id"],
+                                      ));
+                              Navigator.push(context, route);
+                            },
                           ),
                         )
-                        
                       ],
                     )
                   ],
-                  
                 ),
-                
+
                 // ignore: prefer_const_constructors
                 decoration: BoxDecoration(
                   // ignore: prefer_const_constructors
@@ -251,7 +251,7 @@ class _DetailsPageState extends State<DetailsPage> {
           Visibility(
             visible: _isidcardvisible,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: 500,
               child: ListView.builder(
                 controller: _controller,
                 physics: _physics,
@@ -272,7 +272,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             end: Alignment.bottomCenter,
                             colors: [
                               //Colors.purple.shade300,
-                              Colors.indigo,
+                              Colors.indigo.shade800,
                               Colors.blue,
 
                               //Colors.deepPurple.shade700
@@ -354,7 +354,7 @@ class _DetailsPageState extends State<DetailsPage> {
           Visibility(
             visible: _isbankcardvisible,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.45,
+              height: 500,
               child: ListView.builder(
                 controller: _controller,
                 physics: _physics,
@@ -402,11 +402,13 @@ class _DetailsPageState extends State<DetailsPage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("${data["bank"]}",
-                                  style: GoogleFonts.raleway(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white),),
+                                  Text(
+                                    "${data["bank"]}",
+                                    style: GoogleFonts.raleway(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white),
+                                  ),
                                 ],
                               ),
                               Padding(
