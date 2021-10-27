@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animated_button/animated_button.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
   final dynamic holder;
 
-  const DetailsPage({Key? key,  this.holder}) : super(key: key);
+  const DetailsPage({Key? key, this.holder}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -165,8 +166,10 @@ class _DetailsPageState extends State<DetailsPage> {
                         Padding(
                           padding: const EdgeInsets.only(left: 280.0, top: 0.0),
                           child: InkWell(
-                            child: Icon(Icons.add_box,
-                            color: Colors.greenAccent.shade400,),
+                            child: Icon(
+                              Icons.add_box,
+                              color: Colors.greenAccent.shade400,
+                            ),
                             onTap: () async {
                               final route = MaterialPageRoute(
                                   builder: (context) => AddCardsScreenNew(
@@ -291,7 +294,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             )
                           ],
                         ),
-                        
+
                         padding: const EdgeInsets.all(20),
                         child: Container(
                           child: Column(
@@ -334,8 +337,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, top: 6.0,bottom: 6.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, top: 6.0, bottom: 6.0),
                                 child: Text(
                                   "DOB : ${data["DOB"]}",
                                   style: GoogleFonts.raleway(
@@ -374,7 +377,6 @@ class _DetailsPageState extends State<DetailsPage> {
                               },
                             );
                             await Navigator.push(context, route);
-                            
                           },
                         ),
                       ),
@@ -436,7 +438,6 @@ class _DetailsPageState extends State<DetailsPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                  
                                     "${data2["bank"]}",
                                     style: GoogleFonts.raleway(
                                         fontSize: 18,
@@ -457,8 +458,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, top: 6.0,bottom: 8.0),
+                                padding: const EdgeInsets.only(
+                                    left: 8.0, top: 6.0, bottom: 8.0),
                                 child: Text(
                                   "Card Number : ${data2["number"]}",
                                   style: GoogleFonts.raleway(
@@ -490,19 +491,39 @@ class _DetailsPageState extends State<DetailsPage> {
                             final route = MaterialPageRoute(
                               builder: (context) {
                                 return EditBankcardScreen(
-                                    
-                                    id: data2['id'],
-                                    bank: data2['bank'],
-                                    validity: data2['validity'],
-                                    number: data2['number'],
-                                    );
+                                  id: data2['id'],
+                                  bank: data2['bank'],
+                                  validity: data2['validity'],
+                                  number: data2['number'],
+                                );
                               },
                             );
                             await Navigator.push(context, route);
-                            
                           },
                         ),
                       ),
+                      Mutation(
+                          options: MutationOptions(
+                            document: gql(removebankcard()),
+                            onCompleted: (data) {},
+                          ),
+                          builder: (runMutation, result) {
+                            return Positioned(
+                                bottom: 2.0,
+                                left: 190.0,
+                                child: RawMaterialButton(
+                                  padding: EdgeInsets.all(9.0),
+                                  shape: CircleBorder(),
+                                  elevation: 14.0,
+                                  fillColor: Colors.grey.shade900,
+                                  onPressed: () {},
+                                  child: Icon(
+                                    Icons.delete_outlined,
+                                    color: Colors.red,
+                                    size: 27.0,
+                                  ),
+                                ));
+                          }),
                     ],
                   );
                 },
@@ -512,5 +533,11 @@ class _DetailsPageState extends State<DetailsPage> {
         ],
       ),
     );
+  }
+
+  String removebankcard() {
+    return """
+      mutation 
+    """;
   }
 }
