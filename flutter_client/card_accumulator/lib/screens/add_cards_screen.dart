@@ -138,6 +138,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             _btnController.success();
                             _btnController.reset();
                           } else {
+                             _toggle();
                             _btnController.error();
                             //_btnController.reset();
                           }
@@ -333,6 +334,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               _btnController.success();
                               _btnController.reset();
                             } else {
+                              _toggle2();
                               _btnController.error();
                               //_btnController.reset();
                             }
