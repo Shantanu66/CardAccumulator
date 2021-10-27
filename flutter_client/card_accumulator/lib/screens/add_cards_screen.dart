@@ -190,7 +190,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                   fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Enter what the id is used for",
+                              hintText: "Purpose of the ID",
                               hintStyle: GoogleFonts.sora(
                                 fontSize: 14.0,
                               ),
@@ -221,7 +221,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                   fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Enter your Card Number",
+                              hintText: "XXXX XXXX XXXX XXXX/ABXXXXXX",
                               hintStyle: GoogleFonts.sora(
                                 fontSize: 14.0,
                               ),
@@ -253,7 +253,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
-                                hintText: "Enter your Date of Birth",
+                                hintText: "DD/MM/YYYY",
                                 hintStyle: GoogleFonts.sora(
                                   fontSize: 14.0,
                                 ),
@@ -387,7 +387,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
-                                hintText: "Enter the validity of the card",
+                                hintText: "MM/YY",
                                 hintStyle: GoogleFonts.sora(
                                   fontSize: 14.0,
                                 ),
@@ -419,7 +419,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     fontWeight: FontWeight.bold),
                                 fillColor: Colors.white,
                                 hoverColor: Colors.purple,
-                                hintText: "Enter your Card Number",
+                                hintText: "XXXX XXXX XXXX XXXX",
                                 hintStyle: GoogleFonts.sora(
                                   fontSize: 14.0,
                                 ),

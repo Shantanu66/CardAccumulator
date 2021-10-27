@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:card_accumulator/screens/edit_holder_screen.dart';
+import 'package:card_accumulator/screens/holder_detail_screen.dart';
 import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class HoldersScreen extends StatefulWidget {
   @override
   _HoldersScreenState createState() => _HoldersScreenState();
 }
+
 final Shader linearGradient = LinearGradient(
   colors: const <Color>[Colors.purple, Colors.deepPurpleAccent],
 ).createShader(
@@ -111,6 +113,13 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         ),
                         padding: const EdgeInsets.all(20),
                         child: InkWell(
+                          onTap: ()async{
+                            final route=MaterialPageRoute(
+                              builder: (context){
+                                return DetailsPage(holder:holder);
+                              });
+                              await Navigator.push(context, route);
+                          },
                           child: Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -325,12 +334,14 @@ class _HoldersScreenState extends State<HoldersScreen> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Welcome to Card Accumulator\n app!\nIn This app you can hold\n your various\nGovernment ID's and Bank \nCards in a common \nplace for ease.\nYour card number will\n be will be well encrypted.\nFeel free to use the various\n features it offers\n at your ease\n\n\t\t\t\t\t\t\t\t\t\t\t\t Oops!No Holders found.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAdd Holder",
+                                  "Welcome to Card Accumulator app!\nIn This app you can hold your various\nGovernment ID's and Bank Cards in a \ncommon place for ease.Your card \nnumber will be will be well encrypted.\nFeel free to use the various features \nit offers at your ease\n\n\t\t\t\t\t\t\t\t\t\t\t\t Oops!No Holders found.\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tAdd Holder",
                                   style: GoogleFonts.openSans(
                                     fontSize: 17,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w700,
                                     letterSpacing: 0.0,
-                                    foreground: Paint()..shader = linearGradient, ),
+                                    foreground: Paint()
+                                      ..shader = linearGradient,
+                                  ),
                                 ),
                               )
                             ],
