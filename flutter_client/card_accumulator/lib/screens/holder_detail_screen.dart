@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animated_button/animated_button.dart';
 
 class DetailsPage extends StatefulWidget {
   final dynamic holder;
@@ -16,10 +18,13 @@ final Shader linearGradient = LinearGradient(
   Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
-class _DetailsPageState extends State<DetailsPage> {
+class _DetailsPageState extends State<DetailsPage>
+    with SingleTickerProviderStateMixin {
   final _controller = ScrollController();
   ScrollPhysics _physics =
       BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+
+  bool pressAttention = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,106 +54,148 @@ class _DetailsPageState extends State<DetailsPage> {
       backgroundColor: Color(0xFF1c1527),
       body: Column(
         children: [
-          Container(
-            margin:
-                const EdgeInsets.only(bottom: 23, left: 19, right: 19, top: 20),
-            // ignore: duplicate_ignore
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              // ignore: prefer_const_constructors
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  //Colors.purple.shade300,
-                  Colors.deepPurple,
-                  Colors.purple,
-
-                  //Colors.deepPurple.shade700
-                ],
-              ),
-              // ignore: prefer_const_literals_to_create_immutables
-              boxShadow: [
-                // ignore: prefer_const_constructors
-                BoxShadow(
-                  offset: const Offset(2, 6),
-                  color: Colors.purple,
-                  blurRadius: 19,
-                  spreadRadius: -2.5,
-                )
-              ],
-            ),
-            padding: const EdgeInsets.all(20),
-
+          Flexible(
+            flex: 1,
+            fit: FlexFit.loose,
             child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "${widget.holder["name"]}",
-                        style: GoogleFonts.raleway(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0, top: 15.0),
-                        child: Text(
-                          "Age : ${widget.holder["age"] ?? 'N/A'}",
-                          style: GoogleFonts.raleway(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 1.0),
-                    child: Text(
-                      "Profession : ${widget.holder["profession"] ?? 'N/A'}",
-                      style: GoogleFonts.raleway(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8.0, top: 0.2, bottom: 12.0),
-                    child: Text(
-                      "Email : ${widget.holder["mail"] ?? 'N/A'}",
-                      style: GoogleFonts.raleway(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-              // ignore: prefer_const_constructors
+              margin: const EdgeInsets.only(
+                  bottom: 23, left: 19, right: 19, top: 20),
+              // ignore: duplicate_ignore
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
                 // ignore: prefer_const_constructors
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  // ignore: prefer_const_literals_to_create_immutables
                   colors: [
                     //Colors.purple.shade300,
-
                     Colors.deepPurple,
                     Colors.purple,
+
                     //Colors.deepPurple.shade700
                   ],
+                ),
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  // ignore: prefer_const_constructors
+                  BoxShadow(
+                    offset: const Offset(2, 6),
+                    color: Colors.purple,
+                    blurRadius: 19,
+                    spreadRadius: -2.5,
+                  )
+                ],
+              ),
+              padding: const EdgeInsets.all(20),
+
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "${widget.holder["name"]}",
+                          style: GoogleFonts.raleway(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, top: 15.0),
+                          child: Text(
+                            "Age : ${widget.holder["age"] ?? 'N/A'}",
+                            style: GoogleFonts.raleway(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 8.0, top: 1.0, bottom: 1.0),
+                      child: Text(
+                        "Profession : ${widget.holder["profession"] ?? 'N/A'}",
+                        style: GoogleFonts.raleway(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 8.0, top: 0.2, bottom: 12.0),
+                      child: Text(
+                        "Email : ${widget.holder["mail"] ?? 'N/A'}",
+                        style: GoogleFonts.raleway(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+                // ignore: prefer_const_constructors
+                decoration: BoxDecoration(
+                  // ignore: prefer_const_constructors
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    // ignore: prefer_const_literals_to_create_immutables
+                    colors: [
+                      //Colors.purple.shade300,
+
+                      Colors.deepPurple,
+                      Colors.purple,
+                      //Colors.deepPurple.shade700
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
+          SizedBox(height: 10.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right:30.0),
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "My ID cards",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15.0, fontWeight: FontWeight.w500,
+                        letterSpacing: 1.5,
+                        color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left:20.0),
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "My ID cards",
+                    style: GoogleFonts.roboto(
+                        fontSize: 15.0, fontWeight: FontWeight.w500,
+                        letterSpacing: 1.5,
+                        color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
