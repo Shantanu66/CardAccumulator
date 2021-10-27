@@ -86,7 +86,8 @@ class _HoldersScreenState extends State<HoldersScreen> {
                         onTap: () async {
                           final route = MaterialPageRoute(
                             builder: (context) {
-                            return DetailsPage(holder: holder);
+                            return DetailsPage(holder: holder,
+                            );
                           });
                           await Navigator.push(context, route);
                         },

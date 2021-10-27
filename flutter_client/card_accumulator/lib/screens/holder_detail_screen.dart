@@ -1,5 +1,6 @@
 import 'package:card_accumulator/screens/add_cards_new.dart';
 import 'package:card_accumulator/screens/add_cards_screen.dart';
+import 'package:card_accumulator/screens/edit_bank_card.dart';
 import 'package:card_accumulator/screens/edit_id_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,7 +10,7 @@ import 'package:animated_button/animated_button.dart';
 class DetailsPage extends StatefulWidget {
   final dynamic holder;
 
-  const DetailsPage({Key? key, required this.holder}) : super(key: key);
+  const DetailsPage({Key? key,  this.holder}) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -365,11 +366,11 @@ class _DetailsPageState extends State<DetailsPage> {
                             final route = MaterialPageRoute(
                               builder: (context) {
                                 return EditIdcardScreen(
-                                    id: widget.holder['id'],
-                                    title: widget.holder['title'],
-                                    description: widget.holder['description'],
-                                    cardnumber: widget.holder['cardnumber'],
-                                    DOB: widget.holder["DOB"]);
+                                    id: data['id'],
+                                    title: data['title'],
+                                    description: data['description'],
+                                    cardnumber: data['cardnumber'],
+                                    DOB: data["DOB"]);
                               },
                             );
                             await Navigator.push(context, route);
@@ -392,7 +393,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 physics: _physics,
                 itemCount: _bankcards.length,
                 itemBuilder: (context, index) {
-                  var data = _bankcards[index];
+                  var data2 = _bankcards[index];
                   return Stack(
                     children: [
                       Container(
@@ -435,7 +436,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "${data["bank"]}",
+                                  
+                                    "${data2["bank"]}",
                                     style: GoogleFonts.raleway(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w700,
@@ -445,9 +447,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 8.0, top: 15.0),
+                                    const EdgeInsets.only(left: 8.0, top: 6.0),
                                 child: Text(
-                                  "Validity : ${data["validity"]}",
+                                  "Validity : ${data2["validity"]}",
                                   style: GoogleFonts.raleway(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w600,
@@ -456,9 +458,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 8.0, top: 15.0),
+                                    const EdgeInsets.only(left: 8.0, top: 6.0,bottom: 8.0),
                                 child: Text(
-                                  "Card Number : ${data["number"]}",
+                                  "Card Number : ${data2["number"]}",
                                   style: GoogleFonts.raleway(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w600,
@@ -467,6 +469,38 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 2.0,
+                        left: 120.0,
+                        child: RawMaterialButton(
+                          padding: EdgeInsets.all(9.0),
+                          shape: CircleBorder(),
+                          elevation: 15.0,
+                          fillColor: Colors.grey.shade900,
+                          child: Icon(
+                            Icons.edit_rounded,
+                            color: Colors.green,
+                            size: 27.0,
+                          ),
+                          // ignore: avoid_print
+                          onPressed: () async {
+                            print(data2['id']);
+                            final route = MaterialPageRoute(
+                              builder: (context) {
+                                return EditBankcardScreen(
+                                    
+                                    id: data2['id'],
+                                    bank: data2['bank'],
+                                    validity: data2['validity'],
+                                    number: data2['number'],
+                                    );
+                              },
+                            );
+                            await Navigator.push(context, route);
+                            
+                          },
                         ),
                       ),
                     ],

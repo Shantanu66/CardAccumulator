@@ -11,23 +11,21 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:card_accumulator/screens/add_cards_screen.dart';
 
-class EditIdcardScreen extends StatefulWidget {
+class EditBankcardScreen extends StatefulWidget {
   final String id;
-  final String title;
-  final String description;
-  final String cardnumber;
-  final String DOB;
-  const EditIdcardScreen({ Key? key ,
+  final String bank;
+  final String validity;
+  final String number;
+  const EditBankcardScreen({
+    Key? key,
     required this.id,
-    required this.title,
-    required this.description,
-    required this.cardnumber,
-    required this.DOB,
-  
+    required this.bank,
+    required this.validity,
+    required this.number,
   }) : super(key: key);
 
   @override
-  _EditIdcardScreenState createState() => _EditIdcardScreenState();
+  _EditBankcardScreenState createState() => _EditBankcardScreenState();
 }
 
 final Shader linearGradient = LinearGradient(
@@ -36,22 +34,22 @@ final Shader linearGradient = LinearGradient(
   Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
-class _EditIdcardScreenState extends State<EditIdcardScreen> {
+class _EditBankcardScreenState extends State<EditBankcardScreen> {
   final _editkey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _descController = TextEditingController();
+
+  final _bankController = TextEditingController();
+  final _valController = TextEditingController();
   final _numberController = TextEditingController();
-  final _DOBController = TextEditingController();
+
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
   var currentHolderId;
   @override
   void initState() {
     super.initState();
-    _titleController.text = widget.title;
-    _descController.text = widget.description;
-    _numberController.text = widget.cardnumber;
-    _DOBController.text = widget.DOB;
+    _bankController.text = widget.bank;
+    _valController.text = widget.validity;
+    _numberController.text = widget.number;
   }
 
   @override
@@ -60,7 +58,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Edit ${widget.title}",
+          "Edit ${widget.bank}",
           style: GoogleFonts.openSans(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -90,7 +88,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
             padding: const EdgeInsets.all(24),
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
             decoration: BoxDecoration(
-              gradient:  LinearGradient(
+              gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [
@@ -113,7 +111,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
               children: [
                 Mutation(
                   options: MutationOptions(
-                    document: gql(editid()),
+                    document: gql(editbank()),
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
@@ -131,10 +129,9 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                           if (_editkey.currentState!.validate()) {
                             runMutation({
                               "id": widget.id,
-                              "title": _titleController.text.trim(),
-                              "description": _descController.text,
+                              "bank": _bankController.text.trim(),
+                              "validity": _valController.text,
                               "cardnumber": _numberController.text,
-                              "DOB": _DOBController.text,
                             });
 
                             _btnController.success();
@@ -156,15 +153,15 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                             height: 10,
                           ),
                           TextFormField(
-                            controller: _titleController,
+                            controller: _bankController,
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
-                              labelText: "Card Type",
+                              labelText: "Bank Name",
                               labelStyle: GoogleFonts.sora(
                                   fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Edit card type name",
+                              hintText: "Edit Bank name",
                               hintStyle: GoogleFonts.sora(
                                 fontSize: 14.0,
                               ),
@@ -182,15 +179,15 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                             height: 12,
                           ),
                           TextFormField(
-                            controller: _descController,
+                            controller: _valController,
                             // ignore: prefer_const_constructors
                             decoration: InputDecoration(
-                              labelText: "description",
+                              labelText: "Validity",
                               labelStyle: GoogleFonts.sora(
                                   fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "Edit description",
+                              hintText: "Edit validity",
                               hintStyle: GoogleFonts.sora(
                                 fontSize: 14.0,
                               ),
@@ -216,7 +213,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                                   fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
-                              hintText: "XXXX XXXX XXXX XXXX/ABXXXXXX",
+                              hintText: "XXXX XXXX XXXX XXXX",
                               hintStyle: GoogleFonts.sora(
                                 fontSize: 14.0,
                               ),
@@ -233,32 +230,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                           SizedBox(
                             height: 12,
                           ),
-                          TextFormField(
-                            controller: _DOBController,
-                            // ignore: prefer_const_constructors
-                            decoration: InputDecoration(
-                              labelText: "DOB",
-                              labelStyle: GoogleFonts.sora(
-                                  fontSize: 14.0, fontWeight: FontWeight.bold),
-                              fillColor: Colors.white,
-                              hoverColor: Colors.purple,
-                              hintText: "Edit your Date of birth",
-                              hintStyle: GoogleFonts.sora(
-                                fontSize: 14.0,
-                              ),
-                              focusColor: Colors.purpleAccent,
-                              // ignore: prefer_const_constructors
-                              border: OutlineInputBorder(
-                                  // ignore: prefer_const_constructors
-                                  borderSide: BorderSide(),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
 
-                            keyboardType: TextInputType.text,
-                          ),
-                          SizedBox(
-                            height: 12,
-                          ),
                           RoundedLoadingButton(
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -292,20 +264,19 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
     );
   }
 
-  String editid() {
+  String editbank() {
     return """
-      mutation UpdateIdcard(\$id:String!,
-        \$title:String!,\$description:String!,
-        \$cardnumber:String!,\$DOB:String!
+      mutation UpdateBankcard(\$id:String!,
+        \$bank:String!,\$validity:String!,
+        \$number:String!
   ){
-    UpdateIdcard(id:\$id,
-      title:\$title,
-    description:\$description,
-    cardnumber:\$cardnumber,
-    DOB:\$DOB
+    UpdateBankcard(id:\$id,
+      bank:\$bank,
+    validity:\$validity,
+    number:\$number
     ){
       id
-      title
+      bank
     }
   }
     """;
