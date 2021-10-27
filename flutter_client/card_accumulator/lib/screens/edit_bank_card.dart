@@ -35,7 +35,7 @@ final Shader linearGradient = LinearGradient(
 );
 
 class _EditBankcardScreenState extends State<EditBankcardScreen> {
-  final _editkey = GlobalKey<FormState>();
+  final _editbankkey = GlobalKey<FormState>();
 
   final _bankController = TextEditingController();
   final _valController = TextEditingController();
@@ -43,7 +43,6 @@ class _EditBankcardScreenState extends State<EditBankcardScreen> {
 
   final RoundedLoadingButtonController _btnController =
       new RoundedLoadingButtonController();
-  var currentHolderId;
   @override
   void initState() {
     super.initState();
@@ -126,12 +125,12 @@ class _EditBankcardScreenState extends State<EditBankcardScreen> {
                       Timer(Duration(milliseconds: 100), () {
                         // ignore: unnecessary_this
                         this.setState(() {
-                          if (_editkey.currentState!.validate()) {
+                          if (_editbankkey.currentState!.validate()) {
                             runMutation({
                               "id": widget.id,
-                              "bank": _bankController.text.trim(),
+                              "bank": _bankController.text,
                               "validity": _valController.text,
-                              "cardnumber": _numberController.text,
+                              "number": _numberController.text,
                             });
 
                             _btnController.success();
@@ -145,7 +144,7 @@ class _EditBankcardScreenState extends State<EditBankcardScreen> {
                     }
 
                     return Form(
-                      key: _editkey,
+                      key: _editbankkey,
                       child: Column(
                         children: [
                           // ignore: prefer_const_constructors
