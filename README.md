@@ -3,6 +3,7 @@ A Fullstack android application where a person or a group of people(like familie
 This App is built using Flutter for the client side development
 For the sever side development i used NodeJs,ExpressJs and the API is built using GraphQL
 For the remote database i used a nosql db-mongoDB
+# Preview
 
 # Steps to download
 ps:SDK will be available soon
