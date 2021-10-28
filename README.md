@@ -4,7 +4,7 @@ This App is built using Flutter for the client side development
 For the sever side development i used NodeJs,ExpressJs and the API is built using GraphQL
 For the remote database i used a nosql db-mongoDB
 # Preview
-
+![Screenshot 2021-10-28 192943](https://user-images.githubusercontent.com/64373963/139272665-63e77f95-ac9c-470e-b5a4-3c0edbe6d8d6.png)
 # Steps to download
 ps:SDK will be available soon
 
