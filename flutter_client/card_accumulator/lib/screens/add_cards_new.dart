@@ -78,16 +78,15 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
               foreground: Paint()..shader = linearGradient),
         ),
         actions: [
-        IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.close_sharp),
-          color: Colors.greenAccent,
-        )
-      ],
+          IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: Icon(Icons.close_sharp),
+            color: Colors.greenAccent,
+          )
+        ],
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
       ),
-      
       backgroundColor: Color(0xFF1c1527),
       body: SingleChildScrollView(
         child: Container(
@@ -110,9 +109,7 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
             boxShadow: [
               // ignore: prefer_const_constructors
               BoxShadow(
-                  offset: Offset(0, 5), 
-                  color: Colors.black, 
-                  blurRadius: 12),
+                  offset: Offset(0, 5), color: Colors.black, blurRadius: 12),
             ],
           ),
           child: Column(
@@ -121,7 +118,10 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                 options: MutationOptions(
                     document: gql(insertId()),
                     fetchPolicy: FetchPolicy.noCache,
-                    onCompleted: (data) {}),
+                    onCompleted: (data) {
+                      _btnController.success();
+                      _btnController.reset();
+                    }),
                 builder: (runMutation, result) {
                   void _doSomething() async {
                     Timer(Duration(milliseconds: 100), () {
@@ -140,8 +140,7 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                           _DescController.clear();
                           _CardNumberController.clear();
                           _DOBController.clear();
-                          _btnController.success();
-                          _btnController.reset();
+
                         } else {
                           _toggle();
                           _btnController.error();
@@ -258,8 +257,7 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                             decoration: InputDecoration(
                               labelText: "Date of birth",
                               labelStyle: GoogleFonts.sora(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "DD/MM/YYYY",
@@ -318,7 +316,10 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                   options: MutationOptions(
                       document: gql(insertBank()),
                       fetchPolicy: FetchPolicy.noCache,
-                      onCompleted: (data) {}),
+                      onCompleted: (data) {
+                        _btnController.success();
+                        _btnController.reset();
+                      }),
                   builder: (runMutation, result) {
                     void _doSomething() async {
                       Timer(Duration(milliseconds: 100), () {
@@ -335,9 +336,6 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                             _BankController.clear();
                             _ValidityController.clear();
                             _NumberController.clear();
-                            print(widget.cid);
-                            _btnController.success();
-                            _btnController.reset();
                           } else {
                             _toggle2();
                             _btnController.error();
@@ -361,8 +359,7 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                             decoration: InputDecoration(
                               labelText: "Bank name",
                               labelStyle: GoogleFonts.sora(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "Name of the Bank",
@@ -393,8 +390,7 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                             decoration: InputDecoration(
                               labelText: "Validity",
                               labelStyle: GoogleFonts.sora(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "MM/YY",
@@ -425,8 +421,7 @@ class _AddCardsScreenNewState extends State<AddCardsScreenNew> {
                             decoration: InputDecoration(
                               labelText: "Card Number",
                               labelStyle: GoogleFonts.sora(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 14.0, fontWeight: FontWeight.bold),
                               fillColor: Colors.white,
                               hoverColor: Colors.purple,
                               hintText: "XXXX XXXX XXXX XXXX",

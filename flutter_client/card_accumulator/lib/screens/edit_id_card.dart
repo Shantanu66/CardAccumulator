@@ -17,13 +17,13 @@ class EditIdcardScreen extends StatefulWidget {
   final String description;
   final String cardnumber;
   final String DOB;
-  const EditIdcardScreen({ Key? key ,
+  const EditIdcardScreen({
+    Key? key,
     required this.id,
     required this.title,
     required this.description,
     required this.cardnumber,
     required this.DOB,
-  
   }) : super(key: key);
 
   @override
@@ -90,7 +90,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
             padding: const EdgeInsets.all(24),
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
             decoration: BoxDecoration(
-              gradient:  LinearGradient(
+              gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [
@@ -116,6 +116,8 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                     document: gql(editid()),
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
+                      _btnController.success();
+                      _btnController.reset();
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                         builder: (context) {
                           return HomeScreenState();
@@ -136,9 +138,6 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                               "cardnumber": _numberController.text,
                               "DOB": _DOBController.text,
                             });
-
-                            _btnController.success();
-                            _btnController.reset();
                           } else {
                             _btnController.error();
                             //_btnController.reset();

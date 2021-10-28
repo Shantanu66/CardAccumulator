@@ -82,7 +82,6 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
         ),
-        
         backgroundColor: Color(0xFF1c1527),
         body: SingleChildScrollView(
           child: Container(
@@ -105,9 +104,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
               boxShadow: [
                 // ignore: prefer_const_constructors
                 BoxShadow(
-                    offset: Offset(0, 5), 
-                    color: Colors.black, 
-                    blurRadius: 12),
+                    offset: Offset(0, 5), color: Colors.black, blurRadius: 12),
               ],
             ),
             child: Column(
@@ -116,7 +113,10 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                   options: MutationOptions(
                       document: gql(insertId()),
                       fetchPolicy: FetchPolicy.noCache,
-                      onCompleted: (data) {}),
+                      onCompleted: (data) {
+                        _btnController.success();
+                        _btnController.reset();
+                      }),
                   builder: (runMutation, result) {
                     void _doSomething() async {
                       Timer(Duration(milliseconds: 100), () {
@@ -135,10 +135,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                             _DescController.clear();
                             _CardNumberController.clear();
                             _DOBController.clear();
-                            _btnController.success();
-                            _btnController.reset();
                           } else {
-                             _toggle();
+                            _toggle();
                             _btnController.error();
                             //_btnController.reset();
                           }
@@ -313,7 +311,10 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                     options: MutationOptions(
                         document: gql(insertBank()),
                         fetchPolicy: FetchPolicy.noCache,
-                        onCompleted: (data) {}),
+                        onCompleted: (data) {
+                          _btnController.success();
+                          _btnController.reset();
+                        }),
                     builder: (runMutation, result) {
                       void _doSomething() async {
                         Timer(Duration(milliseconds: 100), () {
@@ -331,8 +332,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               _ValidityController.clear();
                               _NumberController.clear();
                               print(widget.cid);
-                              _btnController.success();
-                              _btnController.reset();
+                              ;
                             } else {
                               _toggle2();
                               _btnController.error();

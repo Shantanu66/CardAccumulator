@@ -113,6 +113,8 @@ class _EditScreenState extends State<EditScreen> {
                     document: gql(editholder()),
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
+                      _btnController.success();
+                      _btnController.reset();
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                         builder: (context) {
                           return HomeScreenState();
@@ -133,9 +135,6 @@ class _EditScreenState extends State<EditScreen> {
                               "profession": _professionController.text.trim(),
                               "mail": _mailController.text.trim(),
                             });
-
-                            _btnController.success();
-                            _btnController.reset();
                           } else {
                             _btnController.error();
                             //_btnController.reset();

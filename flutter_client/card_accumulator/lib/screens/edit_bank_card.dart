@@ -113,6 +113,8 @@ class _EditBankcardScreenState extends State<EditBankcardScreen> {
                     document: gql(editbank()),
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
+                      _btnController.success();
+                      _btnController.reset();
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                         builder: (context) {
                           return HomeScreenState();
@@ -132,9 +134,6 @@ class _EditBankcardScreenState extends State<EditBankcardScreen> {
                               "validity": _valController.text,
                               "number": _numberController.text,
                             });
-
-                            _btnController.success();
-                            _btnController.reset();
                           } else {
                             _btnController.error();
                             //_btnController.reset();
