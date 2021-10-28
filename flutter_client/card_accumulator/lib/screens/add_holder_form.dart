@@ -101,6 +101,8 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                           builder: (context) => AddCardsScreen(
                                 cid: currentHolderId,
                               ));
+                      _btnController.success();
+                      _btnController.reset();
                       Navigator.push(context, route);
                     },
                   ),
@@ -121,9 +123,6 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                             _ageController.clear();
                             _professionController.clear();
                             _mailController.clear();
-
-                            _btnController.success();
-                            _btnController.reset();
                           } else {
                             _btnController.error();
                             //_btnController.reset();
