@@ -5,6 +5,8 @@ For the sever side development i used NodeJs,ExpressJs and the API is built usin
 For the remote database i used a nosql db-mongoDB
 # Preview
 
+![Screenshot 2021-10-29 123040](https://user-images.githubusercontent.com/64373963/139390491-baa636cd-e4e9-4827-94f2-48e7c3bed478.png)
+
 ![combine_images](https://user-images.githubusercontent.com/64373963/139274388-ba056c14-7bf9-43a9-98f3-ebf285e51f14.jpg)
 # Steps to download
 ps:SDK will be available soon
