@@ -10,3 +10,6 @@ ps:SDK will be available soon
 
 Now you can clone the repo and test it out if you find any bugs or if you can add any desirable improvements please contribute to it.
 Thanks
+
+# PS:
+Was showcased as one of the best projects in Google devfest 2021
