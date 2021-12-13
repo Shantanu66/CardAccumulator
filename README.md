@@ -15,7 +15,7 @@ Also performed automation testing of the graphAPI using postman
 ![combine_images](https://user-images.githubusercontent.com/64373963/139274388-ba056c14-7bf9-43a9-98f3-ebf285e51f14.jpg)
 
 # Working Demo
-![ezgif com-gif-maker(1)](https://user-images.githubusercontent.com/64373963/145843016-4903dc63-8084-430c-9643-41b348c874ea.gif)
+![gifgit](https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif)
 
 # Steps to download
 ps:SDK will be available soon
