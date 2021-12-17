@@ -5,7 +5,7 @@ For the sever side development i used NodeJs,ExpressJs and the API is built usin
 For the remote database i used a nosql db-mongoDB
 Also performed automation testing of the graphAPI using postman
 
-# How To Run This Project 🏃‍♂️
+# How To Run This Project
 
     Clone the repository.
     cd card_accumulator
