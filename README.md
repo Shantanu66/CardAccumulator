@@ -23,7 +23,7 @@ Also performed automation testing of the graphAPI using postman
 ->Efficient encryption of card number for enhanced privacy <br />
 ->Minimized data usage for and highly robust<br />
 ->highly scalable server able to handle multiple requests at once<br />
-->Interactive user interface<br />
+->Fluid and Interactive user interface<br />
 
 # Steps to download
 ps:SDK will be available soon
