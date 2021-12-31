@@ -20,6 +20,9 @@ Also performed automation testing of the graphAPI using postman
 ![gifgit](https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif)
 
 # Features
+->Facilitates users to store their personal cards,modify them and delete them without having to refresh
+-> Powered by the single threaded non blocking event driven architecture of nodejs, it can handle millions of concurrent connections with ease. Uses
+the leading open source NoSQL database mongoDB.<br />
 ->Efficient encryption of card number for enhanced privacy <br />
 ->Minimized data usage for and highly robust<br />
 ->highly scalable server able to handle multiple requests at once<br />
