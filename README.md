@@ -1,4 +1,5 @@
 # CardAccumulator 
+
 How pleasent it would be if you could store all your necessary cards in one simple app ! Amazing right.
 
 I propose a Fullstack android application where a person or a group of people(like families,relatives,etc) can store all their government authentication ID's(Aadhar,PAN,Driving License,etc) and their transactional banking cards(credit/debit card) all together in a common place.The Holder can save all the details of the cards and the card number is well encrypted using symmtric cyptography algorithm using the block cipher technique with an appealing UI design.
@@ -20,6 +21,7 @@ Also performed automation testing of the graphAPI using postman
 ![gifgit](https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif)
 
 # Features
+
 ->Facilitates users to store their personal cards,modify them and delete them without having to refresh.<br/>
 -> Powered by the single threaded non blocking event driven architecture of nodejs, it can handle millions of concurrent connections with ease. Uses
 the leading open source NoSQL database mongoDB.<br />
@@ -29,10 +31,12 @@ the leading open source NoSQL database mongoDB.<br />
 ->Fluid and Interactive user interface<br />
 
 # Steps to download
+
 ps:SDK will be available soon
 
 Now you can clone the repo and test it out if you find any bugs or if you can add any desirable improvements please contribute to it.
 Thanks
 
 # PS:
+
 Was showcased as one of the best projects in Google devfest 2021
