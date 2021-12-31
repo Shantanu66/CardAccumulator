@@ -19,6 +19,12 @@ Also performed automation testing of the graphAPI using postman
 # Working Demo
 ![gifgit](https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif)
 
+# Features
+->Efficient encryption of card number for enhanced privacy
+->Minimized data usage for and highly robust
+->highly scalable server able to handle multiple requests at once
+->Interactive user interface
+
 # Steps to download
 ps:SDK will be available soon
 
