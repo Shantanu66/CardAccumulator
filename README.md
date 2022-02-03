@@ -1,4 +1,4 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?style=plastic)
+https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?color=purple
 
 
 # CardAccumulator 
