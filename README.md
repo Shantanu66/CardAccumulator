@@ -1,4 +1,5 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?color=purple)
+![GitHub Repo stars](https://img.shields.io/github/stars/Shantanu66/CardAccumulator?color=%23&logo=flutter)
 
 
 # CardAccumulator 
