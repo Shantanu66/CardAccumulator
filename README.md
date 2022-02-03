@@ -1,6 +1,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?color=purple)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Shantanu66/CardAccumulator?color=%23&logo=flutter)
 ![npm](https://img.shields.io/npm/v/node?color=%23ff0000&logo=Node.js)
+![Maintenance](https://img.shields.io/maintenance/no/2022)
 
 
 # CardAccumulator 
