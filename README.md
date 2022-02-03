@@ -1,3 +1,6 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?style=plastic)
+
+
 # CardAccumulator 
 
 How pleasent it would be if you could store all your necessary cards in one simple app ! Amazing right.
