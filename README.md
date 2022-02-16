@@ -33,7 +33,7 @@ Also performed automation testing of the graphAPI using postman
 * Powered by the single threaded non blocking event driven architecture of nodejs, it can handle millions of concurrent connections with ease. Uses
 the leading open source NoSQL database mongoDB.<br />
 * Efficient encryption of card number for enhanced privacy <br />
-* Minimized data usage for and highly robust<br />
+* Minimized data usage and highly robust<br />
 * highly scalable server able to handle multiple requests at once<br />
 * Fluid and Interactive user interface<br />
 
