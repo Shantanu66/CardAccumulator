@@ -1,6 +1,6 @@
 <h1 align="center" xmlns="http://www.w3.org/1999/html">
   <br>
-   <img src="https://user-images.githubusercontent.com/64373963/158184057-2a3e2f03-9e40-4af3-8334-edb11ca5c85a.png" width=590 height=240 />
+   <img src="https://user-images.githubusercontent.com/64373963/158184057-2a3e2f03-9e40-4af3-8334-edb11ca5c85a.png" width=570 height=240 />
   <br>
 </h1>
 
@@ -12,12 +12,6 @@
   <img src="https://img.shields.io/maintenance/no/2022">
   <img src="https://img.shields.io/github/commit-activity/y/Shantanu66/CardAccumulator?color=%23ff3&logo=commit">
 </p>
-
-
-
-
-
-
 
 # CardAccumulator 
 
@@ -39,7 +33,9 @@ Also performed automation testing of the graphAPI using postman
 ![combine_images](https://user-images.githubusercontent.com/64373963/139274388-ba056c14-7bf9-43a9-98f3-ebf285e51f14.jpg)
 
 # Working Demo
-![gifgit](https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif">
+</p>
 
 # Features
 
