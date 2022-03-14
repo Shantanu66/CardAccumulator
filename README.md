@@ -1,8 +1,22 @@
-![GitHub repo size](https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?color=purple)
-![GitHub Repo stars](https://img.shields.io/github/stars/Shantanu66/CardAccumulator?color=%23&logo=flutter)
-![npm](https://img.shields.io/npm/v/node?color=%23ff0000&logo=Node.js)
-![Maintenance](https://img.shields.io/maintenance/no/2022)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Shantanu66/CardAccumulator?color=%23ff3&logo=commit)
+<h1 align="center" xmlns="http://www.w3.org/1999/html">
+  <br>
+   <img src="https://user-images.githubusercontent.com/64373963/158184057-2a3e2f03-9e40-4af3-8334-edb11ca5c85a.png" />
+  <br>
+</h1>
+
+
+<p align="center">
+  <img src="https://img.shields.io/github/repo-size/Shantanu66/CardAccumulator?color=purple">
+  <img src="https://img.shields.io/github/stars/Shantanu66/CardAccumulator?color=%23&logo=flutter">
+  <img src="https://img.shields.io/npm/v/node?color=%23ff0000&logo=Node.js">
+  <img src="https://img.shields.io/maintenance/no/2022">
+  <img src="https://img.shields.io/github/commit-activity/y/Shantanu66/CardAccumulator?color=%23ff3&logo=commit">
+</p>
+
+
+
+
+
 
 
 # CardAccumulator 
