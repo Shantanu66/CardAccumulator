@@ -35,7 +35,7 @@ Also performed automation testing of the graphAPI using postman
 
 # Working Demo
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/64373963/145867076-0b86194f-0487-4629-af5a-70ea4ac1265e.gif">
+  <img src="https://user-images.githubusercontent.com/64373963/158649458-742cc154-21f2-4d2d-af6b-0bb998779b37.gif">
 </p>
 
 # Features
