@@ -31,7 +31,7 @@ Also performed automation testing of the graphAPI using postman
     Do flutter pub get.
 
 # Preview
-![combine_images](https://user-images.githubusercontent.com/64373963/158632198-6c424875-d0aa-4f78-bccf-3bb3c32a777c.png)
+![combine_images](https://user-images.githubusercontent.com/64373963/158635341-64d23acf-9f95-45dd-af95-ac97056f6e44.png)
 
 # Working Demo
 <p align="center">
