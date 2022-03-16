@@ -11,6 +11,7 @@
   <img src="https://img.shields.io/npm/v/node?color=%23ff0000&logo=Node.js">
   <img src="https://img.shields.io/maintenance/no/2022">
   <img src="https://img.shields.io/github/commit-activity/y/Shantanu66/CardAccumulator?color=%23ff3&logo=commit">
+  <img alt="GitHub" src="https://img.shields.io/github/license/Shantanu66/CardAccumulator?color=cyan">
 </p>
 
 # CardAccumulator 
