@@ -50,7 +50,7 @@ the leading open source NoSQL database mongoDB.<br />
 
 # Steps to download
 
-ps:SDK will be available soon
+ps : SDK will be available soon
 
 Now you can clone the repo and test it out if you find any bugs or if you can add any desirable improvements please contribute to it.
 Thanks
