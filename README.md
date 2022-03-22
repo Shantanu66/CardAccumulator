@@ -32,12 +32,6 @@ Also performed automation testing of the graphAPI using postman
 
 # Preview
 ![combine_images](https://user-images.githubusercontent.com/64373963/158635341-64d23acf-9f95-45dd-af95-ac97056f6e44.png)
-
-# Working Demo
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/64373963/158649458-742cc154-21f2-4d2d-af6b-0bb998779b37.gif">
-</p>
-
 # Features
 
 * Facilitates users to store their personal cards,modify them and delete them without having to refresh.<br/>
@@ -47,6 +41,12 @@ the leading open source NoSQL database mongoDB.<br />
 * Minimized data usage and highly robust<br />
 * highly scalable server able to handle multiple requests at once<br />
 * Fluid and Interactive user interface<br />
+
+# Working Demo
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/64373963/158649458-742cc154-21f2-4d2d-af6b-0bb998779b37.gif">
+</p>
+
 
 # Steps to download
 
