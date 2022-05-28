@@ -45,7 +45,7 @@ Also performed automation testing of the graphAPI using postman
 
 # Three-Tier System Architecture
 <p align="center">
-  <img src="![Card accumulator 3 tier architecture(1)](https://user-images.githubusercontent.com/64373963/170836569-8acfc319-e8ed-47be-9f70-0c385d3316cc.png)">
+  <img src=![Card accumulator 3 tier architecture(1)](https://user-images.githubusercontent.com/64373963/170836569-8acfc319-e8ed-47be-9f70-0c385d3316cc.png)>
 
 </p>
 
