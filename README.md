@@ -44,9 +44,7 @@ Also performed automation testing of the graphAPI using postman
 - [x] Fluid and Interactive user interface<br />
 
 # Three-Tier System Architecture
-![Card accumulator 3 tier architecture(1)](https://user-images.githubusercontent.com/64373963/170836569-8acfc319-e8ed-47be-9f70-0c385d3316cc.png)
-
-
+![Card accumulator 3 tier architecture](https://user-images.githubusercontent.com/64373963/170836673-01cfdee9-1037-47aa-ae80-8b2696fc7acb.png)
 
 # Working Demo
 <p align="center">
