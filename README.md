@@ -43,6 +43,10 @@ Also performed automation testing of the graphAPI using postman
 - [x] highly scalable server able to handle multiple requests at once<br />
 - [x] Fluid and Interactive user interface<br />
 
+# Three-Tier System Architecture
+![Card accumulator 3 tier architecture](https://user-images.githubusercontent.com/64373963/170836365-6e4c5774-5eb6-4243-ae43-f3b054fa03c7.png)
+
+
 # Working Demo
 <p align="center">
   <img src="https://user-images.githubusercontent.com/64373963/158649458-742cc154-21f2-4d2d-af6b-0bb998779b37.gif">
