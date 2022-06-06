@@ -23,7 +23,7 @@ This App is built using `Flutter` for the client side development
 For the sever side development i used `NodeJs`,`ExpressJs` and the API is built using `GraphQL` which results in minimized data usage due to fewer requests
 For the remote database i used a nosql db-`MongoDB`
 The Holder can save all the details of the cards and the card number is well encrypted using symmtric cyptography algorithm using the `block cipher technique` with an appealing UI design.
-Also performed automation testing of the graphAPI using postman
+Also performed automation testing of the graphAPI using postman.Future Additions:AWS,CI/CD
 
 # How To Run This Project
 
