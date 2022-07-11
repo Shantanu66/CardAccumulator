@@ -95,7 +95,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                     fetchPolicy: FetchPolicy.noCache,
                     onCompleted: (data) {
                       setState(() {
-                        currentHolderId = data['createHolder']["id"];
+                        currentHolderId = data!['createHolder']["id"];
                       });
                       final route = MaterialPageRoute(
                           builder: (context) => AddCardsScreen(

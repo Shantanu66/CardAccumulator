@@ -17,7 +17,7 @@ app.use('/graphQL',graphqlHTTP({
     schema:schema
 }))
 //connecting our server with mongoDB
-mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
+mongoose.connect(`mongodb+srv://${ process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
 {useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
     app.listen({port:port},()=>{
         console.log('Listening for requests on port '+port)

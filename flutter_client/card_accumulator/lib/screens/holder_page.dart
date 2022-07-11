@@ -67,10 +67,16 @@ class _HoldersScreenState extends State<HoldersScreen> {
   Widget build(BuildContext context) {
     Timer _timer;
     return Query(
-      options: QueryOptions(document: gql(QUERY)),
-      builder: (result, {fetchMore, refetch}) {
+      options: QueryOptions(
+        fetchPolicy: FetchPolicy.cacheAndNetwork,
+        document: gql(QUERY)),
+      builder: (QueryResult result, {FetchMore?fetchMore,VoidCallback? refetch}) {
         if (result.isLoading) {
-          return  SpinKitRipple();
+          return const SpinKitRipple(color:Colors.white);
+        }
+        if(result.data==null)
+        {
+          return Text("null");
         }
         HolderData = result.data!["holders"];
         return (HolderData.isNotEmpty)
