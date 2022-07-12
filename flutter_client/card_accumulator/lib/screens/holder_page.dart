@@ -104,7 +104,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                   return AnimatedOpacity(
                     duration: Duration(seconds: index),
                     opacity: _animate ? 1 : 0,
-                    curve: Curves.easeInOutQuart,
+                    curve: Curves.easeInOutCubic,
                     child: Stack(
                       children: [
                         InkWell(
