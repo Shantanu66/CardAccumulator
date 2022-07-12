@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:animation_list/animation_list.dart';
+
 class HoldersScreen extends StatefulWidget {
   const HoldersScreen({Key? key}) : super(key: key);
 
@@ -70,7 +70,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
   void initState() {
     super.initState();
     _isStart
-        ? Future.delayed(Duration(milliseconds: 10 * 100), () {
+        ? Future.delayed(Duration(milliseconds: 6 * 100), () {
             setState(() {
               _animate = true;
               _isStart = false;
@@ -78,41 +78,40 @@ class _HoldersScreenState extends State<HoldersScreen> {
           })
         : _animate = true;
   }
+
   @override
   Widget build(BuildContext context) {
     Timer _timer;
     return Query(
       options: QueryOptions(
-        fetchPolicy: FetchPolicy.cacheAndNetwork,
-        document: gql(QUERY)),
-      builder: (QueryResult result, {FetchMore?fetchMore,VoidCallback? refetch}) {
+          fetchPolicy: FetchPolicy.cacheAndNetwork, document: gql(QUERY)),
+      builder: (QueryResult result,
+          {FetchMore? fetchMore, VoidCallback? refetch}) {
         if (result.isLoading) {
-          return const SpinKitRipple(color:Colors.white);
+          return const SpinKitRipple(color: Colors.white);
         }
-        if(result.data==null)
-        {
+        if (result.data == null) {
           return Text("null");
         }
         HolderData = result.data!["holders"];
         return (HolderData.isNotEmpty)
-            ? AnimatedOpacity(
-              duration: Duration(milliseconds: 1000),
-              opacity: _animate ? 1 : 0,
-              curve: Curves.easeInOutQuart,
-              child: ListView.builder(
-                  controller: _controller,
-                  physics: _physics,
-                
-                  itemCount: HolderData.length,
-                  itemBuilder: (context, index) {
-                    final holder = HolderData[index];
-                    return Stack(
+            ? ListView.builder(
+                controller: _controller,
+                physics: _physics,
+                itemCount: HolderData.length,
+                itemBuilder: (context, index) {
+                  final holder = HolderData[index];
+                  return AnimatedOpacity(
+                    duration: Duration(seconds: index),
+                    opacity: _animate ? 1 : 0,
+                    curve: Curves.easeInOutQuart,
+                    child: Stack(
                       children: [
                         InkWell(
                           onTap: () async {
-                            final route = MaterialPageRoute(
-                              builder: (context) {
-                              return DetailsPage(holder: holder,
+                            final route = MaterialPageRoute(builder: (context) {
+                              return DetailsPage(
+                                holder: holder,
                               );
                             });
                             await Navigator.push(context, route);
@@ -131,7 +130,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                   //Colors.purple.shade300,
                                   Colors.deepPurple,
                                   Colors.purple,
-              
+
                                   //Colors.deepPurple.shade700
                                 ],
                               ),
@@ -150,16 +149,14 @@ class _HoldersScreenState extends State<HoldersScreen> {
                             child: InkWell(
                               onTap: () async {
                                 final route =
-                                    MaterialPageRoute(
-                                      builder: (context) {
+                                    MaterialPageRoute(builder: (context) {
                                   return DetailsPage(holder: holder);
                                 });
                                 await Navigator.push(context, route);
                               },
                               child: Container(
                                 child: Column(
-                                  crossAxisAlignment: 
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Row(
@@ -219,7 +216,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                     // ignore: prefer_const_literals_to_create_immutables
                                     colors: [
                                       //Colors.purple.shade300,
-              
+
                                       Colors.deepPurple,
                                       Colors.purple,
                                       //Colors.deepPurple.shade700
@@ -338,10 +335,10 @@ class _HoldersScreenState extends State<HoldersScreen> {
                               )
                             : Container(),
                       ],
-                    );
-                  },
-                ),
-            )
+                    ),
+                  );
+                },
+              )
             // ignore: avoid_unnecessary_containers
             : Padding(
                 padding: const EdgeInsets.only(bottom: 50),

@@ -38,8 +38,6 @@ class _DetailsPageState extends State<DetailsPage> {
   bool _isidcardvisible = false;
   bool _isbankcardvisible = false;
 
-  
-
   void _visibleidcard() {
     setState(() {
       _isidcardvisible = true;
@@ -52,6 +50,21 @@ class _DetailsPageState extends State<DetailsPage> {
       _isidcardvisible = false;
       _isbankcardvisible = true;
     });
+  }
+
+  static bool _isStart = true;
+  bool _animate = false;
+  @override
+  void initState() {
+    super.initState();
+    _isStart
+        ? Future.delayed(Duration(milliseconds: 6 * 100), () {
+            setState(() {
+              _animate = true;
+              _isStart = false;
+            });
+          })
+        : _animate = true;
   }
 
   @override
@@ -263,166 +276,169 @@ class _DetailsPageState extends State<DetailsPage> {
             visible: _isidcardvisible,
             child: Container(
               height: 500,
-              child: ListView.builder(
-                controller: _controller,
-                physics: _physics,
-                itemCount: _idcards.length,
-                itemBuilder: (context, index) {
-                  var data = _idcards[index];
-                  return Stack(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                            bottom: 23, left: 19, right: 19, top: 20),
-                        // ignore: duplicate_ignore
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          // ignore: prefer_const_constructors
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              //Colors.purple.shade300,
-                              Colors.indigo.shade800,
-                              Colors.blue,
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 1000),
+                opacity: _animate ? 1 : 0,
+                curve: Curves.easeInOutQuart,
+                child: ListView.builder(
+                  controller: _controller,
+                  physics: _physics,
+                  itemCount: _idcards.length,
+                  itemBuilder: (context, index) {
+                    var data = _idcards[index];
+                    return Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(
+                              bottom: 23, left: 19, right: 19, top: 20),
+                          // ignore: duplicate_ignore
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            // ignore: prefer_const_constructors
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                //Colors.purple.shade300,
+                                Colors.indigo.shade800,
+                                Colors.blue,
 
-                              //Colors.deepPurple.shade700
+                                //Colors.deepPurple.shade700
+                              ],
+                            ),
+                            // ignore: prefer_const_literals_to_create_immutables
+                            boxShadow: [
+                              // ignore: prefer_const_constructors
+                              BoxShadow(
+                                offset: const Offset(2, 6),
+                                color: Colors.blue,
+                                blurRadius: 19,
+                                spreadRadius: -2.5,
+                              )
                             ],
                           ),
-                          // ignore: prefer_const_literals_to_create_immutables
-                          boxShadow: [
-                            // ignore: prefer_const_constructors
-                            BoxShadow(
-                              offset: const Offset(2, 6),
-                              color: Colors.blue,
-                              blurRadius: 19,
-                              spreadRadius: -2.5,
-                            )
-                          ],
-                        ),
 
-                        padding: const EdgeInsets.all(20),
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "${data["title"]}",
+                          padding: const EdgeInsets.all(20),
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "${data["title"]}",
+                                      style: GoogleFonts.raleway(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, top: 15.0),
+                                  child: Text(
+                                    "Description : ${data["description"]}",
                                     style: GoogleFonts.raleway(
-                                        fontSize: 18.0,
+                                        fontSize: 14.0,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.white),
                                   ),
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, top: 15.0),
-                                child: Text(
-                                  "Description : ${data["description"]}",
-                                  style: GoogleFonts.raleway(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8.0, top: 6.0),
-                                child: Text(
-                                  "Card Number : ${data["cardnumber"]}",
-                                  style: GoogleFonts.raleway(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, top: 6.0),
+                                  child: Text(
+                                    "Card Number : ${data["cardnumber"]}",
+                                    style: GoogleFonts.raleway(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 8.0, top: 6.0, bottom: 6.0),
-                                child: Text(
-                                  "DOB : ${data["DOB"]}",
-                                  style: GoogleFonts.raleway(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, top: 6.0, bottom: 6.0),
+                                  child: Text(
+                                    "DOB : ${data["DOB"]}",
+                                    style: GoogleFonts.raleway(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 2.0,
-                        left: 120.0,
-                        child: RawMaterialButton(
-                          padding: EdgeInsets.all(9.0),
-                          shape: CircleBorder(),
-                          elevation: 15.0,
-                          fillColor: Colors.grey.shade900,
-                          child: Icon(
-                            Icons.edit_rounded,
-                            color: Colors.green,
-                            size: 27.0,
-                          ),
-                          // ignore: avoid_print
-                          onPressed: () async {
-                            final route = MaterialPageRoute(
-                              builder: (context) {
-                                return EditIdcardScreen(
-                                    id: data['id'],
-                                    title: data['title'],
-                                    description: data['description'],
-                                    cardnumber: data['cardnumber'],
-                                    DOB: data["DOB"]);
-                              },
-                            );
-                            await Navigator.push(context, route);
-                          },
-                        ),
-                      ),
-                      Mutation(
-                          options: MutationOptions(
-                            document: gql(removeidcard()),
-                            onCompleted: (data) {
-
+                        Positioned(
+                          bottom: 2.0,
+                          left: 120.0,
+                          child: RawMaterialButton(
+                            padding: EdgeInsets.all(9.0),
+                            shape: CircleBorder(),
+                            elevation: 15.0,
+                            fillColor: Colors.grey.shade900,
+                            child: Icon(
+                              Icons.edit_rounded,
+                              color: Colors.green,
+                              size: 27.0,
+                            ),
+                            // ignore: avoid_print
+                            onPressed: () async {
+                              final route = MaterialPageRoute(
+                                builder: (context) {
+                                  return EditIdcardScreen(
+                                      id: data['id'],
+                                      title: data['title'],
+                                      description: data['description'],
+                                      cardnumber: data['cardnumber'],
+                                      DOB: data["DOB"]);
+                                },
+                              );
+                              await Navigator.push(context, route);
                             },
                           ),
-                          builder: (runMutation, result) {
-                            return Positioned(
-                                bottom: 2.0,
-                                left: 190.0,
-                                child: RawMaterialButton(
-                                  padding: EdgeInsets.all(9.0),
-                                  shape: CircleBorder(),
-                                  elevation: 14.0,
-                                  fillColor: Colors.grey.shade900,
-                                  onPressed: ()async {
-                                    runMutation({
-                                      "id": data["id"]
+                        ),
+                        Mutation(
+                            options: MutationOptions(
+                              document: gql(removeidcard()),
+                              onCompleted: (data) {},
+                            ),
+                            builder: (runMutation, result) {
+                              return Positioned(
+                                  bottom: 2.0,
+                                  left: 190.0,
+                                  child: RawMaterialButton(
+                                    padding: EdgeInsets.all(9.0),
+                                    shape: CircleBorder(),
+                                    elevation: 14.0,
+                                    fillColor: Colors.grey.shade900,
+                                    onPressed: () async {
+                                      runMutation({"id": data["id"]});
+                                      _timer = new Timer(
+                                          const Duration(seconds: 1), () {
+                                        Navigator.pushAndRemoveUntil(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return HomeScreenState();
+                                        }), (route) => false);
                                       });
-                                _timer =new Timer(const Duration(seconds: 1), () {
-                                  Navigator.pushAndRemoveUntil(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return HomeScreenState();
-                                  }), (route) => false);
-                                });
-                                  },
-                                  child: Icon(
-                                    Icons.delete_outlined,
-                                    color: Colors.red,
-                                    size: 27.0,
-                                  ),
-                                ));
-                          }),
-                    ],
-                  );
-                },
+                                    },
+                                    child: Icon(
+                                      Icons.delete_outlined,
+                                      color: Colors.red,
+                                      size: 27.0,
+                                    ),
+                                  ));
+                            }),
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ),
@@ -545,9 +561,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       Mutation(
                           options: MutationOptions(
                             document: gql(removebankcard()),
-                            onCompleted: (data) {
-
-                            },
+                            onCompleted: (data) {},
                           ),
                           builder: (runMutation, result) {
                             return Positioned(
@@ -558,16 +572,15 @@ class _DetailsPageState extends State<DetailsPage> {
                                   shape: CircleBorder(),
                                   elevation: 14.0,
                                   fillColor: Colors.grey.shade900,
-                                  onPressed: ()async {
-                                    runMutation({
-                                      "id": data2["id"]
-                                      });
-                                _timer =new Timer(const Duration(seconds: 1), () {
-                                  Navigator.pushAndRemoveUntil(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return HomeScreenState();
-                                  }), (route) => false);
-                                });
+                                  onPressed: () async {
+                                    runMutation({"id": data2["id"]});
+                                    _timer = new Timer(
+                                        const Duration(seconds: 1), () {
+                                      Navigator.pushAndRemoveUntil(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return HomeScreenState();
+                                      }), (route) => false);
+                                    });
                                   },
                                   child: Icon(
                                     Icons.delete_outlined,
@@ -596,6 +609,7 @@ class _DetailsPageState extends State<DetailsPage> {
       }
     """;
   }
+
   String removeidcard() {
     return """
       mutation removeIdcard(\$id:String!){
