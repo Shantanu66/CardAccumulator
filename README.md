@@ -42,7 +42,7 @@ Also performed automation testing of the graphAPI using postman.Future Additions
 - [x] Minimized data usage and highly robust<br />
 - [x] highly scalable server able to handle multiple requests at once<br />
 - [x] Fluid and Interactive user interface<br />
-<br />
+
 # Three-Tier System Architecture
 ![Screenshot 2022-05-29 161835](https://user-images.githubusercontent.com/64373963/170864197-0233b8e9-7e7a-4214-83a4-4d333f5fcde1.png)
 
