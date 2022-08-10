@@ -48,7 +48,9 @@ Also performed automation testing of the graphAPI using postman.Future Additions
 
 # Working Demo
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/64373963/183856922-267288ed-5503-4f88-a5b1-940b752a9164.mp4">
+  <video>
+    <source src="https://user-images.githubusercontent.com/64373963/183856922-267288ed-5503-4f88-a5b1-940b752a9164.mp4">
+  </video>
 </p>
 
 
