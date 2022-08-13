@@ -15,7 +15,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final ValueNotifier<GraphQLClient> client;
 
-  const MyApp({Key? key, required this.client}) : super(key: key);
+  const MyApp({Key? key,  required this.client}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(

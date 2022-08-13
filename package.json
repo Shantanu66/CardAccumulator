@@ -11,9 +11,11 @@
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
     "lodash": "^4.17.21",
+    "mocha": "^10.0.0",
     "mongoose": "^6.4.4"
   },
-  "scripts":{
-    "start":"node app.js"
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha server/**/*.spec.js"
   }
 }
