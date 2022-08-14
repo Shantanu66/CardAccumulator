@@ -4,8 +4,6 @@ import 'package:card_accumulator/screens/holder_detail_screen.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
