@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:card_accumulator/screens/edit_holder_screen.dart';
 import 'package:card_accumulator/screens/holder_detail_screen.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
