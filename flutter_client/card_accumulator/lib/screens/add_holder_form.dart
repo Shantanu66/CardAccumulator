@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:card_accumulator/screens/add_cards_screen.dart';
+
 
 class AddHolderScreen extends StatefulWidget {
   const AddHolderScreen({Key? key}) : super(key: key);
@@ -14,10 +14,10 @@ class AddHolderScreen extends StatefulWidget {
   _AddHolderScreenState createState() => _AddHolderScreenState();
 }
 
-final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
+final Shader linearGradient = const LinearGradient(
+  colors: <Color>[Colors.white, Colors.deepPurpleAccent],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
 class _AddHolderScreenState extends State<AddHolderScreen> {
@@ -28,8 +28,9 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
   final _professionController = TextEditingController();
   final _mailController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
-      new RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
 
+  // ignore: prefer_typing_uninitialized_variables
   var currentHolderId;
 
   @override
@@ -48,19 +49,19 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
         ),
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color(0xFF1c1527)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF1c1527)),
           onPressed: () => {},
         ),
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(Icons.close_sharp),
+            icon: const Icon(Icons.close_sharp),
             color: Colors.yellowAccent,
           )
         ],
         elevation: 0,
       ),
-      backgroundColor: Color(0xFF1c1527),
+      backgroundColor: const Color(0xFF1c1527),
       body: Padding(
         padding: const EdgeInsets.only(top: 100.0),
         child: SingleChildScrollView(
@@ -84,7 +85,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
               boxShadow: [
                 // ignore: prefer_const_constructors
                 BoxShadow(
-                    offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
+                    offset: const Offset(0, 10), color: Colors.black, blurRadius: 30),
               ],
             ),
             child: Column(
@@ -108,7 +109,7 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                   ),
                   builder: (runMutation, result) {
                     void _doSomething() async {
-                      Timer(Duration(milliseconds: 100), () {
+                      Timer(const Duration(milliseconds: 100), () {
                         // ignore: unnecessary_this
                         this.setState(() {
                           if (_formkey.currentState!.validate()) {
@@ -160,14 +161,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Name can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -191,14 +192,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Age can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.number,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -222,14 +223,14 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Profession can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -253,19 +254,19 @@ class _AddHolderScreenState extends State<AddHolderScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Email can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           RoundedLoadingButton(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
                                   horizontal: 36, vertical: 12),
                               child: Text('Add Holder',
                                   style: TextStyle(

@@ -1,7 +1,7 @@
 import 'package:card_accumulator/screens/add_holder_form.dart';
 import 'package:card_accumulator/screens/holder_page.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
+
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,16 +12,16 @@ class HomeScreenState extends StatefulWidget {
   _HomeScreenStateState createState() => _HomeScreenStateState();
 }
 
-final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
+final Shader linearGradient = const LinearGradient(
+  colors: <Color>[Colors.white, Colors.deepPurpleAccent],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
 class _HomeScreenStateState extends State<HomeScreenState> {
   @override
   Widget build(BuildContext context) {
-    Widget content = HoldersScreen();
+    Widget content = const HoldersScreen();
     
     return Scaffold(
       appBar: AppBar(
@@ -41,13 +41,13 @@ class _HomeScreenStateState extends State<HomeScreenState> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async{
           final route=MaterialPageRoute(builder: 
-          (context)=>AddHolderScreen());
+          (context)=>const AddHolderScreen());
           await Navigator.push(context, route);
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(21)
         ),
-        icon: Icon(
+        icon: const Icon(
           Icons.group_add,
         ),
         tooltip: "Add a Holder to the holders page",
@@ -55,9 +55,9 @@ class _HomeScreenStateState extends State<HomeScreenState> {
         hoverColor: Colors.deepPurple.shade200,
         backgroundColor: Colors.deepPurpleAccent.shade700,
         elevation: 12,
-        label: Text("Add Holder"),
+        label: const Text("Add Holder"),
       ),
-       backgroundColor: Color(0xFF1c1527),
+       backgroundColor: const Color(0xFF1c1527),
     );
   }
 }

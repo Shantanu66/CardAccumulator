@@ -1,14 +1,13 @@
 import 'dart:async';
 
 import 'package:card_accumulator/screens/add_cards_new.dart';
-import 'package:card_accumulator/screens/add_cards_screen.dart';
+
 import 'package:card_accumulator/screens/edit_bank_card.dart';
 import 'package:card_accumulator/screens/edit_id_card.dart';
-import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:animated_button/animated_button.dart';
+
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -20,16 +19,16 @@ class DetailsPage extends StatefulWidget {
   _DetailsPageState createState() => _DetailsPageState();
 }
 
-final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
+final Shader linearGradient = const LinearGradient(
+  colors: <Color>[Colors.white, Colors.deepPurpleAccent],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
 class _DetailsPageState extends State<DetailsPage> {
   final _controller = ScrollController();
-  ScrollPhysics _physics =
-      BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+  final ScrollPhysics _physics =
+      const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 
   bool pressAttention = false;
 
@@ -58,7 +57,7 @@ class _DetailsPageState extends State<DetailsPage> {
   void initState() {
     super.initState();
     _isStart
-        ? Future.delayed(Duration(milliseconds: 6 * 100), () {
+        ? Future.delayed(const Duration(milliseconds: 6 * 100), () {
             setState(() {
               _animate = true;
               _isStart = false;
@@ -69,7 +68,6 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    Timer _timer;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -87,13 +85,13 @@ class _DetailsPageState extends State<DetailsPage> {
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(Icons.arrow_downward_rounded),
+            icon: const Icon(Icons.arrow_downward_rounded),
             color: Colors.greenAccent,
           )
         ],
         elevation: 0,
       ),
-      backgroundColor: Color(0xFF1c1527),
+      backgroundColor: const Color(0xFF1c1527),
       body: Column(
         children: [
           Flexible(
@@ -109,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
+                  colors: const [
                     //Colors.purple.shade300,
                     Colors.deepPurple,
                     Colors.purple,
@@ -222,7 +220,7 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             ),
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -274,10 +272,10 @@ class _DetailsPageState extends State<DetailsPage> {
           ),
           Visibility(
             visible: _isidcardvisible,
-            child: Container(
+            child: SizedBox(
               height: 500,
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: 1000),
+                duration: const Duration(milliseconds: 1000),
                 opacity: _animate ? 1 : 0,
                 curve: Curves.easeInOutQuart,
                 child: ListView.builder(
@@ -319,6 +317,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           ),
 
                           padding: const EdgeInsets.all(20),
+                          // ignore: avoid_unnecessary_containers
                           child: Container(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -378,11 +377,11 @@ class _DetailsPageState extends State<DetailsPage> {
                           bottom: 2.0,
                           left: 120.0,
                           child: RawMaterialButton(
-                            padding: EdgeInsets.all(9.0),
-                            shape: CircleBorder(),
+                            padding: const EdgeInsets.all(9.0),
+                            shape: const CircleBorder(),
                             elevation: 15.0,
                             fillColor: Colors.grey.shade900,
-                            child: Icon(
+                            child: const Icon(
                               Icons.edit_rounded,
                               color: Colors.green,
                               size: 27.0,
@@ -413,22 +412,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                   bottom: 2.0,
                                   left: 190.0,
                                   child: RawMaterialButton(
-                                    padding: EdgeInsets.all(9.0),
-                                    shape: CircleBorder(),
+                                    padding: const EdgeInsets.all(9.0),
+                                    shape: const CircleBorder(),
                                     elevation: 14.0,
                                     fillColor: Colors.grey.shade900,
                                     onPressed: () async {
                                       runMutation({"id": data["id"]});
-                                      _timer = new Timer(
-                                          const Duration(seconds: 1), () {
-                                        Navigator.pushAndRemoveUntil(context,
-                                            MaterialPageRoute(
-                                                builder: (context) {
-                                          return HomeScreenState();
-                                        }), (route) => false);
-                                      });
                                     },
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.delete_outlined,
                                       color: Colors.red,
                                       size: 27.0,
@@ -444,7 +435,7 @@ class _DetailsPageState extends State<DetailsPage> {
           ),
           Visibility(
             visible: _isbankcardvisible,
-            child: Container(
+            child: SizedBox(
               height: 500,
               child: ListView.builder(
                 controller: _controller,
@@ -484,6 +475,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           ],
                         ),
                         padding: const EdgeInsets.all(20),
+                        // ignore: avoid_unnecessary_containers
                         child: Container(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -532,17 +524,18 @@ class _DetailsPageState extends State<DetailsPage> {
                         bottom: 2.0,
                         left: 120.0,
                         child: RawMaterialButton(
-                          padding: EdgeInsets.all(9.0),
-                          shape: CircleBorder(),
+                          padding: const EdgeInsets.all(9.0),
+                          shape: const CircleBorder(),
                           elevation: 15.0,
                           fillColor: Colors.grey.shade900,
-                          child: Icon(
+                          child: const Icon(
                             Icons.edit_rounded,
                             color: Colors.green,
                             size: 27.0,
                           ),
                           // ignore: avoid_print
                           onPressed: () async {
+                            // ignore: avoid_print
                             print(data2['id']);
                             final route = MaterialPageRoute(
                               builder: (context) {
@@ -568,21 +561,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                 bottom: 2.0,
                                 left: 190.0,
                                 child: RawMaterialButton(
-                                  padding: EdgeInsets.all(9.0),
-                                  shape: CircleBorder(),
+                                  padding: const EdgeInsets.all(9.0),
+                                  shape: const CircleBorder(),
                                   elevation: 14.0,
                                   fillColor: Colors.grey.shade900,
                                   onPressed: () async {
                                     runMutation({"id": data2["id"]});
-                                    _timer = new Timer(
-                                        const Duration(seconds: 1), () {
-                                      Navigator.pushAndRemoveUntil(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return HomeScreenState();
-                                      }), (route) => false);
-                                    });
                                   },
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.delete_outlined,
                                     color: Colors.red,
                                     size: 27.0,

@@ -27,10 +27,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               primarySwatch: Colors.blueGrey,
               visualDensity: VisualDensity.adaptivePlatformDensity,
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 color: Colors.black87,
               )),
-          home: MySplash(),
+          home: const MySplash(),
         ),
       ),
     );

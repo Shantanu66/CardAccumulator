@@ -1,13 +1,11 @@
 import 'dart:async';
 
-import 'package:card_accumulator/screens/holder_page.dart';
 import 'package:card_accumulator/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:card_accumulator/screens/add_cards_screen.dart';
 
 class EditScreen extends StatefulWidget {
   final String id;
@@ -27,10 +25,10 @@ class EditScreen extends StatefulWidget {
   _EditScreenState createState() => _EditScreenState();
 }
 
-final Shader linearGradient = LinearGradient(
+final Shader linearGradient = const LinearGradient(
   colors: <Color>[Colors.white, Colors.deepPurpleAccent],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
 class _EditScreenState extends State<EditScreen> {
@@ -40,7 +38,8 @@ class _EditScreenState extends State<EditScreen> {
   final _professionController = TextEditingController();
   final _mailController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
-      new RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
+  // ignore: prefer_typing_uninitialized_variables
   var currentHolderId;
   @override
   void initState() {
@@ -67,19 +66,19 @@ class _EditScreenState extends State<EditScreen> {
         ),
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color(0xFF1c1527)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF1c1527)),
           onPressed: () => {},
         ),
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(Icons.close_sharp),
+            icon: const Icon(Icons.close_sharp),
             color: Colors.redAccent,
           )
         ],
         elevation: 0,
       ),
-      backgroundColor: Color(0xFF1c1527),
+      backgroundColor: const Color(0xFF1c1527),
       body: Padding(
         padding: const EdgeInsets.only(top: 110.0),
         child: SingleChildScrollView(
@@ -103,7 +102,7 @@ class _EditScreenState extends State<EditScreen> {
               boxShadow: [
                 // ignore: prefer_const_constructors
                 BoxShadow(
-                    offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
+                    offset: const Offset(0, 10), color: Colors.black, blurRadius: 30),
               ],
             ),
             child: Column(
@@ -117,14 +116,14 @@ class _EditScreenState extends State<EditScreen> {
                       _btnController.reset();
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                         builder: (context) {
-                          return HomeScreenState();
+                          return const HomeScreenState();
                         },
                       ), (route) => false);
                     },
                   ),
                   builder: (runMutation, result) {
                     void _doSomething() async {
-                      Timer(Duration(milliseconds: 100), () {
+                      Timer(const Duration(milliseconds: 100), () {
                         // ignore: unnecessary_this
                         this.setState(() {
                           if (_editkey.currentState!.validate()) {
@@ -174,7 +173,7 @@ class _EditScreenState extends State<EditScreen> {
 
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -200,7 +199,7 @@ class _EditScreenState extends State<EditScreen> {
 
                             keyboardType: TextInputType.number,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -226,7 +225,7 @@ class _EditScreenState extends State<EditScreen> {
 
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -252,12 +251,12 @@ class _EditScreenState extends State<EditScreen> {
 
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           RoundedLoadingButton(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
                                   horizontal: 36, vertical: 12),
                               child: Text('Update',
                                   style: TextStyle(

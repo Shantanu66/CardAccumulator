@@ -10,7 +10,7 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 class AddCardsScreen extends StatefulWidget {
   final String cid;
 
-  AddCardsScreen({
+  const AddCardsScreen({
     required this.cid,
     Key? key,
   }) : super(key: key);
@@ -20,32 +20,36 @@ class AddCardsScreen extends StatefulWidget {
 }
 
 class _AddCardsScreenState extends State<AddCardsScreen> {
-  final _controller = ScrollController();
-  ScrollPhysics _physics =
-      BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 
-  final Shader linearGradient = LinearGradient(
-    colors: const <Color>[Colors.white, Colors.deepPurpleAccent],
+
+  final Shader linearGradient = const LinearGradient(
+    colors: <Color>[Colors.white, Colors.deepPurpleAccent],
   ).createShader(
-    Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+    const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
   );
 
   final _idCardkey = GlobalKey<FormState>();
 
   //idcards
   final _titleController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _DescController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _CardNumberController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _DOBController = TextEditingController();
   //bankcards
+  // ignore: non_constant_identifier_names
   final _BankController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _ValidityController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _NumberController = TextEditingController();
 
   final RoundedLoadingButtonController _btnController =
-      new RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
 
-  var _bankCardkey = GlobalKey<FormState>();
+  final _bankCardkey = GlobalKey<FormState>();
 
   bool _visible = false;
 
@@ -82,7 +86,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
         ),
-        backgroundColor: Color(0xFF1c1527),
+        backgroundColor: const Color(0xFF1c1527),
         body: SingleChildScrollView(
           child: Container(
             padding: const EdgeInsets.all(24),
@@ -104,7 +108,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
               boxShadow: [
                 // ignore: prefer_const_constructors
                 BoxShadow(
-                    offset: Offset(0, 5), color: Colors.black, blurRadius: 12),
+                    offset: const Offset(0, 5), color: Colors.black, blurRadius: 12),
               ],
             ),
             child: Column(
@@ -119,7 +123,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                       }),
                   builder: (runMutation, result) {
                     void _doSomething() async {
-                      Timer(Duration(milliseconds: 100), () {
+                      Timer(const Duration(milliseconds: 100), () {
                         // ignore: unnecessary_this
                         this.setState(() {
                           if (_idCardkey.currentState!.validate()) {
@@ -173,14 +177,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -204,14 +208,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Description can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -235,14 +239,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                             validator: (value) {
-                              if (value!.length == 0) {
+                              if (value!.isEmpty) {
                                 return "Card Number can't be empty";
                               }
                               return null;
                             },
                             keyboardType: TextInputType.number,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -267,18 +271,18 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                               ),
                               validator: (value) {
-                                if (value!.length == 0) {
+                                if (value!.isEmpty) {
                                   return "DOB can't be empty";
                                 }
                                 return null;
                               },
                               keyboardType: TextInputType.text),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           RoundedLoadingButton(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
                                   horizontal: 36, vertical: 12),
                               child: Text('Add card',
                                   style: TextStyle(
@@ -301,7 +305,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                     );
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 //BANK SECTION
@@ -317,7 +321,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                         }),
                     builder: (runMutation, result) {
                       void _doSomething() async {
-                        Timer(Duration(milliseconds: 100), () {
+                        Timer(const Duration(milliseconds: 100), () {
                           // ignore: unnecessary_this
                           this.setState(() {
                             if (_bankCardkey.currentState!.validate()) {
@@ -331,8 +335,8 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                               _BankController.clear();
                               _ValidityController.clear();
                               _NumberController.clear();
+                              // ignore: avoid_print
                               print(widget.cid);
-                              ;
                             } else {
                               _toggle2();
                               _btnController.error();
@@ -372,14 +376,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                               ),
                               validator: (value) {
-                                if (value!.length == 0) {
+                                if (value!.isEmpty) {
                                   return "Bank Name can't be empty";
                                 }
                                 return null;
                               },
                               keyboardType: TextInputType.text,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 12,
                             ),
                             TextFormField(
@@ -404,14 +408,15 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                               ),
                               validator: (value) {
-                                if (value!.length == 0) {
+                                if (value!.isEmpty) {
                                   return "Validity can't be empty";
                                 }
                                 return null;
                               },
                               keyboardType: TextInputType.text,
                             ),
-                            SizedBox(
+                            
+                            const SizedBox(
                               height: 12,
                             ),
                             TextFormField(
@@ -436,19 +441,19 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                                     borderRadius: BorderRadius.circular(20)),
                               ),
                               validator: (value) {
-                                if (value!.length == 0) {
+                                if (value!.isEmpty) {
                                   return "Card Number can't be empty";
                                 }
                                 return null;
                               },
                               keyboardType: TextInputType.number,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 12,
                             ),
                             RoundedLoadingButton(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
                                     horizontal: 36, vertical: 12),
                                 child: Text('Add card',
                                     style: TextStyle(
@@ -472,14 +477,14 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Visibility(
                   visible: _visible2,
                   child: RoundedLoadingButton(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
                           horizontal: 36, vertical: 12),
                       child: Text('Done',
                           style: TextStyle(
@@ -494,7 +499,7 @@ class _AddCardsScreenState extends State<AddCardsScreen> {
                     onPressed: () {
                       Navigator.pushAndRemoveUntil(context,
                           MaterialPageRoute(builder: (context) {
-                        return HomeScreenState();
+                        return const HomeScreenState();
                       }), (route) => false);
                     },
                     width: 100,

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:card_accumulator/screens/edit_holder_screen.dart';
 import 'package:card_accumulator/screens/holder_detail_screen.dart';
-import 'package:card_accumulator/screens/home.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -17,18 +17,20 @@ class HoldersScreen extends StatefulWidget {
   _HoldersScreenState createState() => _HoldersScreenState();
 }
 
-final Shader linearGradient = LinearGradient(
-  colors: const <Color>[Colors.purple, Colors.deepPurpleAccent],
+final Shader linearGradient = const LinearGradient(
+  colors: <Color>[Colors.purple, Colors.deepPurpleAccent],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
 class _HoldersScreenState extends State<HoldersScreen> {
   final _controller = ScrollController();
-  ScrollPhysics _physics =
-      BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+  final ScrollPhysics _physics =
+      const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
 
+  // ignore: non_constant_identifier_names
   List HolderData = [];
+  // ignore: non_constant_identifier_names
   String QUERY = """
       query{
           holders{
@@ -70,7 +72,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
   void initState() {
     super.initState();
     _isStart
-        ? Future.delayed(Duration(milliseconds: 6 * 100), () {
+        ? Future.delayed(const Duration(milliseconds: 6 * 100), () {
             setState(() {
               _animate = true;
               _isStart = false;
@@ -81,7 +83,6 @@ class _HoldersScreenState extends State<HoldersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Timer _timer;
     return Query(
       options: QueryOptions(
           fetchPolicy: FetchPolicy.cacheAndNetwork, document: gql(QUERY)),
@@ -91,7 +92,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
           return const SpinKitRipple(color: Colors.white);
         }
         if (result.data == null) {
-          return Text("null");
+          return const Text("null");
         }
         HolderData = result.data!["holders"];
         return (HolderData.isNotEmpty)
@@ -126,7 +127,7 @@ class _HoldersScreenState extends State<HoldersScreen> {
                               gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [
+                                colors: const [
                                   //Colors.purple.shade300,
                                   Colors.deepPurple,
                                   Colors.purple,
@@ -231,11 +232,11 @@ class _HoldersScreenState extends State<HoldersScreen> {
                           bottom: 2.0,
                           left: 120.0,
                           child: RawMaterialButton(
-                            padding: EdgeInsets.all(9.0),
-                            shape: CircleBorder(),
+                            padding: const EdgeInsets.all(9.0),
+                            shape: const CircleBorder(),
                             elevation: 15.0,
                             fillColor: Colors.grey.shade900,
-                            child: Icon(
+                            child: const Icon(
                               Icons.edit_rounded,
                               color: Colors.green,
                               size: 27.0,
@@ -266,11 +267,11 @@ class _HoldersScreenState extends State<HoldersScreen> {
                               bottom: 2.0,
                               left: 190.0,
                               child: RawMaterialButton(
-                                padding: EdgeInsets.all(9.0),
-                                shape: CircleBorder(),
+                                padding: const EdgeInsets.all(9.0),
+                                shape: const CircleBorder(),
                                 elevation: 14.0,
                                 fillColor: Colors.grey.shade900,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.delete_sweep_rounded,
                                   color: Colors.red,
                                   size: 27.0,
@@ -296,13 +297,6 @@ class _HoldersScreenState extends State<HoldersScreen> {
                                     _removebankcard = true;
                                   });
                                   runMutation({"id": holder["id"]});
-                                  _timer =
-                                      new Timer(const Duration(seconds: 1), () {
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return HomeScreenState();
-                                    }), (route) => false);
-                                  });
                                 },
                               ),
                             );
@@ -346,19 +340,20 @@ class _HoldersScreenState extends State<HoldersScreen> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 150),
                   decoration: BoxDecoration(
-                    color: Color(0xFF1c1527),
+                    color: const Color(0xFF1c1527),
                     borderRadius: BorderRadius.circular(23),
 
                     // ignore: prefer_const_literals_to_create_immutables
                     boxShadow: [
                       // ignore: prefer_const_constructors
                       BoxShadow(
-                          offset: Offset(0, 2),
+                          offset: const Offset(0, 2),
                           color: Colors.black,
                           blurRadius: 4),
                     ],
                   ),
                   child: InkWell(
+                    // ignore: avoid_unnecessary_containers
                     child: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

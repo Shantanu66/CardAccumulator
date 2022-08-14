@@ -1,21 +1,22 @@
-import 'package:card_accumulator/screens/holder_detail_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:card_accumulator/screens/holder_page.dart';
+
 import 'package:card_accumulator/screens/home.dart';
-import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:card_accumulator/screens/add_cards_screen.dart';
+
 
 class EditIdcardScreen extends StatefulWidget {
   final String id;
   final String title;
   final String description;
   final String cardnumber;
+  // ignore: non_constant_identifier_names
   final String DOB;
   const EditIdcardScreen({
     Key? key,
@@ -23,6 +24,7 @@ class EditIdcardScreen extends StatefulWidget {
     required this.title,
     required this.description,
     required this.cardnumber,
+    // ignore: non_constant_identifier_names
     required this.DOB,
   }) : super(key: key);
 
@@ -30,10 +32,10 @@ class EditIdcardScreen extends StatefulWidget {
   _EditIdcardScreenState createState() => _EditIdcardScreenState();
 }
 
-final Shader linearGradient = LinearGradient(
+final Shader linearGradient = const LinearGradient(
   colors: <Color>[Colors.white, Colors.deepPurpleAccent],
 ).createShader(
-  Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
+  const Rect.fromLTWH(0.0, 0.0, 250.0, 70.0),
 );
 
 class _EditIdcardScreenState extends State<EditIdcardScreen> {
@@ -41,9 +43,11 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
   final _titleController = TextEditingController();
   final _descController = TextEditingController();
   final _numberController = TextEditingController();
+  // ignore: non_constant_identifier_names
   final _DOBController = TextEditingController();
   final RoundedLoadingButtonController _btnController =
-      new RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
+  // ignore: prefer_typing_uninitialized_variables
   var currentHolderId;
   @override
   void initState() {
@@ -70,19 +74,19 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
         ),
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color(0xFF1c1527)),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF1c1527)),
           onPressed: () => {},
         ),
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(Icons.close_sharp),
+            icon: const Icon(Icons.close_sharp),
             color: Colors.redAccent,
           )
         ],
         elevation: 0,
       ),
-      backgroundColor: Color(0xFF1c1527),
+      backgroundColor: const Color(0xFF1c1527),
       body: Padding(
         padding: const EdgeInsets.only(top: 110.0),
         child: SingleChildScrollView(
@@ -106,7 +110,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
               boxShadow: [
                 // ignore: prefer_const_constructors
                 BoxShadow(
-                    offset: Offset(0, 10), color: Colors.black, blurRadius: 30),
+                    offset: const Offset(0, 10), color: Colors.black, blurRadius: 30),
               ],
             ),
             child: Column(
@@ -120,14 +124,14 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
                       _btnController.reset();
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
                         builder: (context) {
-                          return HomeScreenState();
+                          return const HomeScreenState();
                         },
                       ), (route) => false);
                     },
                   ),
                   builder: (runMutation, result) {
                     void _doSomething() async {
-                      Timer(Duration(milliseconds: 100), () {
+                      Timer(const Duration(milliseconds: 100), () {
                         // ignore: unnecessary_this
                         this.setState(() {
                           if (_editkey.currentState!.validate()) {
@@ -177,7 +181,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
 
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -203,7 +207,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
 
                             keyboardType: TextInputType.number,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -229,7 +233,7 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
 
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           TextFormField(
@@ -255,12 +259,12 @@ class _EditIdcardScreenState extends State<EditIdcardScreen> {
 
                             keyboardType: TextInputType.text,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 12,
                           ),
                           RoundedLoadingButton(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
                                   horizontal: 36, vertical: 12),
                               child: Text('Update',
                                   style: TextStyle(
