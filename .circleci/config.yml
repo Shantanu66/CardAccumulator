@@ -11,7 +11,7 @@ jobs:
       - run: flutter doctor
       - run: 
           command: cd flutter_client && flutter pub get
-          background: false
+          
       - run:
           command: cd flutter_client && flutter analyze
           
