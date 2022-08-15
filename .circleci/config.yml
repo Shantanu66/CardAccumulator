@@ -2,6 +2,7 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
   flutter: circleci/flutter@1.1.0
+  node: circleci/node@1.1.6
 jobs:
   build:
     docker:
@@ -14,10 +15,19 @@ jobs:
           
       - run:
           command: cd flutter_client && flutter analyze
-          
+  build-node:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            
             
 
 workflows:
   build:
     jobs:
       - build
+      - build-node
