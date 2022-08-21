@@ -6,7 +6,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initHiveForFlutter();
   final HttpLink link =
-      HttpLink('https://card-accumulator-dev.herokuapp.com/graphql');
+      HttpLink('https://card-accumulator-dev.herokuapp.com');
   ValueNotifier<GraphQLClient> client = ValueNotifier(
       GraphQLClient(link: link, cache: GraphQLCache(store: HiveStore())));
   runApp(MyApp(client: client));
