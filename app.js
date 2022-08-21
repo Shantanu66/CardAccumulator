@@ -12,7 +12,7 @@ const app=express()
 //app.use/the server will use the graph API to communicate
 //using cors(cross origin resource origin)
 app.use(cors())
-app.use(graphqlHTTP({
+app.use("/graphql",graphqlHTTP({
     graphiql:true,
     schema:schema
 }))
