@@ -5,7 +5,7 @@ const { graphqlHTTP }=require('express-graphql')
 const schema=require('./server/schema/schema')
 const { startDatabase } = require("./database");
 const cors=require('cors')
-const port=process.env.PORT || 5000
+
 //instantiating the server using express
 const app=express()
 const context = async () => {
@@ -20,11 +20,8 @@ app.use(cors())
 app.use("/graphql",graphqlHTTP({
     graphiql:true,
     schema:schema,
-    context:context,
+    context:context
 }))
-app.listen({port:port},()=>{
-    console.log(`Server ready at http://localhost:${port}/graphql`);
-}).catch((e)=>console.log("Error:::"+e))
 //connecting our server with mongoDB
 
 module.exports=app

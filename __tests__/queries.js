@@ -8,7 +8,7 @@ const request = supertest(app);
 afterAll(async () => {
   await stopDatabase()
 });
-
+var id;
 test("fetch all holders present in database", async () => {
   
   request
