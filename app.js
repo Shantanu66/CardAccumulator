@@ -11,7 +11,7 @@ const app=express()
 //mongodb+srv://Shantanu:<password>@cardaccumulator.ctoe1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 //app.use/the server will use the graph API to communicate
 //using cors(cross origin resource origin)
-const context = async () => {
+const Context = async () => {
     const db = await startDatabase();
   
     return { db };
@@ -20,7 +20,7 @@ app.use(cors())
 app.use("/graphql",graphqlHTTP({
     graphiql:true,
     schema:schema,
-    context
+    context:Context
 }))
 //connecting our server with mongoDB
 app.listen({port:port},()=>{
