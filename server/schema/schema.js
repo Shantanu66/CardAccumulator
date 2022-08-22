@@ -131,10 +131,10 @@ const RootQuery = new GraphQLObjectType({
             }
         },
         holderID: {
-            type:new GraphQLID(holderType),
+            type:holderType,
             
             resolve(parent,args){
-                return holder.find({name:"Shantanu"})
+                return holder.find({name:"Shantanu"}).id
                 
             }
         },
