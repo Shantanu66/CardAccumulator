@@ -1,7 +1,7 @@
 const app = require("../app");
 const supertest = require("supertest");
 const {stopDatabase}=require("../database");
-
+const mongoose=require('mongoose')
 
 // const request = supertest('https://card-accumulator-dev.herokuapp.com');
 const request = supertest(app);
@@ -36,11 +36,11 @@ test("Create a test holder to check if it gets stored in the DB", async () => {
       .end
   });
   test("checking the Deletion of the test holder from the DB to reset it to default state", async () => {
-  
+    const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
     request
       .post("/graphql")
       .send({
-        mutation: "{ createHolder(name:Shantanu, age:22,mail:Shantanur66@gmail.com,profession:profession){name,age,mail,profession}}",
+        mutation: `{ RemoveHolder(id:${userId}){name,age,mail,profession}}{name}`,
         })
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)

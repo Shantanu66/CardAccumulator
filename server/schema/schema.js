@@ -129,16 +129,7 @@ const RootQuery = new GraphQLObjectType({
                 //return lodash.find(holdersData, { id: args.id })
             }
         },
-        holderID: {
-            type:new GraphQLList(holderType),
-            
-            resolve(parent,args){
-                console.log(holder._id)
-                var H= holder.findOne({name:"Shantanu"})
-                var id=H._id
-                return id
-            }
-        },
+        
         holders:{
             type:new GraphQLList(holderType),
             resolve(parent,args){
