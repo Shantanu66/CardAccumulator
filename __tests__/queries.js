@@ -4,6 +4,7 @@ const {stopDatabase}=require("../database");
 const mongoose=require('mongoose')
 
 // const request = supertest('https://card-accumulator-dev.herokuapp.com');
+
 const request = supertest(app);
 afterAll(async () => {
   await stopDatabase()
@@ -35,18 +36,4 @@ test("Create a test holder to check if it gets stored in the DB", async () => {
       .expect(200)
       .end
   });
-  test("checking the Deletion of the test holder from the DB to reset it to default state", async () => {
-      const db=mongoose.connection
-      const {_id:userId}=db.collection("holders").findOne({name:"Shantanu"})
-      
-    // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
-    request
-      .post("/graphql")
-      .send({
-        mutation: "{ RemoveHolder(id:"+userId+"){name}",
-        })
-      .set("Accept", "application/json")
-      .expect("Content-Type", /json/)
-      .expect(200)
-      .end
-  });
+  
