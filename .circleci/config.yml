@@ -53,13 +53,13 @@ jobs:
           command: npm install --save-dev jest supertest 
       - run:
           name:  unit-Testing for graphql API
-          command: npm run test
-      - run:
-          name:  unit-Testing for graphql API
           command: npm config set user 0
       - run:
           name:  unit-Testing for graphql API
           command: npm config set unsafe-perm true
+      - run:
+          name:  unit-Testing for graphql API
+          command: npm run test
   deploy-to-heroku:
     docker:
       - image: circleci/node:13.12.0
