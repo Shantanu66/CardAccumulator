@@ -22,7 +22,7 @@ test("fetch all holders present in database", async () => {
     .end
 });
 test("Create a test holder to check if it gets stored in the DB", async () => {
-    const id=request.get({query:})
+    
     request
       .post("/graphql")
       .send({
