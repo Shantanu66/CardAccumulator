@@ -91,7 +91,7 @@ workflows:
                 - master
       - unit-test-graphAPI:
           requires:
-            -build-and-test-node
+            - build-and-test-node
           filters:
             branches:
               only:
