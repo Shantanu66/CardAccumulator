@@ -50,6 +50,8 @@ jobs:
           name:  Which current branch is being used
           command: echo ${CIRCLE_BRANCH}
       - run:
+          command: npm install --save-dev jest supertest 
+       - run:
           name:  unit-Testing for graphql API
           command: npm run test
   deploy-to-heroku:
