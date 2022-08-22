@@ -27,7 +27,7 @@ app.listen({port:port},()=>{
 }).catch((e)=>console.log("Error:::"+e))
 //connecting our server with mongoDB
 
-module.exports=app
+
 //creating a port for the server to serve at
 //and listen to it
 //localhost 4000:(port this is going to be served at)
