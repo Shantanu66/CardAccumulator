@@ -62,4 +62,4 @@ PS : SDK will be available soon
 
 # PS:
 
-Was showcased as one of the best projects in Google devfest 2021
+Was showcased as one of the best projects in Google devfest 2021.
