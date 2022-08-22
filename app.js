@@ -8,7 +8,7 @@ const cors=require('cors')
 
 //instantiating the server using express
 const app=express()
-const context = async () => {
+async () => {
     const db = await startDatabase();
   
     return { db };
@@ -20,7 +20,7 @@ app.use(cors())
 app.use("/graphql",graphqlHTTP({
     graphiql:true,
     schema:schema,
-    context:context
+    
 }))
 //connecting our server with mongoDB
 
