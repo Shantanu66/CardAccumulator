@@ -8,26 +8,72 @@ jobs:
     docker:
       - image: cirrusci/flutter
     steps:
-      - checkout
+      - checkout:
+          name: Checkout to the current branch to perform further tasks
+      - run: 
+          name: What is the current branch
+          command: echo ${CIRCLE_BRANCH}
       - run: flutter doctor
       - run: 
+          name: get latest dependecies for flutter
           command: cd flutter_client && flutter pub get
           
       - run:
+          name: automated check for your flutter code(linting)
           command: cd flutter_client && flutter analyze
   build-node:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
-            
-            
+      - run:
+          name:  Which current branch is being used
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          keys: 
+            - app-{{ checksum "package.json"}}
+            - app-
+      - run: 
+          name: install dependencies
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: app-{{ checksum "package.json"}}
+  deploy-to-heroku:
+    docker:
+      - image: circleci/node:13.12.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: What is the current branch
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: deploy server to heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master"]
+            then
+              git push https://heroku:$HEROKU_API_KEY@${HEROKU_APP_PRODUCTION}.git ${CIRCLE_BRANCH}:master -f
+            elif ["${CIRCLE_BRANCH}" == "staging"]
+            then
+              git push https://heroku:$HEROKU_API_KEY@${HEROKU_APP_STAGING}.git ${CIRCLE_BRANCH}:master -f
+            else
+              git push https://heroku:$HEROKU_API_KEY@${HEROKU_APP_DEV}.git ${CIRCLE_BRANCH}:master -f
+            fi
 
 workflows:
   build:
     jobs:
       - build
       - build-node
+      - deploy-to-heroku:
+          requires:
+            - build
+            - build-node
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
