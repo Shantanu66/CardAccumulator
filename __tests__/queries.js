@@ -1,7 +1,7 @@
 const app = require("../app");
 const supertest = require("supertest");
 const {stopDatabase}=require("../database");
-const { query } = require("express");
+
 
 // const request = supertest('https://card-accumulator-dev.herokuapp.com');
 const request = supertest(app);
