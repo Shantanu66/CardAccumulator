@@ -23,9 +23,7 @@ app.use("/graphql",graphqlHTTP({
     context:Context
 }))
 //connecting our server with mongoDB
-app.listen({port:port},()=>{
-    console.log('Listening for requests on port '+port)
-})
+
 //creating a port for the server to serve at
 //and listen to it
 //localhost 4000:(port this is going to be served at)
