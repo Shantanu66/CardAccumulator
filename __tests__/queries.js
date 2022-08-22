@@ -36,7 +36,9 @@ test("Create a test holder to check if it gets stored in the DB", async () => {
       .end
   });
   test("checking the Deletion of the test holder from the DB to reset it to default state", async () => {
-    const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
+      const db=mongoose.connection
+      const {_id:userId}=db.collection("holders").findOne({name:"Shantanu"})
+    // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
     request
       .post("/graphql")
       .send({
