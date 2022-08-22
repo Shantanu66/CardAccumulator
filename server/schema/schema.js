@@ -49,6 +49,7 @@ const {
 } = graphql
 
 //create types
+
 const holderType = new GraphQLObjectType({
     name: 'Holder',
     description: 'Documentation for Holder...',
@@ -133,7 +134,8 @@ const RootQuery = new GraphQLObjectType({
             type: holderType,
             args:{name: {type:GraphQLString}},
             resolve(parent,args){
-                return holder.id
+                
+                return holder.findOne(args.name)
             }
         },
         holders:{
