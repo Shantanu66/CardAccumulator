@@ -54,6 +54,12 @@ jobs:
       - run:
           name:  unit-Testing for graphql API
           command: npm run test
+      - run:
+          name:  unit-Testing for graphql API
+          command: npm config set user 0
+      - run:
+          name:  unit-Testing for graphql API
+          command: npm config set unsafe-perm true
   deploy-to-heroku:
     docker:
       - image: circleci/node:13.12.0
