@@ -51,12 +51,7 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
       - run:
           command: npm install --save-dev jest supertest 
-      - run:
-          name:  unit-Testing for graphql API
-          command: npm config set user 0
-      - run:
-          name:  unit-Testing for graphql API
-          command: npm config set unsafe-perm true
+      
       - run:
           name:  unit-Testing for graphql API
           command: npm run test
