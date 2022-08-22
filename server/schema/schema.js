@@ -5,7 +5,6 @@ var lodash = require('lodash')
 const holder=require("./Database/holder")
 const idcard=require("./Database/idcard")
 const bankcard=require("./Database/bankcard")
-const { type } = require('mocha/lib/utils')
 
 
 
@@ -134,8 +133,10 @@ const RootQuery = new GraphQLObjectType({
             type:new GraphQLList(holderType),
             
             resolve(parent,args){
-                return holder.find({name:"Shantanu"},'_id')
-                
+                console.log(holder._id)
+                var H= holder.findOne({name:"Shantanu"})
+                var id=H._id
+                return id
             }
         },
         holders:{
