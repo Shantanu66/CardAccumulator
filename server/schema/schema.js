@@ -134,14 +134,14 @@ const RootQuery = new GraphQLObjectType({
             type:new GraphQLList(holderType),
             args: { name: { type: GraphQLString } },
             resolve(parent,args){
-                return holder.findOne
+                const arr=[holder.find({})]
+                console.log(arr)
             }
         },
         holders:{
             type:new GraphQLList(holderType),
             resolve(parent,args){
-                const hol=[holder.find({})]
-                console.log(hol)
+                return holder.find({})
             }
         },
         idcard: {
