@@ -23,12 +23,7 @@ app.use("/graphql",graphqlHTTP({
     
 }))
 //connecting our server with mongoDB
-mongoose.connect(`mongodb+srv://${ process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
-{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
-    app.listen({port:port},()=>{
-        console.log('Listening for requests on port '+port)
-    })
-}).catch((e)=>console.log("Error:::"+e))
+
 //creating a port for the server to serve at
 //and listen to it
 //localhost 4000:(port this is going to be served at)

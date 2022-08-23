@@ -1,16 +1,16 @@
 const app = require("../app");
 const supertest = require("supertest");
-const {stopDatabase}=require("../database");
+const {startDatabase}=require("../database");
 const mongoose=require('mongoose')
 
 // const request = supertest('https://card-accumulator-dev.herokuapp.com');
 
 const request = supertest(app);
-afterAll(async () => {
-  await stopDatabase()
+beforeAll(async () => {
+  await startDatabase()
 });
 
-test("fetch all holders present in database", async () => {
+test("fetch all holders present in database",  (done) => {
   
   request
     .post("/graphql")
@@ -20,9 +20,9 @@ test("fetch all holders present in database", async () => {
     .set("Accept", "application/json")
     .expect("Content-Type", /json/)
     .expect(200)
-    .end
+    .end(done())
 });
-test("Create a test holder to check if it gets stored in the DB", async () => {
+test("Create a test holder to check if it gets stored in the DB",  (done) => {
     
     request
       .post("/graphql")
@@ -34,6 +34,6 @@ test("Create a test holder to check if it gets stored in the DB", async () => {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200)
-      .end
+      .end(done())
   });
   
