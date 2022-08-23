@@ -62,10 +62,10 @@ jobs:
           command: npm install --save-dev jest supertest 
       - run:
           name: install jest
-          command: npm install -g jest
+          command: npm install --save-dev jest
       - run:
           name:  unit-Testing for graphql API
-          command: jest --silent
+          command: jest --silent 
       - save_cache:
           paths:
             - node_modules
