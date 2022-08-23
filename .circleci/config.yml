@@ -61,7 +61,7 @@ jobs:
           command: npm install --save-dev jest
       - run:
           name: install jest
-          command: npm install -g jest-cli
+          command: npm install --global jest 
       - run:
           name:  unit-Testing for graphql API
           command: jest --silent
