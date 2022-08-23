@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test":"sh node_modules/.bin"
+    "test": "jest"
   },
   "devDependencies": {
     "eslint": "^8.22.0",

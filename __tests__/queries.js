@@ -36,4 +36,18 @@ test("Create a test holder to check if it gets stored in the DB",  (done) => {
       .expect(200)
       .end(done())
   });
-  
+  test("checking the Deletion of the test holder from the DB to reset it to default state",  (done) => {
+    const db=mongoose.connection
+    const {_id:userId}=db.collection("holders").findOne({name:"Shantanu"})
+    
+  // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
+  request
+    .post("/graphql")
+    .send({
+      mutation: "{ RemoveHolder(id:"+userId+"){name}",
+      })
+    .set("Accept", "application/json")
+    .expect("Content-Type", /json/)
+    .expect(200)
+    .end(done())
+});
