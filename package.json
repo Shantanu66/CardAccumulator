@@ -16,12 +16,12 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "jest"
+    "test": "sh node_modules/.bin/jest"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
     "eslint-config-standard": "^17.0.0",
-    "test": "sh node_modules/.bin/jest",
+    "jest": "^28.1.3",
     "supertest": "^6.2.4"
   }
 }
