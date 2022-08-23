@@ -1,16 +1,19 @@
 const app = require("../app");
 const supertest = require("supertest");
 const mongoose=require('mongoose')
-
+jest.useFakeTimers()
 // const request = supertest('https://card-accumulator-dev.herokuapp.com');
 
 const request = supertest(app);
-beforeAll(async () => {
-  mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
+
+beforeAll( () => {
+   mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true })
 });
-
-test("fetch all holders present in database",  (done) => {
+// afterAll(async () => {
+//   await mongoose.connection.close()
+// })
+test("fetch all holders present in database",  async() => {
   
   request
     .post("/graphql")
@@ -20,9 +23,14 @@ test("fetch all holders present in database",  (done) => {
     .set("Accept", "application/json")
     .expect("Content-Type", /json/)
     .expect(200)
-    .end(done())
+    .end(function (err, res) {
+      if (err) return done(err);
+      expect(res.body).toBeInstanceOf(Object);
+      
+      
+    });
 });
-test("Create a test holder to check if it gets stored in the DB",  (done) => {
+test("Create a test holder to check if it gets stored in the DB",  async() => {
     
     request
       .post("/graphql")
@@ -34,9 +42,14 @@ test("Create a test holder to check if it gets stored in the DB",  (done) => {
       .set("Accept", "application/json")
       .expect("Content-Type", /json/)
       .expect(200)
-      .end(done())
+      .end(function (err, res) {
+        if (err) return done(err);
+        expect(res.body).toBeInstanceOf(Object);
+        
+        
+      });
   });
-  test("checking the Deletion of the test holder from the DB to reset it to default state",  (done) => {
+  test("checking the Deletion of the test holder from the DB to reset it to default state",  async() => {
     const db=mongoose.connection
     const {_id:userId}=db.collection("holders").findOne({name:"Shantanu"})
     
@@ -49,5 +62,10 @@ test("Create a test holder to check if it gets stored in the DB",  (done) => {
     .set("Accept", "application/json")
     .expect("Content-Type", /json/)
     .expect(200)
-    .end(done())
+    .end(function (err, res) {
+      if (err) return done(err);
+      expect(res.body).toBeInstanceOf(Object);
+      
+      
+    });
 });
