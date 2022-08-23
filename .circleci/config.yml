@@ -65,7 +65,7 @@ jobs:
           command: npm install --save-dev jest
       - run:
           name:  unit-Testing for graphql API
-          command: npm test test
+          command: npm run test
       - save_cache:
           paths:
             - node_modules
