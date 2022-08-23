@@ -51,7 +51,6 @@ jobs:
       # This means that the single commit that triggered the automatic build is checked out in the workspace volume. 
       # Your repository directories are attached to the workspace volume.
       # That is why you should include the whole path on the package.json.
-      - dir: 'sh node_modules/.bin'
       - run:
           name:  Which current branch is being used
           command: echo ${CIRCLE_BRANCH}
