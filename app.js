@@ -31,4 +31,4 @@ mongoose.connect(`mongodb+srv://${ process.env.mongoUserName}:${process.env.mong
 //will be giving us error because there is really nothing to be
 //served as we dont have endpoint/routes
 
-module.exports=app
+
