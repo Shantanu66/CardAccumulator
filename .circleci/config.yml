@@ -63,6 +63,9 @@ jobs:
           name: npx jest
           command: npx jest
       - run:
+          name: npx jest
+          command: npm install -g jest-cli
+      - run:
           name:  unit-Testing for graphql API
           command: jest --silent
   deploy-to-heroku:
