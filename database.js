@@ -10,6 +10,4 @@ const app=require('./app')
             console.log('Listening for requests on port '+port)
          })
     }).catch((e)=>console.log("Error:::"+e))
-    async function stopDatabase(){
     
-}
