@@ -11,5 +11,5 @@ const app=require('./app')
          })
     }).catch((e)=>console.log("Error:::"+e))
     async function stopDatabase(){
-    mongoose.connection.close()
+    
 }
