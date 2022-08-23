@@ -10,9 +10,9 @@ const request = supertest('https://card-accumulator-dev.herokuapp.com');
 //     mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
 //     { useNewUrlParser: true, useUnifiedTopology: true })
 // });
-// // afterAll(async () => {
-// //   await mongoose.connection.close()
-// // })
+// afterAll(async () => {
+//   await mongoose.connection.close()
+// })
 test("fetch all holders present in database",  () => {
   
   request
