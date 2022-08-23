@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "sh node_modules/.bin/jest"
+    "test": "sh node_modules/.bin/jest && jest --runInBand --detectOpenHandles --forceExit"
   },
   "devDependencies": {
     "eslint": "^8.22.0",

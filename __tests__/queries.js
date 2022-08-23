@@ -4,18 +4,8 @@ const mongoose=require('mongoose')
 
 const request = supertest('https://card-accumulator-dev.herokuapp.com');
 
-// const db=mongoose.connection
-// const {_id:userId}=db.collection("holders").findOne({name:"Shantanu"})
+var u
 
-//const request = supertest(app);
-
-// beforeAll( () => {
-//     mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
-//     { useNewUrlParser: true, useUnifiedTopology: true })
-// });
-// afterAll(async () => {
-//   await mongoose.connection.close()
-// })
 test("fetch all holders present in database",  () => {
   
   request
@@ -42,17 +32,35 @@ test("Create a test holder to check if it gets stored in the DB",  () => {
       .expect(200)
       
   });
-//   test("checking the Deletion of the test holder from the DB to reset it to default state",  () => {
+  test("checking the Deletion of the test holder from the DB to reset it to default state",  () => {
     
     
-//   // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
-//   request
-//     .post("/graphql")
-//     .send({
-//       mutation: "{ RemoveHolder(id:"+userId+"){name}",
-//       })
-//     .set("Accept", "application/json")
-//     .expect("Content-Type", /json/)
-//     .expect(200)
+    // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
+     const user_id=request
+      .get("/graphql")
+      .send({
+        query:'{holdersID{id}}',
+        })
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      for (const [key, value] of Object.entries(user_id)) {
+        u=value
+      }
+     
+  });
+ 
+  test("checking the Deletion of the test holder from the DB to reset it to default state",  () => {
+    
+  
+  // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
+  request
+    .post("/graphql")
+    .send({
+      mutation: "{ RemoveHolder(id:"+u+"){name}",
+      })
+    .set("Accept", "application/json")
+    .expect("Content-Type", /json/)
+    .expect(200)
    
-// });
+});
