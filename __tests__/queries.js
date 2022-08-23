@@ -1,6 +1,5 @@
 const app = require("../app");
 const supertest = require("supertest");
-const {startDatabase}=require("../database");
 const mongoose=require('mongoose')
 
 // const request = supertest('https://card-accumulator-dev.herokuapp.com');
