@@ -7,7 +7,8 @@ const mongoose=require('mongoose')
 
 const request = supertest(app);
 beforeAll(async () => {
-  await startDatabase()
+  mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true })
 });
 
 test("fetch all holders present in database",  (done) => {
