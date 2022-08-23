@@ -6,7 +6,7 @@ const request = supertest('https://card-accumulator-dev.herokuapp.com');
 
 //const request = supertest(app);
 
-// beforeEach( () => {
+// beforeAll( () => {
 //     mongoose.connect(`mongodb+srv://${process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,
 //     { useNewUrlParser: true, useUnifiedTopology: true })
 // });

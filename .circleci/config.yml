@@ -59,7 +59,7 @@ jobs:
       
       - run:
           name:  unit-Testing for graphql API
-          command: npm run test
+          command: jest --silent
   deploy-to-heroku:
     docker:
       - image: circleci/node:13.12.0
