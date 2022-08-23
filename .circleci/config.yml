@@ -60,6 +60,9 @@ jobs:
           name: install jest
           command: npm install --save-dev jest
       - run:
+          name: npx jest
+          command: npx jest
+      - run:
           name:  unit-Testing for graphql API
           command: jest --silent
   deploy-to-heroku:
