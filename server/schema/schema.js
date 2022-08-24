@@ -5,8 +5,8 @@ var lodash = require('lodash')
 const holder=require("./Database/holder")
 const idcard=require("./Database/idcard")
 const bankcard=require("./Database/bankcard")
-const { assign, matchesProperty } = require('lodash')
-const { model } = require('mongoose')
+
+
 
 /*dummy data
 var holdersData = [
@@ -48,6 +48,7 @@ const {
 } = graphql
 
 //create types
+
 const holderType = new GraphQLObjectType({
     name: 'Holder',
     description: 'Documentation for Holder...',
@@ -128,10 +129,20 @@ const RootQuery = new GraphQLObjectType({
                 //return lodash.find(holdersData, { id: args.id })
             }
         },
+        holdersID:{
+            type:new GraphQLList(holderType),
+            resolve(parent,args){
+                return holder.find({name:"Shantanu"})
+                
+                
+            }
+        },
         holders:{
             type:new GraphQLList(holderType),
             resolve(parent,args){
                 return holder.find({})
+                
+                
             }
         },
         idcard: {

@@ -11,10 +11,12 @@ const app=express()
 //mongodb+srv://Shantanu:<password>@cardaccumulator.ctoe1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 //app.use/the server will use the graph API to communicate
 //using cors(cross origin resource origin)
+
 app.use(cors())
 app.use("/graphql",graphqlHTTP({
     graphiql:true,
     schema:schema
+    
 }))
 //connecting our server with mongoDB
 mongoose.connect(`mongodb+srv://${ process.env.mongoUserName}:${process.env.mongoUserPassword}@cardaccumulator.ctoe1.mongodb.net/${process.env.mongoDB}?retryWrites=true&w=majority`,

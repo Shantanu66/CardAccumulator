@@ -4,7 +4,7 @@ orbs:
   flutter: circleci/flutter@1.1.0
   node: circleci/node@1.1.6
 jobs:
-  build:
+  build-and-test-flutter:
     docker:
       - image: cirrusci/flutter
     steps:
@@ -21,7 +21,8 @@ jobs:
       - run:
           name: automated check for your flutter code(linting)
           command: cd flutter_client && flutter analyze
-  build-node:
+  
+  build-and-test-node:
     executor:
       name: node/default
     steps:
@@ -36,6 +37,35 @@ jobs:
       - run: 
           name: install dependencies
           command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: app-{{ checksum "package.json"}}
+  unit-test-graphAPI:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      # When you trigger a build from a repository, 
+      # Build triggers use a shallow clone of your repository.
+      # This means that the single commit that triggered the automatic build is checked out in the workspace volume. 
+      # Your repository directories are attached to the workspace volume.
+      # That is why you should include the whole path on the package.json.
+      - run:
+          name:  Which current branch is being used
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          keys: 
+            - app-{{ checksum "package.json"}}
+            - app-
+      - run:
+          command: npm install --save-dev jest supertest 
+      - run:
+          name: install jest
+          command: npm install --save-dev jest
+      - run:
+          name:  unit-Testing for graphql API
+          command: npm run test
       - save_cache:
           paths:
             - node_modules
@@ -65,12 +95,21 @@ jobs:
 workflows:
   build:
     jobs:
-      - build
-      - build-node
+      - build-and-test-flutter
+      - build-and-test-node
       - deploy-to-heroku:
           requires:
-            - build
-            - build-node
+            - build-and-test-flutter
+            - build-and-test-node
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
+      - unit-test-graphAPI:
+          requires:
+            - build-and-test-node
           filters:
             branches:
               only:
