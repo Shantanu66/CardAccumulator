@@ -1,6 +1,5 @@
 
 const supertest = require("supertest");
-const mongoose=require('mongoose')
 
 const request = supertest('https://card-accumulator-dev.herokuapp.com');
 
@@ -32,7 +31,7 @@ test("Create a test holder to check if it gets stored in the DB",  () => {
       .expect(200)
       
   });
-  test("checking the Deletion of the test holder from the DB to reset it to default state",  () => {
+  test("Getting the holder id from mongodb collections for use in removal of test holder from database",  () => {
     
     
     // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
