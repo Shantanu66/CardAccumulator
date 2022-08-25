@@ -26,7 +26,6 @@ test("Create a test holder to check if it gets stored in the DB", () => {
     .expect("Content-Type", /json/)
     .expect(200);
 });
-a;
 test("Getting the holder id from mongodb collections for use in removal of test holder from database", () => {
   // const {_id:userId}=mongoose.Collection("holders").findOne({name:"Shantanu"})
   const user_id = request
