@@ -26,7 +26,7 @@ ENV PATH "$PATH:/home/user/flutter/bin"
 
 # install dependencies 
 RUN npm install
-RUN flutter pub get
+# RUN flutter pub get
 
 # Build production app
 RUN npm run build
