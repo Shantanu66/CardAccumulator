@@ -8,7 +8,7 @@ executors:
     docker:
       - image: circleci/flutter@1.1.0
     working_directory: ~/repo
-  docker_publisher:
+  docker-publisher:
     environment:
       IMAGE_NAME: shantanur66/card-accumulator
     docker:
@@ -157,9 +157,7 @@ workflows:
                 - master
       - publish-to-docker-hub:
           requires:
-            - build-and-test-flutter
-            - build-and-test-node
-            - unit-test-graphAPI
+            - deploy-to-heroku
           filters:
             branches:
               only:
