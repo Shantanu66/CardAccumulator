@@ -131,12 +131,13 @@ jobs:
             fi
 
 workflows:
-  build:
+  build-and-deploy:
     jobs:
       - build-and-test-flutter
       - build-and-test-node
       - unit-test-graphAPI:
           requires:
+            - build-and-test-flutter
             - build-and-test-node
           filters:
             branches:
