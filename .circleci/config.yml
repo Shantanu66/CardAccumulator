@@ -144,10 +144,9 @@ workflows:
                 - develop
                 - staging
                 - master
-      - deploy-to-heroku:
+      - publish-to-docker-hub:
           requires:
             - build-and-test-flutter
-            - build-and-test-node
             - unit-test-graphAPI
           filters:
             branches:
@@ -155,9 +154,12 @@ workflows:
                 - develop
                 - staging
                 - master
-      - publish-to-docker-hub:
+      
+      - deploy-to-heroku:
           requires:
-            - deploy-to-heroku
+            - build-and-test-flutter
+            - build-and-test-node
+            - unit-test-graphAPI
           filters:
             branches:
               only:
