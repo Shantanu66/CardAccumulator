@@ -12,7 +12,7 @@ executors:
     environment:
       IMAGE_NAME: shantanur66/card-accumulator
     docker:
-      image: circleci/buildpack-deps:stretch
+      - image: circleci/buildpack-deps:stretch
 jobs:
   build-and-test-flutter:
     docker:
@@ -107,8 +107,6 @@ jobs:
             else
               docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:dev-${CIRCLE_BUILD_NUM} && docker push latest ${IMAGE_NAME}:dev-${CIRCLE_BUILD_NUM}
             fi
-      
-
   deploy-to-heroku:
     docker:
       - image: circleci/node:13.12.0
