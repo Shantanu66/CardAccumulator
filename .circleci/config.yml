@@ -3,6 +3,16 @@ orbs:
   android: circleci/android@1.0.3
   flutter: circleci/flutter@1.1.0
   node: circleci/node@1.1.6
+executors:
+  app-executor:
+    docker:
+      - image: circleci/flutter@1.1.0
+    working_directory: ~/repo
+  docker-publisher:
+    environment:
+      IMAGE_NAME: shantanur66/card-accumulator
+    docker:
+      - image: circleci/buildpack-deps:stretch
 jobs:
   build-and-test-flutter:
     docker:
@@ -70,6 +80,34 @@ jobs:
           paths:
             - node_modules
           key: app-{{ checksum "package.json"}}
+  publish-to-docker-hub:
+    executor:
+      name: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys: 
+            - app-{{ checksum "package.json"}}
+            - app-
+      - run:
+          name: login to Docker-hub
+          command: docker login --username "${DOCKER_HUB_USER_NAME}" --password "${DOCKER_HUB_PASS}"
+      - run:
+          name: build docker image
+          command: docker build -t ${IMAGE_NAME}:latest .
+      - run:
+          name: Tag and push image to docker hub
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master"]
+            then
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM} && docker push latest ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+            elif ["${CIRCLE_BRANCH}" == "staging"]
+            then
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM} && docker push latest ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM}
+            else
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:dev-${CIRCLE_BUILD_NUM} && docker push latest ${IMAGE_NAME}:dev-${CIRCLE_BUILD_NUM}
+            fi
   deploy-to-heroku:
     docker:
       - image: circleci/node:13.12.0
@@ -93,11 +131,11 @@ jobs:
             fi
 
 workflows:
-  build:
+  build-and-deploy:
     jobs:
       - build-and-test-flutter
       - build-and-test-node
-      - deploy-to-heroku:
+      - unit-test-graphAPI:
           requires:
             - build-and-test-flutter
             - build-and-test-node
@@ -107,12 +145,26 @@ workflows:
                 - develop
                 - staging
                 - master
-      - unit-test-graphAPI:
+      - publish-to-docker-hub:
           requires:
-            - build-and-test-node
+            - build-and-test-flutter
+            - unit-test-graphAPI
           filters:
             branches:
               only:
                 - develop
                 - staging
                 - master
+      
+      - deploy-to-heroku:
+          requires:
+            - build-and-test-flutter
+            - build-and-test-node
+            - unit-test-graphAPI
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
+      
