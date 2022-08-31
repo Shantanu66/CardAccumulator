@@ -30,4 +30,4 @@ RUN npm install
 # RUN flutter pub get
 
 # Build production app
-RUN npm run build
+# RUN npm run build
