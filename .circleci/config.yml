@@ -147,7 +147,6 @@ workflows:
                 - master
       - publish-to-docker-hub:
           requires:
-            - build-and-test-flutter
             - unit-test-graphAPI
           filters:
             branches:
@@ -158,9 +157,7 @@ workflows:
       
       - deploy-to-heroku:
           requires:
-            - build-and-test-flutter
-            - build-and-test-node
-            - unit-test-graphAPI
+            - publish-to-docker-hub
           filters:
             branches:
               only:
