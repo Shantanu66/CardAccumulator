@@ -22,7 +22,7 @@ RUN mv tools Android/sdk/tools
 RUN apk update && apk add git
 RUN git clone https://github.com/flutter/flutter.git
 ENV PATH "$PATH:/home/user/flutter/bin"
-RUN flutter doctor
+# RUN flutter doctor
 
 # install dependencies 
 RUN npm install
