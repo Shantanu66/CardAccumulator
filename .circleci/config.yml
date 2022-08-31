@@ -81,7 +81,8 @@ jobs:
             - node_modules
           key: app-{{ checksum "package.json"}}
   publish-to-docker-hub:
-    executor: docker-publisher
+    executor:
+      name: docker-publisher
     steps:
       - checkout
       - setup_remote_docker
