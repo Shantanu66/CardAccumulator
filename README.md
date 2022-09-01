@@ -44,8 +44,8 @@ Also performed automation unit-testing of the graphAPI using `jest` and `superte
 - [x] Fluid and Interactive user interface<br />
 
 # Three-Tier System Architecture
+![Card Accumulator drawio](https://user-images.githubusercontent.com/64373963/187998385-462b9f1b-ff40-4cf3-9455-ddd796005ae9.png)
 
-![System Architecture](https://user-images.githubusercontent.com/64373963/187998020-716a6048-b56f-423d-b656-bd8c3d6ff914.png)
 
 # Working Demo
 <p align="center">
