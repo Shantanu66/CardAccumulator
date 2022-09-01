@@ -44,7 +44,7 @@ Also performed automation unit-testing of the graphAPI using `jest` and `superte
 - [x] Fluid and Interactive user interface<br />
 
 # Three-Tier System Architecture
-![Screenshot 2022-05-29 161835](https://user-images.githubusercontent.com/64373963/170864197-0233b8e9-7e7a-4214-83a4-4d333f5fcde1.png)
+![System Architecture](https://user-images.githubusercontent.com/64373963/187998020-716a6048-b56f-423d-b656-bd8c3d6ff914.png)
 
 # Working Demo
 <p align="center">
