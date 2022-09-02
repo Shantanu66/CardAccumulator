@@ -24,6 +24,7 @@ For the sever side development i used `NodeJs`,`ExpressJs` and the API is built 
 For the remote database i used a nosql db-`MongoDB`
 The Holder can save all the details of the cards and the card number is well encrypted using symmtric cyptography algorithm using the `block cipher technique` with an appealing UI design.
 Also performed automation unit-testing of the graphAPI using `jest` and `supertest`.Automated the `CI/CD pipeline` using `CircleCI` deploying it to `heroku` and also `dockerized` the app.
+# What is the need of addding CI/CD to the app
 
 # How To Run This Project
 
