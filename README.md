@@ -25,7 +25,7 @@ For the remote database i used a nosql db-`MongoDB`
 The Holder can save all the details of the cards and the card number is well encrypted using symmtric cyptography algorithm using the `block cipher technique` with an appealing UI design.
 Also performed automation unit-testing of the graphAPI using `jest` and `supertest`.Automated the `CI/CD pipeline` using `CircleCI` deploying it to `heroku` and also `dockerized` the app.
 # What is the need of addding CI/CD to the app
-
+> As you know its very crucial to build and test you code before pushing it to production so every change you make might impact your `code quality` and the most important point is that we are using a backend/API which might need `code revisions` and has to be deployed over the www so it becomes a hassle to code-check every now and then after making some revisions and also you have to deploy it each time so it makes it quite inconvinient for the developer.So automating these processes really would help the developer to solely focus on the development process.
 # How To Run This Project
 
     Clone the repository.
