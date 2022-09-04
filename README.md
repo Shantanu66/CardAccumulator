@@ -14,7 +14,7 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/Shantanu66/CardAccumulator?color=cyan">
 </p>
 
-# CardAccumulator 
+# CardAccumulator:
 
 How pleasent it would be if you could store all your necessary cards in one simple app ! Amazing right?
 
