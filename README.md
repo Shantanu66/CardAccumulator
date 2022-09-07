@@ -48,7 +48,7 @@ Also performed automation unit-testing of the graphAPI using `jest` and `superte
 ![Card Accumulator drawio](https://user-images.githubusercontent.com/64373963/187998385-462b9f1b-ff40-4cf3-9455-ddd796005ae9.png)
 
 
-# Working Demo
+# Working Demo:
 <p align="center">
   
    <img src="https://user-images.githubusercontent.com/64373963/183901214-f366aa06-02e8-4660-9b84-5e5adf7800ed.gif">
